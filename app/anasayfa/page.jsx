@@ -2,60 +2,25 @@ import { FaAngleDown } from "react-icons/fa6";
 import Image from "next/image";
 import BigStars from "../../components/BigStars";
 import Send from "../../components/Send";
+import { v4 as uuidv4 } from "uuid";
+import Rating from "@mui/material/Rating";
 
-function SmallStars() {
+function SmallStars({ id }) {
   return (
-    <div class="flex items-center space-x-1 ">
-      <svg
-        class="w-4 h-4 text-yellow-300"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="currentColor"
-        viewBox="0 0 22 20"
-      >
-        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-      </svg>
-      <svg
-        class="w-4 h-4 text-yellow-300"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="currentColor"
-        viewBox="0 0 22 20"
-      >
-        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-      </svg>
-      <svg
-        class="w-4 h-4 text-yellow-300"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="currentColor"
-        viewBox="0 0 22 20"
-      >
-        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-      </svg>
-      <svg
-        class="w-4 h-4 text-yellow-300"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="currentColor"
-        viewBox="0 0 22 20"
-      >
-        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-      </svg>
-      <svg
-        class="w-4 h-4 text-gray-300 dark:text-gray-500"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="currentColor"
-        viewBox="0 0 22 20"
-      >
-        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-      </svg>
-    </div>
+    <Rating
+      value={2}
+      precision={0.5}
+      sx={{
+        "& .MuiRating-iconEmpty": {
+          color: id % 2 == 0 ? "#282932" : "#181A1E",
+        },
+      }}
+      readOnly
+    />
   );
 }
 
-function Person({ name, id }) {
+function OtherRatings({ name, id }) {
   return (
     <li>
       <div
@@ -64,7 +29,7 @@ function Person({ name, id }) {
         } flex justify-between items-center text-white rounded-sm p-2`}
       >
         {name}
-        <SmallStars />
+        <SmallStars id={id} />
       </div>
     </li>
   );
@@ -72,19 +37,19 @@ function Person({ name, id }) {
 
 function Others() {
   return (
-    <div className="flex flex-col px-8 pt-12 ">
+    <div className="flex flex-col px-8 pt-12  ">
       <div className="text-gray-500 pb-1">Diğer Oylamalar</div>
-      <ul className="mb-8">
-        <Person name={"Serkan"} id={1} />
-        <Person name={"Tolga"} id={2} />
-        <Person name={"Furkan"} id={3} />
-        <Person name={"Aga"} id={4} />
+      <ul className="mb-8 shadow border border-gray-700">
+        <OtherRatings name={"Serkan"} id={1} />
+        <OtherRatings name={"Tolga"} id={2} />
+        <OtherRatings name={"Furkan"} id={3} />
+        <OtherRatings name={"Aga"} id={4} />
       </ul>
     </div>
   );
 }
 
-function Rating() {
+function RatingContainer() {
   return (
     <div className="flex flex-col items-center bg-primary mx-20 rounded-sm shadow-md mt-4 p-6 border border-gray-700">
       <h1 className="text-white text-center font-bold">Genel Puan</h1>
@@ -105,7 +70,11 @@ function ImageInfo() {
     <div>
       <ul>
         {info.map((food) => {
-          return <li className="text-white my-2 text-center">{food}</li>;
+          return (
+            <li key={uuidv4()} className="text-white my-2 text-center">
+              {food}
+            </li>
+          );
         })}
       </ul>
     </div>
@@ -143,7 +112,7 @@ export default function Page() {
     <div>
       <DatePicker />
       <Food />
-      <Rating />
+      <RatingContainer />
       <Send />
       <Others />
     </div>
