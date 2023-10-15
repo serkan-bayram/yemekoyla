@@ -3,11 +3,11 @@
 import { useState } from "react";
 import Rating from "@mui/material/Rating";
 
-export default function BigStars() {
+export function BigStars() {
   const [value, setValue] = useState(0);
 
   return (
-    <div className="flex items-center space-x-2 pt-4">
+    <div className="flex items-center pt-4">
       <Rating
         name="simple-controlled"
         value={value}
@@ -15,7 +15,7 @@ export default function BigStars() {
         size="large"
         sx={{
           "& .MuiRating-iconEmpty": {
-            color: "#181A1E",
+            color: "#111214",
           },
         }}
         onChange={(event, newValue) => {
@@ -23,5 +23,20 @@ export default function BigStars() {
         }}
       />
     </div>
+  );
+}
+
+export function SmallStars({ id }) {
+  return (
+    <Rating
+      value={2}
+      precision={0.5}
+      sx={{
+        "& .MuiRating-iconEmpty": {
+          color: id % 2 == 0 ? "#282932" : "#111214",
+        },
+      }}
+      readOnly
+    />
   );
 }
