@@ -1,4 +1,4 @@
-import Send from "./components/Send";
+import Send from "./components/Button";
 import DatePicker from "./components/DataPicker";
 import Others from "./components/Others";
 import RatingContainer from "./components/RatingContainer";

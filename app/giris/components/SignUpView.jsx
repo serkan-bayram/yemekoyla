@@ -1,15 +1,18 @@
-import Button from "./Button";
+import { useState } from "react";
 import Header from "./Header";
-import Inputs, { Input } from "./Inputs";
+import SignUpAction from "./SignUpAction";
 
 export default function SignUpView() {
+  const serverHandleClick = () => {
+    console.log("fetching data");
+  };
+
+  const [as, setAs] = useState(false);
+
   return (
     <>
       <Header text="Kayıt Ol" />
-      <Inputs>
-        <Input placeholder="Okul Maili" />
-        <Button text="Kayıt Ol" />
-      </Inputs>
+      <SignUpAction />
     </>
   );
 }
