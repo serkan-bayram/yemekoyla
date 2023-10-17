@@ -14,7 +14,7 @@ export default async function Page() {
 
   return (
     <>
-      <Header text="Lütfen hesabınızı doğrulamak için mailinize gelen kodu giriniz." />
+      <Header text="Lütfen hesabınızı doğrulamak için E-postanıza gelen kodu giriniz." />
       <VerifyForm />
     </>
   );
