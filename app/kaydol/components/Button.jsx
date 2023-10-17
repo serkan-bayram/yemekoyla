@@ -1,5 +1,3 @@
-"use client";
-
 export default function Button({ text, handleClick }) {
   return (
     <div className="w-full rounded-md bg-primary border border-gray-500">

@@ -1,7 +1,8 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import SignInInputs from "./SignInInputs";
+import Button from "./Button";
+import Input from "./Input";
 
 export default function SignInForm() {
   const onSubmit = async (e) => {
@@ -16,7 +17,9 @@ export default function SignInForm() {
 
   return (
     <form onSubmit={onSubmit} className="px-8 pt-12 flex flex-col gap-6">
-      <SignInInputs />
+      <Input placeholder="Kullanıcı Adı" />
+      <Input placeholder="Şifre" />
+      <Button text="Giriş Yap" />
     </form>
   );
 }

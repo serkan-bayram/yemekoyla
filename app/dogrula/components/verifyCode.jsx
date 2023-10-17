@@ -1,10 +1,12 @@
-import jsonwebtoken from "jsonwebtoken";
+"use server";
+
 import { cookies } from "next/headers";
+import jsonwebtoken from "jsonwebtoken";
 
-export async function POST(request) {
-  const res = await request.json();
+export async function verifyCode(formData) {
+  const inputValue = Object.fromEntries(formData); // this works
 
-  const { code } = res;
+  const { code } = inputValue;
 
   const cookieStore = cookies();
   const token = cookieStore.get("codeToken").value;
@@ -19,12 +21,6 @@ export async function POST(request) {
   });
 
   if (decoded.code === code) {
-    console.log("yes");
-    return new Response(true, {
-      status: 200,
-      headers: { isValidated: `yes` },
-    });
+    console.log("authenticated!");
   }
-
-  return new Response(false);
 }

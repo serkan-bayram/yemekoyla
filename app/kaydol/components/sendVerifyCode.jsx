@@ -1,12 +1,15 @@
+"use server";
+
 import nodemailer from "nodemailer";
 import randomize from "randomatic";
 import jsonwebtoken from "jsonwebtoken";
+import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
-export async function POST(request) {
-  const res = await request.json();
+export async function sendVerifyCode(formData) {
+  // const email = Object.fromEntries(formData);  // this works
 
-  const { email } = res;
+  const email = "serkanbayramdesign@gmail.com";
 
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -37,7 +40,7 @@ export async function POST(request) {
     expiresIn: "1h",
   });
 
-  cookies().set("codeToken", `${token}`);
+  cookies().set("codeToken", token);
 
-  return Response.json(info);
+  if (token) redirect("/dogrula");
 }
