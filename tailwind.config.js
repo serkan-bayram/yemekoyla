@@ -17,6 +17,27 @@ module.exports = {
         secondary: "#181A1E",
         background: "#1E1F23",
       },
+      keyframes: {
+        "show-notification": {
+          "65%": { transform: "translateY(-256px)" },
+          "100%": { transform: "translateY(-248px)" },
+        },
+        "hide-notification": {
+          "0%": { transform: "translateY(-248px)" },
+          "5%": { transform: "translateY(-256px)" },
+          "70%": { transform: "translateY(256px)" },
+          "100%": { opacity: "0%" },
+        },
+        "start-progressbar": {
+          "0%": { width: "0px" },
+          "100%": { width: "100%" },
+        },
+      },
+      animation: {
+        "show-notification": "show-notification .7s ease forwards",
+        "hide-notification": "hide-notification 1.25s ease forwards",
+        "start-progressbar": "start-progressbar 5s linear forwards",
+      },
     },
   },
   plugins: [],
