@@ -5,6 +5,7 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { toast } from "react-toastify";
 import { validateVerifyCode } from "../../components/validations";
+import { signIn } from "next-auth/react";
 
 export default function VerifyForm() {
   const id = "falseCode";
@@ -32,6 +33,15 @@ export default function VerifyForm() {
 
       if (response === "falseCode") {
         notify("Yanlış kod.");
+      }
+
+      if (response?.email) {
+        const { error, ok } = await signIn("credentials", {
+          username: response.email,
+          password: response.password,
+          redirect: true,
+          callbackUrl: "/profilolustur",
+        });
       }
     }
 

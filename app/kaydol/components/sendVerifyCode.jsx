@@ -37,9 +37,13 @@ export async function sendVerifyCode(email) {
   }
 
   const secret = process.env.tokenSecret;
-  const token = jsonwebtoken.sign({ code: sixDigitCode }, secret, {
-    expiresIn: "1h",
-  });
+  const token = jsonwebtoken.sign(
+    { code: sixDigitCode, email: email },
+    secret,
+    {
+      expiresIn: "1h",
+    }
+  );
 
   cookies().set("codeToken", token);
 
