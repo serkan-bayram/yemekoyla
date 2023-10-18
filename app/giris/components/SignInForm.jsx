@@ -1,25 +1,46 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import Button from "./Button";
-import Input from "./Input";
+import Button from "../../components/Button";
+import Input from "../../components/Input";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
+// CEfqjkKDjQ7HD1F
 export default function SignInForm() {
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    await signIn("credentials", {
-      username: "serkan",
-      password: "CEfqjkKDjQ7HD1F",
-      redirect: true,
-      callbackUrl: "/anasayfa",
+  const router = useRouter();
+
+  const id = "notSignedIn";
+
+  const notify = (message) => {
+    toast.error(message, {
+      toastId: id,
     });
   };
 
+  // TODO: Move these validation functions to seperate files
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const { username, password } = Object.fromEntries(formData);
+    const { error, ok } = await signIn("credentials", {
+      username: username,
+      password: password,
+      redirect: false,
+    });
+
+    if (ok) router.push("/anasayfa");
+
+    if (!ok) notify("Bilgileriniz doğrulanamadı, lütfen tekrar deneyiniz.");
+  };
+
   return (
-    <form onSubmit={onSubmit} className="px-8 pt-12 flex flex-col gap-6">
-      <Input placeholder="Kullanıcı Adı" />
-      <Input placeholder="Şifre" />
-      <Button text="Giriş Yap" />
-    </form>
+    <>
+      <form onSubmit={handleSubmit} className="px-8 pt-12 flex flex-col gap-6">
+        <Input placeholder="Kullanıcı Adı" name="username" />
+        <Input placeholder="Şifre" name="password" />
+        <Button text="Giriş Yap" />
+      </form>
+    </>
   );
 }

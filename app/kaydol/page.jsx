@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import Header from "./components/Header";
+import Header from "../components/Header";
 import SignUpForm from "./components/SignUpForm";
 import Link from "next/link";
 import { getSession } from "../components/getSession";

@@ -1,4 +1,4 @@
-import Header from "../giris/components/Header";
+import Header from "../components/Header";
 import VerifyForm from "./components/VerifyForm";
 import { redirect } from "next/navigation";
 import { getSession } from "../components/getSession";

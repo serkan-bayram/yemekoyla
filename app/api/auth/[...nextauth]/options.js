@@ -5,12 +5,13 @@ export const options = {
   providers: [
     CredentialsProvider({
       async authorize(credentials, req) {
-        console.log(credentials);
+        const { username, password } = credentials;
+
         const pb = new PocketBase("http://127.0.0.1:8090");
 
         const authData = await pb
           .collection("users")
-          .authWithPassword("serkan", "CEfqjkKDjQ7HD1F");
+          .authWithPassword(username, password);
 
         // If no error and we have user data, return it
         if (pb.authStore.isValid) {

@@ -1,4 +1,4 @@
-import Header from "./components/Header";
+import Header from "../components/Header";
 import CreateProfileForm from "./components/CreateProfileForm";
 import { getSession } from "../components/getSession";
 import { redirect } from "next/navigation";

@@ -5,11 +5,12 @@ import randomize from "randomatic";
 import jsonwebtoken from "jsonwebtoken";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import { validateEmail } from "../../components/validations";
 
-export async function sendVerifyCode(formData) {
-  // const email = Object.fromEntries(formData);  // this works
+export async function sendVerifyCode(email) {
+  const validation = validateEmail(email);
 
-  const email = "serkanbayramdesign@gmail.com";
+  if (!validation) return "notValidated";
 
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",

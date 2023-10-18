@@ -2,11 +2,12 @@
 
 import { cookies } from "next/headers";
 import jsonwebtoken from "jsonwebtoken";
+import { validateVerifyCode } from "../../components/validations";
 
-export async function verifyCode(formData) {
-  const inputValue = Object.fromEntries(formData); // this works
+export async function verifyCode(code) {
+  const validation = validateVerifyCode(code);
 
-  const { code } = inputValue;
+  if (!validation) return "notValidated";
 
   const cookieStore = cookies();
   const token = cookieStore.get("codeToken").value;
@@ -21,6 +22,8 @@ export async function verifyCode(formData) {
   });
 
   if (decoded.code === code) {
-    console.log("authenticated!");
+    return true;
   }
+
+  return "falseCode";
 }

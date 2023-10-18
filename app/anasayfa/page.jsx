@@ -4,11 +4,7 @@ import Others from "./components/Others";
 import RatingContainer from "./components/RatingContainer";
 import Food from "./components/Food";
 
-export default function Page() {
-  // const session = await getServerSession(options);
-
-  // console.log(session);
-
+export default async function Page() {
   return (
     <div>
       <DatePicker />
