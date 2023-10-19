@@ -14,6 +14,9 @@ export const options = {
           .authWithPassword(username, password);
 
         // If no error and we have user data, return it
+
+        // TODO: Returning all of database information is bad idea problably, fix
+        // We can create a token out of this and decode it whenever we want
         if (pb.authStore.isValid) {
           return authData;
         }
