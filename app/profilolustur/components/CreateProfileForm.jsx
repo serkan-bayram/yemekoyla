@@ -8,6 +8,7 @@ import {
 } from "../../components/validations";
 import { toast } from "react-toastify";
 import { createProfile } from "./createProfile";
+import { signIn } from "next-auth/react";
 
 export default function CreateProfileForm() {
   const notify = (message) => {
@@ -26,12 +27,22 @@ export default function CreateProfileForm() {
     if (usernameValidation && passwordValidation) {
       const response = await createProfile(username, password);
 
-      if (response === "notValidated") {
-        notify("Geçersiz giriş."); // will change
-      }
+      if (!response?.ok) notify(response?.error);
+
+      if (response?.ok)
+        await signIn("credentials", {
+          username: username,
+          password: password,
+          redirect: true,
+          callbackUrl: "/anasayfa",
+        });
     }
 
-    if (!usernameValidation) notify("Geçersiz kullanıcı adı.");
+    if (!usernameValidation) {
+      notify("Geçersiz kullanıcı adı.");
+      return;
+    }
+
     if (!passwordValidation) notify("Geçersiz şifre.");
   };
 
