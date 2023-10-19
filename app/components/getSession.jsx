@@ -6,7 +6,5 @@ export async function getSession() {
 
   const permission = session?.user.record.permission || null;
 
-  console.log(session, permission);
-
   return { session, permission };
 }

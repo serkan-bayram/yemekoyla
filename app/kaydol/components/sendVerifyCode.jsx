@@ -10,7 +10,9 @@ import { validateEmail } from "../../components/validations";
 export async function sendVerifyCode(email) {
   const validation = validateEmail(email);
 
-  if (!validation) return "notValidated";
+  if (!validation) return { ok: false };
+
+  // We can check if the user is already signed up in here in the future
 
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -41,7 +43,7 @@ export async function sendVerifyCode(email) {
     { code: sixDigitCode, email: email },
     secret,
     {
-      expiresIn: "1h",
+      expiresIn: "12h",
     }
   );
 

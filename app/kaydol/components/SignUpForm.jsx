@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 
 export default function SignUpForm() {
   const id = "falseEmail";
-
   const notify = (message) => {
     toast.error(message, {
       toastId: id,
@@ -17,6 +16,7 @@ export default function SignUpForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const formData = new FormData(e.target);
     const { email } = Object.fromEntries(formData);
 
@@ -24,19 +24,18 @@ export default function SignUpForm() {
     const validation = validateEmail(email);
 
     if (validation) {
+      // validate in server side
       const response = await sendVerifyCode(email);
 
-      if (response === "notValidated") {
-        notify("Geçersiz E-Posta.");
-      }
+      if (!response?.ok) return;
     }
 
-    if (!validation) notify("Geçersiz E-Posta.");
+    notify("Geçersiz E-Posta.");
   };
 
   return (
     <form onSubmit={handleSubmit} className="px-8 pt-12 flex flex-col gap-6">
-      <Input placeholder="Okul Maili" name="email" />
+      <Input placeholder="ornek@ogrenci.bilecik.edu.tr" name="email" />
       <Button text="Kaydol" />
     </form>
   );

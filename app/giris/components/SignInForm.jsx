@@ -11,7 +11,6 @@ export default function SignInForm() {
   const router = useRouter();
 
   const id = "notSignedIn";
-
   const notify = (message) => {
     toast.error(message, {
       toastId: id,
@@ -21,26 +20,31 @@ export default function SignInForm() {
   // TODO: Move these validation functions to seperate files
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // get input data from form
     const formData = new FormData(e.target);
     const { username, password } = Object.fromEntries(formData);
-    const { error, ok } = await signIn("credentials", {
+
+    // call signin function with data
+    const { ok } = await signIn("credentials", {
       username: username,
       password: password,
       redirect: false,
     });
 
-    if (ok) router.push("/anasayfa");
-
-    if (!ok) notify("Bilgileriniz doğrulanamadı, lütfen tekrar deneyiniz.");
+    // if signin is ok redirect user
+    if (ok) {
+      router.push("/anasayfa");
+    } else {
+      notify("Bilgileriniz doğrulanamadı, lütfen tekrar deneyiniz.");
+    }
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit} className="px-8 pt-12 flex flex-col gap-6">
-        <Input placeholder="Kullanıcı Adı" name="username" />
-        <Input placeholder="Şifre" name="password" />
-        <Button text="Giriş Yap" />
-      </form>
-    </>
+    <form onSubmit={handleSubmit} className="px-8 pt-12 flex flex-col gap-6">
+      <Input placeholder="Kullanıcı Adı" name="username" />
+      <Input placeholder="Şifre" name="password" />
+      <Button text="Giriş Yap" />
+    </form>
   );
 }

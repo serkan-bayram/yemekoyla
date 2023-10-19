@@ -6,18 +6,21 @@ import Button from "../../components/Button";
 import { toast } from "react-toastify";
 import { validateVerifyCode } from "../../components/validations";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function VerifyForm() {
   const id = "falseCode";
-
   const notify = (message) => {
     toast.error(message, {
       toastId: id,
     });
   };
 
+  const router = useRouter();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const formData = new FormData(e.target);
     const { code } = Object.fromEntries(formData);
 
@@ -27,25 +30,24 @@ export default function VerifyForm() {
     if (validation) {
       const response = await verifyCode(code);
 
-      if (response === "notValidated") {
-        notify("Geçersiz kod.");
-      }
-
-      if (response === "falseCode") {
-        notify("Yanlış kod.");
+      if (!response?.ok) {
+        notify(response?.error);
       }
 
       if (response?.email) {
-        const { error, ok } = await signIn("credentials", {
+        const { ok } = await signIn("credentials", {
           username: response.email,
           password: response.password,
-          redirect: true,
-          callbackUrl: "/profilolustur",
+          redirect: false,
         });
-      }
-    }
 
-    if (!validation) notify("Geçersiz kod.");
+        if (!ok) notify("Profil oluşturulamadı.");
+
+        if (ok) router.push("/profiolustur");
+      }
+    } else {
+      notify("Geçersiz kod.");
+    }
   };
 
   return (
