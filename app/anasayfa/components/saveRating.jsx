@@ -3,8 +3,8 @@
 import { getSession } from "../../components/getSession";
 import PocketBase from "pocketbase";
 
-export async function saveRating(FormData) {
-  const { rating } = Object.fromEntries(FormData);
+export async function saveRating(prevState, formData) {
+  const rating = formData.get("rating");
   const { session } = await getSession();
   const userId = session.user.record.id;
 
@@ -42,14 +42,18 @@ export async function saveRating(FormData) {
   if (isAlreadySaved) {
     try {
       const record = await pb.collection("ratings").update(`${recordId}`, data);
+      return { message: true };
     } catch (error) {
       console.log("Error: ", error);
     }
   } else {
     try {
       const record = await pb.collection("ratings").create(data);
+      return { message: true };
     } catch (error) {
       console.log("Error:", error);
     }
   }
+
+  return { message: false };
 }

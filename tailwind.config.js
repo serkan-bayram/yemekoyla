@@ -32,11 +32,15 @@ module.exports = {
           "0%": { width: "0px" },
           "100%": { width: "100%" },
         },
+        "button-clicked": {
+          "80%, 100%": { width: "15%" },
+        },
       },
       animation: {
         "show-notification": "show-notification .7s ease forwards",
         "hide-notification": "hide-notification 1.25s ease forwards",
         "start-progressbar": "start-progressbar 5s linear forwards",
+        "button-clicked": "button-clicked 400ms linear forwards",
       },
     },
   },
