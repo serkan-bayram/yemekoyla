@@ -17,10 +17,69 @@
   width: 0%;
 }
 
-.underlined-link:hover::after {
+.underlined-link:hover::after,
+.underlined-link:focus::after {
   content: "";
-
   width: 100%;
+}
+
+.fancy-button {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.fancy-button > span {
+  background: transparent;
+  width: 33.333%;
+  height: 100%;
+  position: absolute;
+}
+
+.fancy-button > :first-child {
+  top: 0;
+  left: 0;
+}
+
+.fancy-button > :last-child {
+  top: 0;
+  right: 0;
+}
+
+.fancy-button::before {
+  content: "";
+  width: 10%;
+  aspect-ratio: 1;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  z-index: -1;
+  background: #4b4bb4;
+  opacity: 0;
+  border-radius: 50%;
+
+  transition: transform 3000ms 200ms, opacity 200ms;
+}
+
+.fancy-button:hover::before {
+  transform: scale(60);
+  opacity: 1;
+
+  transition: transform 1000ms, opacity 500ms;
+}
+
+.fancy-button:has(:first-child:hover)::before {
+  margin-left: 0;
+}
+
+.fancy-button:has(:last-child:hover)::before {
+  margin-right: 0;
+}
+
+.fancy-button:has(:first-child:hover)::before,
+.fancy-button:has(:last-child:hover)::before {
+  transition: transform 500ms, opacity 250ms;
 }
 
 /* .hero-button {
