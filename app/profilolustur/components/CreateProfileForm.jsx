@@ -29,13 +29,14 @@ export default function CreateProfileForm() {
 
       if (!response?.ok) notify(response?.error);
 
-      if (response?.ok)
+      if (response?.ok) {
         await signIn("credentials", {
           username: username,
           password: password,
           redirect: true,
           callbackUrl: "/anasayfa",
         });
+      }
     }
 
     if (!usernameValidation) {

@@ -17,6 +17,7 @@
     "@react-email/html": "0.0.4",
     "@react-email/section": "0.0.9",
     "@react-email/text": "0.0.5",
+    "eventsource": "^2.0.2",
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
     "next": "13.5.4",

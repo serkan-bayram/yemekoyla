@@ -25,37 +25,27 @@ export function BigStars() {
   }, []);
 
   return (
-    <div className="flex items-center pt-4">
-      <Rating
-        name="rating"
-        value={value}
-        precision={0.5}
-        size="large"
-        className={isLoading ? "animate-pulse pointer-events-none" : ""}
-        sx={{
-          "& .MuiRating-iconEmpty": {
-            color: "#111214",
-          },
-        }}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-      />
+    <div className="flex flex-col items-center">
+      <div className="relative flex items-center gap-2 justify-center mt-4 ">
+        <Rating
+          name="rating"
+          value={value}
+          precision={0.5}
+          size="large"
+          className={isLoading ? "animate-pulse pointer-events-none" : ""}
+          sx={{
+            "& .MuiRating-iconEmpty": {
+              color: "#111214",
+            },
+          }}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+        />
+      </div>
+      <div className="mt-4 text-[#111214] text-sm">
+        {value ? value * 2 : 0} / 10
+      </div>
     </div>
-  );
-}
-
-export function SmallStars({ id }) {
-  return (
-    <Rating
-      value={2}
-      precision={0.5}
-      sx={{
-        "& .MuiRating-iconEmpty": {
-          color: id % 2 == 0 ? "#282932" : "#111214",
-        },
-      }}
-      readOnly
-    />
   );
 }

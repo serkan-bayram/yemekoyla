@@ -1,6 +1,7 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import PocketBase from "pocketbase";
 
+// TODO: does not redirect after verifying code, does not update sessions, or not???
 export const options = {
   providers: [
     CredentialsProvider({

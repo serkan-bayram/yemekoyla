@@ -16,6 +16,11 @@ module.exports = {
         primary: "#282932",
         secondary: "#181A1E",
         background: "#1E1F23",
+        accent: "#4b4bb4",
+      },
+      fontFamily: {
+        body: ["Poppins", "sans-serif"],
+        heading: ["Inter", "sans-serif"],
       },
       keyframes: {
         "show-notification": {

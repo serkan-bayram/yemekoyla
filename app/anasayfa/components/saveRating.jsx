@@ -1,10 +1,11 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { getSession } from "../../components/getSession";
 import PocketBase from "pocketbase";
 
 export async function saveRating(prevState, formData) {
-  const rating = formData.get("rating");
+  const rating = formData.get("rating") || 0;
   const { session } = await getSession();
   const userId = session.user.record.id;
 
@@ -37,6 +38,8 @@ export async function saveRating(prevState, formData) {
     rating: rating,
     user: session.user.record.id,
   };
+
+  revalidatePath("/anasayfa");
 
   // update record if it is already saved
   if (isAlreadySaved) {

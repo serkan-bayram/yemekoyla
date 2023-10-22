@@ -1,15 +1,15 @@
-import { SmallStars } from "./Stars";
+import SmallStars from "./SmallStars";
 
-export default function OtherRatings({ name, id }) {
+export default function OtherRatings({ username, index, rating }) {
   return (
     <li>
       <div
         className={`${
-          id % 2 == 0 ? "bg-secondary" : "bg-primary"
+          index % 2 == 0 ? "bg-secondary" : "bg-primary"
         } flex justify-between items-center text-white rounded-sm p-2`}
       >
-        {name}
-        <SmallStars id={id} />
+        {username}
+        <SmallStars index={index} rating={rating} />
       </div>
     </li>
   );
