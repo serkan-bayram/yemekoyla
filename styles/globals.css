@@ -2,11 +2,11 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-.gradient-text {
+/* .gradient-text {
   background: -webkit-linear-gradient(45deg, #6638a37e, #4b4bb4);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
+} */
 
 .card-container:hover .card-heading::after {
   height: 1rem;
@@ -17,8 +17,7 @@
   width: 0%;
 }
 
-.underlined-link:hover::after,
-.underlined-link:focus::after {
+.underlined-link:hover::after {
   content: "";
   width: 100%;
 }
