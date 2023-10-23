@@ -1,8 +1,6 @@
 import Link from "next/link";
 import ScrollIntoView from "react-scroll-into-view";
 import { v4 as uuidv4 } from "uuid";
-import ThemeSwitcher from "./ThemeSwitcher";
-import { useWindowWidth } from "@react-hook/window-size";
 
 function UnderlinedText({ text }) {
   return (
@@ -36,8 +34,6 @@ function LinkNavItem({ href, text, closeMenu }) {
 
 // TODO: Change items according to path
 export default function NavItems({ isOpen, closeMenu }) {
-  const onlyWidth = useWindowWidth();
-
   const items = [
     { selector: "#home", text: "Ana Sayfa" },
     { selector: "#why", text: "Neden?" },
@@ -81,7 +77,6 @@ export default function NavItems({ isOpen, closeMenu }) {
           />
         );
       })}
-      {onlyWidth < 1024 && <ThemeSwitcher isMobile={true} />}
     </ul>
   );
 }
