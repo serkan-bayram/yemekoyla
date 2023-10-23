@@ -1,5 +1,3 @@
-"use client";
-
 export default function Input({ placeholder, name }) {
   return (
     <div className="w-full py-2 rounded-md border border-primary">

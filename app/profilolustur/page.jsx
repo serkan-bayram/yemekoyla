@@ -8,7 +8,7 @@ export default async function Page() {
   const { permission } = await getSession();
 
   if (permission !== "almostUser") {
-    redirect("/anasayfa");
+    redirect("/oyla");
   }
 
   return (

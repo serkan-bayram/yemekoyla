@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ScrollIntoView from "react-scroll-into-view";
 import { v4 as uuidv4 } from "uuid";
+import { usePathname } from "next/navigation";
 
 function UnderlinedText({ text }) {
   return (
@@ -33,14 +34,8 @@ function LinkNavItem({ href, text, closeMenu }) {
 }
 
 // TODO: Change items according to path
-export default function NavItems({ isOpen, closeMenu }) {
-  const items = [
-    { selector: "#home", text: "Ana Sayfa" },
-    { selector: "#why", text: "Neden?" },
-    { selector: "#how", text: "Nasıl?" },
-    { href: "/anasayfa", text: "Oyla" },
-    { selector: "#contact", text: "İletişim" },
-  ];
+export default function NavItems({ isOpen, closeMenu, items }) {
+  const pathname = usePathname();
 
   return (
     <ul
@@ -58,24 +53,26 @@ export default function NavItems({ isOpen, closeMenu }) {
      `}
     >
       {items.map((item) => {
-        if (item?.href) {
+        if (item?.pathname === pathname) {
+          if (item?.href) {
+            return (
+              <LinkNavItem
+                key={uuidv4()}
+                closeMenu={closeMenu}
+                href={item.href}
+                text={item.text}
+              />
+            );
+          }
           return (
-            <LinkNavItem
+            <ScrollNavItem
               key={uuidv4()}
               closeMenu={closeMenu}
-              href={item.href}
+              selector={item.selector}
               text={item.text}
             />
           );
         }
-        return (
-          <ScrollNavItem
-            key={uuidv4()}
-            closeMenu={closeMenu}
-            selector={item.selector}
-            text={item.text}
-          />
-        );
       })}
     </ul>
   );

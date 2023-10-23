@@ -3,8 +3,10 @@ import Image from "next/image";
 export default function ThemeSwitcher({ isMobile = false }) {
   return (
     <button
-      className={`${isMobile ? "block" : "hidden"} lg:block cursor-not-allowed`}
       disabled
+      className={`${
+        isMobile ? "block" : "hidden"
+      } disabled:grayscale lg:block cursor-not-allowed`}
     >
       <Image
         src="/themeSwitcher.png"

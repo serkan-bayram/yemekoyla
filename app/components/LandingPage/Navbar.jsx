@@ -1,30 +1,49 @@
-"use client";
-
-import disableScroll from "disable-scroll";
-import { useState } from "react";
 import Logo from "./Logo";
-import HamburgerMenuButton from "./HamburgerMenuButton";
-import NavItems from "./NavItems";
-import ThemeSwitcher from "./ThemeSwitcher";
+import NavbarClient from "./NavbarClient";
+import { getSession } from "../getSession";
 
-export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+export default async function Navbar() {
+  const { session, permission } = await getSession();
 
-  const handleClick = () => {
-    setIsOpen((prevValue) => {
-      if (!prevValue === true) {
-        disableScroll.on();
-      } else {
-        disableScroll.off();
-      }
-      return !prevValue;
-    });
-  };
+  let items;
+  if (!session) {
+    items = [
+      { selector: "#home", text: "Ana Sayfa", pathname: "/" },
+      { selector: "#why", text: "Neden?", pathname: "/" },
+      { selector: "#how", text: "Nasıl?", pathname: "/" },
+      { href: "/oyla", text: "Oyla", pathname: "/" },
+      { selector: "#contact", text: "İletişim", pathname: "/" },
+      { href: "/", text: "Ana Sayfa", pathname: "/oyla" },
+      { href: "/#why", text: "Neden?", pathname: "/oyla" },
+      { href: "/#how", text: "Nasıl?", pathname: "/oyla" },
+      { href: "/oyla", text: "Oyla", pathname: "/oyla" },
+      { href: "/#contact", text: "İletişim", pathname: "/oyla" },
+      { href: "/", text: "Ana Sayfa", pathname: "/giris" },
+      { href: "/", text: "Ana Sayfa", pathname: "/kaydol" },
+      { href: "/", text: "Ana Sayfa", pathname: "/dogrula" },
+    ];
+  }
 
-  const closeMenu = () => {
-    setIsOpen(false);
-    disableScroll.off();
-  };
+  // can be improved
+  if (session) {
+    items = [
+      { selector: "#home", text: "Ana Sayfa", pathname: "/" },
+      { selector: "#why", text: "Neden?", pathname: "/" },
+      { selector: "#how", text: "Nasıl?", pathname: "/" },
+      { href: "/oyla", text: "Oyla", pathname: "/" },
+      { selector: "#contact", text: "İletişim", pathname: "/" },
+      { href: "/", text: "Ana Sayfa", pathname: "/oyla" },
+      { href: "/#why", text: "Neden?", pathname: "/oyla" },
+      { href: "/#how", text: "Nasıl?", pathname: "/oyla" },
+      { href: "/oyla", text: "Oyla", pathname: "/oyla" },
+      { href: "/#contact", text: "İletişim", pathname: "/oyla" },
+      { href: "/", text: "Ana Sayfa", pathname: "/giris" },
+      { href: "/", text: "Ana Sayfa", pathname: "/kaydol" },
+      { href: "/", text: "Ana Sayfa", pathname: "/dogrula" },
+      { href: "/api/auth/signout", text: "Çıkış Yap", pathname: "/" },
+      { href: "/api/auth/signout", text: "Çıkış Yap", pathname: "/oyla" },
+    ];
+  }
 
   return (
     <div
@@ -33,9 +52,7 @@ export default function Navbar() {
      bg-secondary shadow border-b border-b-primary"
     >
       <Logo />
-      <HamburgerMenuButton handleClick={handleClick} isOpen={isOpen} />
-      <NavItems isOpen={isOpen} closeMenu={closeMenu} />
-      <ThemeSwitcher />
+      <NavbarClient items={items} />
     </div>
   );
 }

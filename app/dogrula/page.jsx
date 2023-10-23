@@ -8,12 +8,12 @@ export default async function Page() {
 
   // if the user is already authenticated it shouldn't see the login page
   if (session) {
-    redirect("/anasayfa");
+    redirect("/oyla");
   }
 
   return (
     <div
-      className="lg:w-1/3 lg:mx-auto lg:h-screen
+      className="lg:w-1/3 lg:mx-auto 
      lg:pt-24 mt-16"
     >
       <div>

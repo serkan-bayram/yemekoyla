@@ -34,7 +34,7 @@ export default function SignInForm() {
 
     // if signin is ok redirect user
     if (ok) {
-      router.push("/anasayfa");
+      router.push("/oyla");
     } else {
       notify("Bilgileriniz doğrulanamadı, lütfen tekrar deneyiniz.");
     }

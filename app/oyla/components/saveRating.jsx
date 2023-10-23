@@ -39,7 +39,7 @@ export async function saveRating(prevState, formData) {
     user: session.user.record.id,
   };
 
-  revalidatePath("/anasayfa");
+  revalidatePath("/oyla");
 
   // update record if it is already saved
   if (isAlreadySaved) {

@@ -7,6 +7,7 @@ import randomize from "randomatic";
 import PocketBase from "pocketbase";
 
 export async function verifyCode(code) {
+  console.log("on the server");
   const validation = validateVerifyCode(code);
 
   // Validate the user input before continuing
@@ -14,7 +15,7 @@ export async function verifyCode(code) {
 
   // Get token
   const cookieStore = cookies();
-  const token = cookieStore.get("codeToken").value;
+  const token = cookieStore.get("codeToken")?.value;
 
   const secret = process.env.tokenSecret;
 

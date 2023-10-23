@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function AltText({ text, href, linkText }) {
   return (
-    <div className="w-full text-md text-center  text-gray-700 pt-6">
+    <div className="w-full text-sm lg:text-md text-center  text-gray-700 pt-6">
       {text}{" "}
       <Link
         className="text-gray-500 

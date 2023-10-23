@@ -34,7 +34,7 @@ export default function CreateProfileForm() {
           username: username,
           password: password,
           redirect: true,
-          callbackUrl: "/anasayfa",
+          callbackUrl: "/oyla",
         });
       }
     }
