@@ -12,9 +12,14 @@ export default async function Page() {
   }
 
   return (
-    <>
-      <Header text="Lütfen hesabınızı doğrulamak için E-postanıza gelen kodu giriniz." />
-      <VerifyForm />
-    </>
+    <div
+      className="lg:w-1/3 lg:mx-auto lg:h-screen
+     lg:pt-24 mt-16"
+    >
+      <div>
+        <Header text="Lütfen hesabınızı doğrulamak için E-postanıza gelen kodu giriniz." />
+        <VerifyForm />
+      </div>
+    </div>
   );
 }

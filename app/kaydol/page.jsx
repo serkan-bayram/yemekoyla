@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import SignUpForm from "./components/SignUpForm";
 import Link from "next/link";
 import { getSession } from "../components/getSession";
+import AltText from "../components/AltText";
 
 export default async function Page() {
   const { session } = await getSession();
@@ -14,15 +15,14 @@ export default async function Page() {
 
   return (
     <div className="w-full h-screen flex justify-center items-center">
-      <div className="w-5/6 h-5/6 bg-secondary rounded-md border border-primary shadow">
+      <div className="w-5/6 lg:w-1/3 h-5/6 bg-secondary rounded-md border border-primary shadow">
         <Header text="Kaydol" />
         <SignUpForm />
-        <div className="w-full text-center text-sm text-gray-700 pt-6">
-          Zaten hesabın var mı?{" "}
-          <Link className="text-gray-500" href="/giris">
-            Giriş Yap.
-          </Link>
-        </div>
+        <AltText
+          text="Zaten hesabın var mı?"
+          href="/giris"
+          linkText="Giriş Yap."
+        />
       </div>
     </div>
   );

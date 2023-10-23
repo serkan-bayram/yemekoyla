@@ -3,6 +3,7 @@ import AuthProvider from "./context/AuthProvider";
 import { ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Navbar from "./components/LandingPage/Navbar";
 
 export default async function RootLayout({ children }) {
   return (
@@ -20,7 +21,10 @@ export default async function RootLayout({ children }) {
         />
       </head>
       <body className="bg-background">
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <Navbar />
+          {children}
+        </AuthProvider>
         <ToastContainer
           position="top-center"
           theme="dark"

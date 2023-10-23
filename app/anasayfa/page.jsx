@@ -5,7 +5,7 @@ import RatingForm from "./components/RatingForm";
 
 export default async function Page() {
   return (
-    <div>
+    <div className="pt-12">
       <DatePicker />
       <Food />
       <RatingForm />
