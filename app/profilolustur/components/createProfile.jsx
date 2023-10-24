@@ -27,6 +27,18 @@ export async function createProfile(username, password) {
     process.env.dbPassword
   );
 
+  try {
+    const isUsernameTaken = await pb
+      .collection("users")
+      .getFirstListItem(`username="${username}"`);
+
+    if (isUsernameTaken) {
+      return { ok: false, error: "Bu kullanıcı adı kullanılıyor." };
+    }
+  } catch (error) {
+    console.log("Error: ", error);
+  }
+
   // example update data
   const data = {
     username: username,

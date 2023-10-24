@@ -46,9 +46,10 @@ export function validatePassword(password) {
 export function validateEmail(email) {
   // Define the regular expression pattern for a valid email ending with @bilecik.edu.tr
   const emailRegex = /^[A-Za-z0-9._%+-]+@ogrenci.bilecik\.edu\.tr$/;
+  const emailRegex2 = /^[A-Za-z0-9._%+-]+@bilecik\.edu\.tr$/;
 
   // Test the email against the pattern.
-  if (emailRegex.test(email)) {
+  if (emailRegex.test(email) || emailRegex2.test(email)) {
     return true; // Valid email
   } else {
     return false; // Invalid email

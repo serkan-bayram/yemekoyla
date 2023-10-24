@@ -9,21 +9,29 @@ export default async function Others() {
     <div className="flex flex-col px-8 pt-12  ">
       <div className="text-gray-500 pb-1 flex justify-between items-center">
         <div>Diğer Oylamalar</div>
-        <div>
-          Genel Puan: <span className="text-white">{average}/5</span>
-        </div>
+        {!!average ? (
+          <div>
+            Genel Puan: <span className="text-white">{average}/5</span>
+          </div>
+        ) : (
+          <div></div>
+        )}
       </div>
       <ul className="mb-8 shadow border border-gray-700">
-        {ratings.map((rating, index) => {
-          return (
-            <OtherRatings
-              username={rating.username}
-              rating={parseInt(rating.rating)}
-              key={uuidv4()}
-              index={index}
-            />
-          );
-        })}
+        {!!average ? (
+          ratings.map((rating, index) => {
+            return (
+              <OtherRatings
+                username={rating.username || "Anonim"}
+                rating={parseInt(rating.rating)}
+                key={uuidv4()}
+                index={index}
+              />
+            );
+          })
+        ) : (
+          <div></div>
+        )}
       </ul>
     </div>
   );

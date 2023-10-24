@@ -9,31 +9,36 @@ export const getOtherRatings = async () => {
     process.env.dbPassword
   );
 
-  const records = await pb.collection("ratings").getFullList({
-    sort: "-updated",
-  });
+  pb.autoCancellation(false);
+  try {
+    const records = await pb.collection("ratings").getFullList({
+      sort: "-updated",
+    });
 
-  const ratings = [];
-  const promises = [];
+    const ratings = [];
+    const promises = [];
 
-  let average = 0;
+    let average = 0;
 
-  records.forEach(async (record) => {
-    const promise = pb
-      .collection("users")
-      .getOne(record.user)
-      .then(async (result) => {
-        const { username } = result;
-        average += parseFloat(record.rating);
-        ratings.push({ username: username, rating: record.rating });
-      });
-    promises.push(promise);
-  });
+    records.forEach(async (record) => {
+      const promise = pb
+        .collection("users")
+        .getOne(record.user)
+        .then(async (result) => {
+          const { username } = result;
+          average += parseFloat(record.rating);
+          ratings.push({ username: username, rating: record.rating });
+        });
+      promises.push(promise);
+    });
 
-  // Wait for all promises to resolve
-  await Promise.all(promises);
+    await Promise.all(promises);
+    // Wait for all promises to resolve
 
-  average = average / ratings.length;
+    average = average / ratings.length;
 
-  return { ratings, average };
+    return { ratings, average };
+  } catch (error) {
+    console.log("Error:", error);
+  }
 };

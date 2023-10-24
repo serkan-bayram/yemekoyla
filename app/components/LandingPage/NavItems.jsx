@@ -80,7 +80,11 @@ export default function NavItems({ isOpen, closeMenu, navigation, state }) {
         }
       })}
       <div className="lg:absolute right-0">
-        <NavbarButton state={state} pathname={currentPathname} />
+        <NavbarButton
+          closeMenu={closeMenu}
+          state={state}
+          pathname={currentPathname}
+        />
       </div>
     </ul>
   );
