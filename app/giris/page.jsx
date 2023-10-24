@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import SignInForm from "./components/SignInForm";
 import { getSession } from "../components/getSession";
 import AltText from "../components/AltText";
+import OnlyLogoNavbar from "../components/OnyLogoNavbar";
 
 export default async function Page() {
   const { session } = await getSession();
@@ -14,6 +15,7 @@ export default async function Page() {
 
   return (
     <>
+      <OnlyLogoNavbar />
       <div className="w-full h-screen flex justify-center items-center">
         <div className="w-5/6 lg:w-1/3 h-5/6 bg-secondary rounded-md border border-primary shadow">
           <Header text="Giriş Yap" />

@@ -3,7 +3,6 @@ import AuthProvider from "./context/AuthProvider";
 import { ToastContainer } from "react-toastify";
 import { Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Navbar from "./components/LandingPage/Navbar";
 import { Suspense } from "react";
 import Loading from "./loading";
 
@@ -24,11 +23,7 @@ export default async function RootLayout({ children }) {
       </head>
       <body className="bg-background">
         <AuthProvider>
-          <Suspense fallback={<Loading />}>
-            <Navbar />
-
-            {children}
-          </Suspense>
+          <Suspense fallback={<Loading />}>{children}</Suspense>
         </AuthProvider>
         <ToastContainer
           position="top-center"

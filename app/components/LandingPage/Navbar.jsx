@@ -5,43 +5,59 @@ import { getSession } from "../getSession";
 export default async function Navbar() {
   const { session, permission } = await getSession();
 
-  let items;
+  // {
+  //   pathname: ["/oyla"],
+  //   links: [
+  //     { href: "/", text: "Ana Sayfa" },
+  //     { href: "/#why", text: "Neden?" },
+  //     { href: "/#how", text: "Nasıl?" },
+  //     { href: "/#contact", text: "İletişim" },
+  //   ],
+  // },
+
+  let navigation;
   if (!session) {
-    items = [
-      { selector: "#home", text: "Ana Sayfa", pathname: "/" },
-      { selector: "#why", text: "Neden?", pathname: "/" },
-      { selector: "#how", text: "Nasıl?", pathname: "/" },
-      { href: "/oyla", text: "Oyla", pathname: "/" },
-      { selector: "#contact", text: "İletişim", pathname: "/" },
-      { href: "/", text: "Ana Sayfa", pathname: "/oyla" },
-      { href: "/#why", text: "Neden?", pathname: "/oyla" },
-      { href: "/#how", text: "Nasıl?", pathname: "/oyla" },
-      { href: "/oyla", text: "Oyla", pathname: "/oyla" },
-      { href: "/#contact", text: "İletişim", pathname: "/oyla" },
-      { href: "/", text: "Ana Sayfa", pathname: "/giris" },
-      { href: "/", text: "Ana Sayfa", pathname: "/kaydol" },
-      { href: "/", text: "Ana Sayfa", pathname: "/dogrula" },
+    navigation = [
+      {
+        pathname: ["/"],
+        links: [
+          { selector: "#home", text: "Ana Sayfa" },
+          { selector: "#why", text: "Neden?" },
+          { selector: "#how", text: "Nasıl?" },
+          { selector: "#contact", text: "İletişim" },
+        ],
+      },
+      {
+        pathname: ["/giris", "/kaydol", "/dogrula"],
+        links: [],
+      },
     ];
   }
 
-  // can be improved
   if (session) {
-    items = [
-      { selector: "#home", text: "Ana Sayfa", pathname: "/" },
-      { selector: "#why", text: "Neden?", pathname: "/" },
-      { selector: "#how", text: "Nasıl?", pathname: "/" },
-      { href: "/oyla", text: "Oyla", pathname: "/" },
-      { selector: "#contact", text: "İletişim", pathname: "/" },
-      { href: "/", text: "Ana Sayfa", pathname: "/oyla" },
-      { href: "/#why", text: "Neden?", pathname: "/oyla" },
-      { href: "/#how", text: "Nasıl?", pathname: "/oyla" },
-      { href: "/oyla", text: "Oyla", pathname: "/oyla" },
-      { href: "/#contact", text: "İletişim", pathname: "/oyla" },
-      { href: "/", text: "Ana Sayfa", pathname: "/giris" },
-      { href: "/", text: "Ana Sayfa", pathname: "/kaydol" },
-      { href: "/", text: "Ana Sayfa", pathname: "/dogrula" },
-      { href: "/api/auth/signout", text: "Çıkış Yap", pathname: "/" },
-      { href: "/api/auth/signout", text: "Çıkış Yap", pathname: "/oyla" },
+    navigation = [
+      {
+        pathname: ["/"],
+        links: [
+          { selector: "#home", text: "Ana Sayfa" },
+          { selector: "#why", text: "Neden?" },
+          { selector: "#how", text: "Nasıl?" },
+          { selector: "#contact", text: "İletişim" },
+          { href: "/api/auth/signout", text: "Çıkış Yap" },
+        ],
+      },
+      {
+        pathname: ["/giris", "/kaydol", "/dogrula"],
+        links: [],
+      },
+      {
+        pathname: ["/oyla"],
+
+        links: [
+          { href: "/", text: "Ana Sayfa" },
+          { href: "/api/auth/signout", text: "Çıkış Yap" },
+        ],
+      },
     ];
   }
 
@@ -52,7 +68,7 @@ export default async function Navbar() {
      bg-secondary shadow border-b border-b-primary"
     >
       <Logo />
-      <NavbarClient items={items} />
+      <NavbarClient navigation={navigation} state={!!session} />
     </div>
   );
 }

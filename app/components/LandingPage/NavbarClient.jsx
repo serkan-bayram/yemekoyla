@@ -4,9 +4,8 @@ import HamburgerMenuButton from "./HamburgerMenuButton";
 import NavItems from "./NavItems";
 import disableScroll from "disable-scroll";
 import { useState } from "react";
-import ThemeSwitcher from "./ThemeSwitcher";
 
-export default function NavbarClient({ items }) {
+export default function NavbarClient({ navigation, state }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
@@ -28,8 +27,12 @@ export default function NavbarClient({ items }) {
   return (
     <>
       <HamburgerMenuButton handleClick={handleClick} isOpen={isOpen} />
-      <NavItems items={items} isOpen={isOpen} closeMenu={closeMenu} />
-      <ThemeSwitcher />
+      <NavItems
+        navigation={navigation}
+        isOpen={isOpen}
+        closeMenu={closeMenu}
+        state={state}
+      />
     </>
   );
 }

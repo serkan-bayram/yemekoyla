@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import SignUpForm from "./components/SignUpForm";
 import { getSession } from "../components/getSession";
 import AltText from "../components/AltText";
+import OnlyLogoNavbar from "../components/OnyLogoNavbar";
 
 export default async function Page() {
   const { session } = await getSession();
@@ -13,16 +14,19 @@ export default async function Page() {
   }
 
   return (
-    <div className="w-full h-screen flex justify-center items-center">
-      <div className="w-5/6 lg:w-1/3 h-5/6 bg-secondary rounded-md border border-primary shadow">
-        <Header text="Kaydol" />
-        <SignUpForm />
-        <AltText
-          text="Zaten hesabın var mı?"
-          href="/giris"
-          linkText="Giriş Yap."
-        />
+    <>
+      <OnlyLogoNavbar />
+      <div className="w-full h-screen flex justify-center items-center">
+        <div className="w-5/6 lg:w-1/3 h-5/6 bg-secondary rounded-md border border-primary shadow">
+          <Header text="Kaydol" />
+          <SignUpForm />
+          <AltText
+            text="Zaten hesabın var mı?"
+            href="/giris"
+            linkText="Giriş Yap."
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 }

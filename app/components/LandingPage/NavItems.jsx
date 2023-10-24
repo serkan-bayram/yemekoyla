@@ -2,6 +2,7 @@ import Link from "next/link";
 import ScrollIntoView from "react-scroll-into-view";
 import { v4 as uuidv4 } from "uuid";
 import { usePathname } from "next/navigation";
+import NavbarButton from "../NavbarButton";
 
 function UnderlinedText({ text }) {
   return (
@@ -11,7 +12,7 @@ after:transition-all after:duration-300
 after:h-1 after:bg-white after:absolute after:left-0 after:bottom-0
 after:scale-y-50 underlined-link"
     >
-      <li>{text}</li>
+      <li className="">{text}</li>
     </button>
   );
 }
@@ -34,8 +35,8 @@ function LinkNavItem({ href, text, closeMenu }) {
 }
 
 // TODO: Change items according to path
-export default function NavItems({ isOpen, closeMenu, items }) {
-  const pathname = usePathname();
+export default function NavItems({ isOpen, closeMenu, navigation, state }) {
+  const currentPathname = usePathname();
 
   return (
     <ul
@@ -52,28 +53,35 @@ export default function NavItems({ isOpen, closeMenu, items }) {
     ${isOpen ? "translate-x-0 opacity-100" : "opacity-0 translate-x-full"}
      `}
     >
-      {items.map((item) => {
-        if (item?.pathname === pathname) {
-          if (item?.href) {
+      {navigation.map((item) => {
+        const { pathname, links } = item;
+
+        if (pathname.includes(currentPathname)) {
+          return links.map((link) => {
+            if (link?.href) {
+              return (
+                <LinkNavItem
+                  key={uuidv4()}
+                  closeMenu={closeMenu}
+                  href={link.href}
+                  text={link.text}
+                />
+              );
+            }
             return (
-              <LinkNavItem
+              <ScrollNavItem
                 key={uuidv4()}
                 closeMenu={closeMenu}
-                href={item.href}
-                text={item.text}
+                selector={link.selector}
+                text={link.text}
               />
             );
-          }
-          return (
-            <ScrollNavItem
-              key={uuidv4()}
-              closeMenu={closeMenu}
-              selector={item.selector}
-              text={item.text}
-            />
-          );
+          });
         }
       })}
+      <div className="lg:absolute right-0">
+        <NavbarButton state={state} pathname={currentPathname} />
+      </div>
     </ul>
   );
 }
