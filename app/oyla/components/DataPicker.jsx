@@ -4,7 +4,7 @@ export default function DatePicker() {
   return (
     <div
       title="Yakında."
-      className=" flex justify-center items-center gap-1 pt-8"
+      className="flex justify-center items-center gap-1 pt-8"
     >
       <button
         disabled

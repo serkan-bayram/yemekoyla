@@ -11,7 +11,8 @@ export default async function Others() {
         <div>Diğer Oylamalar</div>
         {!!average ? (
           <div>
-            Genel Puan: <span className="text-white">{average}/5</span>
+            Genel Puan:{" "}
+            <span className="text-white">{average.toFixed(2)}/5</span>
           </div>
         ) : (
           <div></div>

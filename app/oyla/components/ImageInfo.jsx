@@ -13,7 +13,10 @@ export default function ImageInfo() {
       <ul>
         {info.map((food) => {
           return (
-            <li key={uuidv4()} className="text-white my-2 text-center">
+            <li
+              key={uuidv4()}
+              className="font-body text-white my-2 text-center"
+            >
               {food}
             </li>
           );

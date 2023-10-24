@@ -5,6 +5,7 @@ import { Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Suspense } from "react";
 import Loading from "./loading";
+import Beta from "./components/Beta";
 
 export default async function RootLayout({ children }) {
   return (
@@ -22,9 +23,9 @@ export default async function RootLayout({ children }) {
         />
       </head>
       <body className="bg-background">
-        <AuthProvider>
-          <Suspense fallback={<Loading />}>{children}</Suspense>
-        </AuthProvider>
+        <Suspense fallback={Loading}>
+          {children} <Beta />
+        </Suspense>
         <ToastContainer
           position="top-center"
           theme="dark"

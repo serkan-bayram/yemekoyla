@@ -1,10 +1,11 @@
 "use client";
 
 import Input, { Textarea } from "../Input";
-import Button from "../Button";
 import { sendEmail } from "./sendEmail";
 import { validateUserEmail, validateMessage } from "../validations";
 import { toast } from "react-toastify";
+import { useState } from "react";
+import SubmitButtonWithLoading from "../../components/SubmitButtonWithLoading";
 
 export default function ContactForm() {
   const id = "contact";
@@ -13,6 +14,8 @@ export default function ContactForm() {
       toastId: id,
     });
   };
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const success = (message) => {
     toast.success(message, { toastId: id });
@@ -27,6 +30,7 @@ export default function ContactForm() {
     const userMessageValidation = validateMessage(userMessage);
 
     if (userEmailValidation.ok && userMessageValidation.ok) {
+      setIsLoading(true);
       const response = await sendEmail({ userEmail, userMessage });
 
       if (response.ok) {
@@ -34,6 +38,7 @@ export default function ContactForm() {
       } else {
         notify(response.message);
       }
+      setIsLoading(false);
     } else {
       if (!userEmailValidation.ok) notify(userEmailValidation.message);
       if (!userMessageValidation.ok) notify(userMessageValidation.message);
@@ -48,7 +53,7 @@ export default function ContactForm() {
       <div className="w-96 flex flex-col gap-4">
         <Input name="userEmail" placeholder="E-posta Adresiniz" />
         <Textarea name="userMessage" placeholder="Mesajınız" />
-        <Button text="Gönder" />
+        <SubmitButtonWithLoading isLoading={isLoading} text="Gönder" />
       </div>
     </form>
   );

@@ -2,11 +2,12 @@
 
 import { verifyCode } from "./verifyCode";
 import Input from "../../components/Input";
-import Button from "../../components/Button";
 import { toast } from "react-toastify";
 import { validateVerifyCode } from "../../components/validations";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import SubmitButtonWithLoading from "../../components/SubmitButtonWithLoading";
+import { useState } from "react";
 
 export default function VerifyForm() {
   const id = "falseCode";
@@ -18,6 +19,8 @@ export default function VerifyForm() {
 
   const router = useRouter();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -28,7 +31,9 @@ export default function VerifyForm() {
     const validation = validateVerifyCode(code);
 
     if (validation) {
+      setIsLoading(true);
       const response = await verifyCode(code);
+      setIsLoading(false);
 
       if (!response?.ok) {
         notify(response?.error);
@@ -43,7 +48,7 @@ export default function VerifyForm() {
 
         if (!ok) notify("Profil oluşturulamadı.");
 
-        if (ok) router.push("/profiolustur");
+        if (ok) router.replace("/profiolustur");
       }
     } else {
       notify("Geçersiz kod.");
@@ -53,7 +58,7 @@ export default function VerifyForm() {
   return (
     <form onSubmit={handleSubmit} className="px-8 pt-12 flex flex-col gap-6">
       <Input placeholder="Kod" name="code" />
-      <Button text="Doğrula" />
+      <SubmitButtonWithLoading isLoading={isLoading} text="Doğrula" />
     </form>
   );
 }

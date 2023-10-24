@@ -38,7 +38,7 @@ module.exports = {
           "100%": { width: "100%" },
         },
         "button-clicked": {
-          "80%, 100%": { width: "15%" },
+          "80%, 100%": { width: "20%" },
         },
       },
       animation: {
