@@ -66,3 +66,27 @@ export function validateVerifyCode(input) {
     return false; // Invalid input
   }
 }
+
+export function validateMessage(input) {
+  if (input > 256) {
+    return { ok: false, message: "Maksimum 256 karakter yazabilirsiniz." };
+  }
+
+  if (input < 1) {
+    return { ok: false, message: "Lütfen mesajı boş bırakmayın." };
+  }
+
+  return { ok: true, message: "Doğrulandı." };
+}
+
+export function validateUserEmail(email) {
+  // Define the regular expression pattern for a valid email ending with @bilecik.edu.tr
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  // Test the email against the pattern.
+  if (emailRegex.test(email)) {
+    return { ok: true, message: "Doğrulandı." };
+  } else {
+    return { ok: false, message: "Geçersiz E-posta." };
+  }
+}

@@ -9,6 +9,7 @@ export default function ThemeSwitcher({ isMobile = false }) {
       } disabled:grayscale lg:block cursor-not-allowed`}
     >
       <Image
+        title="Yakında."
         src="/themeSwitcher.png"
         width={32}
         height={32}
