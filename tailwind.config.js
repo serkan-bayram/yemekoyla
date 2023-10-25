@@ -17,6 +17,7 @@ module.exports = {
         secondary: "#181A1E",
         background: "#1E1F23",
         accent: "#4b4bb4",
+        lightAccent: "#6767c9",
       },
       fontFamily: {
         body: ["Poppins", "sans-serif"],

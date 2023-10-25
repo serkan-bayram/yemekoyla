@@ -1,6 +1,10 @@
 function HighlightedText({ href, text }) {
   return (
-    <a className="text-accent font-semibold" target="blank" href={href}>
+    <a
+      className="text-accent font-semibold hover:text-lightAccent transition-all"
+      target="blank"
+      href={href}
+    >
       {text}
     </a>
   );

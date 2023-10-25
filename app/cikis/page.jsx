@@ -19,7 +19,7 @@ export default async function Page() {
         </h1>
         <SignOutForm />
       </div>
-      <AltText text="" href="/oyla" linkText="Vazgeç." />
+      <AltText text="" href="/oyla" linkText="Vazgeç" />
     </div>
   );
 }
