@@ -39,6 +39,6 @@ export const getOtherRatings = async () => {
 
     return { ratings, average };
   } catch (error) {
-    console.log("Error:", error);
+    console.log("There is a problem about fetching ratings.");
   }
 };

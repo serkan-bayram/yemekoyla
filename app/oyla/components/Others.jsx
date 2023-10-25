@@ -18,7 +18,7 @@ export default async function Others() {
           <div></div>
         )}
       </div>
-      <ul className="mb-8 shadow border border-gray-700">
+      <ul className="mb-8 shadow border  border-gray-700">
         {!!average ? (
           ratings.map((rating, index) => {
             return (

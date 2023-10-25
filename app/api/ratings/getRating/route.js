@@ -20,7 +20,7 @@ export async function GET() {
 
     return Response.json({ ok: true, savedRating: record.rating });
   } catch (error) {
-    console.log("Error", error);
+    console.log("There is a problem in getRating route.");
     return Response.json({ ok: false });
   }
 }

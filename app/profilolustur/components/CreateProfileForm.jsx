@@ -7,9 +7,10 @@ import {
 } from "../../components/validations";
 import { toast } from "react-toastify";
 import { createProfile } from "./createProfile";
-import { signIn, signOut } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import SubmitButtonWithLoading from "../../components/SubmitButtonWithLoading";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function CreateProfileForm() {
   const notify = (message) => {
@@ -17,6 +18,7 @@ export default function CreateProfileForm() {
   };
 
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,12 +36,13 @@ export default function CreateProfileForm() {
       if (!response?.ok) notify(response?.error);
 
       if (response?.ok) {
-        await signIn("credentials", {
+        const { ok } = await signIn("credentials", {
           username: username,
           password: password,
-          redirect: true,
-          callbackUrl: "/oyla",
+          redirect: false,
         });
+
+        if (ok) router.refresh();
       }
     }
 

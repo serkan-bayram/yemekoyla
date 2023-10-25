@@ -6,7 +6,7 @@ import UserInfo from "./components/UserInfo";
 import { getSession } from "../components/getSession";
 
 export default async function Page() {
-  const { session, permission } = await getSession();
+  const { session } = await getSession();
 
   const username = session.user.record.username;
 

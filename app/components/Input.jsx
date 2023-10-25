@@ -14,7 +14,7 @@ export function Textarea({ placeholder, name }) {
 
 export default function Input({ placeholder, name }) {
   return (
-    <div className="w-full py-2 rounded-md border border-primary">
+    <div className="w-full  py-2 rounded-md border border-primary">
       <input
         required
         name={name}

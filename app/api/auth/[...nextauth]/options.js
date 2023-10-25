@@ -40,5 +40,6 @@ export const options = {
   },
   pages: {
     signIn: "/giris",
+    signOut: "/cikis",
   },
 };

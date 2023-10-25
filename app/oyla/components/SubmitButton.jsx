@@ -37,8 +37,9 @@ export default function SubmitButton({ state }) {
       ) : (
         <button
           type="submit"
-          className={`rounded-sm mx-auto bg-primary w-full h-full py-2  text-white border
-     border-gray-700 appearance-none focus:ring ring-secondary shadow-md`}
+          className={`rounded-md mx-auto bg-primary w-full h-full py-2  text-white border
+     border-gray-700 hover:bg-transparent transition-all duration-300
+      appearance-none focus:ring ring-secondary shadow-md`}
         >
           Kaydet
         </button>

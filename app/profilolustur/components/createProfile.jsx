@@ -6,6 +6,7 @@ import {
   validateUsername,
 } from "../../components/validations";
 import PocketBase from "pocketbase";
+import { cookies } from "next/headers";
 
 export async function createProfile(username, password) {
   const usernameValidation = validateUsername(username);
@@ -57,6 +58,9 @@ export async function createProfile(username, password) {
     console.log("Error on updating: ", error);
     return { ok: false, error: "Başarısız işlem, lütfen tekrar deneyin." };
   }
+
+  const cookieStore = cookies();
+  cookieStore.delete("next-auth.session-token");
 
   return { ok: true };
 }
