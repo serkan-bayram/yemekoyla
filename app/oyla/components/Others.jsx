@@ -24,7 +24,7 @@ export default async function Others() {
             return (
               <OtherRatings
                 username={rating.username || "Anonim"}
-                rating={rating.rating}
+                rating={parseFloat(rating.rating)}
                 key={uuidv4()}
                 index={index}
               />
