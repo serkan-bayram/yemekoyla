@@ -24,14 +24,6 @@ export async function middleware(req) {
       return NextResponse.next();
     }
 
-    if (permission === "codeVerifying") {
-      if (pathname.startsWith("/dogrula")) {
-        return NextResponse.next();
-      } else {
-        return NextResponse.redirect(new URL("/dogrula", req.url));
-      }
-    }
-
     if (permission === "almostUser") {
       if (pathname.startsWith("/profilolustur")) {
         return NextResponse.next();

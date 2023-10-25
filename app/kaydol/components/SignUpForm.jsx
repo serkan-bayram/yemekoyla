@@ -50,7 +50,7 @@ export default function SignUpForm() {
 
         if (!ok) notify("Profil oluşturulamadı.");
 
-        if (ok) router.replace("/dogrula");
+        if (ok) router.refresh();
       }
     } else {
       notify("Geçersiz E-Posta.");

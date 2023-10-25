@@ -5,16 +5,14 @@ import OnlyLogoNavbar from "../components/OnyLogoNavbar";
 import { redirect } from "next/navigation";
 import SignOutButton from "../components/SignOutButton";
 
+// This page is not going to be used for now.
 export default async function Page() {
-  const { permission } = await getSession();
-
-  if (permission !== "codeVerifying") {
-    redirect("/oyla");
-  }
+  redirect("/kaydol");
 
   return (
     <>
-      <OnlyLogoNavbar />
+      <div></div>
+      {/* <OnlyLogoNavbar />
       <div
         className="lg:w-1/3 lg:mx-auto 
      lg:pt-24 mt-16"
@@ -24,7 +22,7 @@ export default async function Page() {
           <VerifyForm />
           <SignOutButton />
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

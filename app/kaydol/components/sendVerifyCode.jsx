@@ -35,6 +35,7 @@ export async function sendVerifyCode(email) {
   const sixDigitCode = randomize("0", 6);
 
   const secret = process.env.tokenSecret;
+
   const token = jsonwebtoken.sign(
     { code: sixDigitCode, email: email },
     secret,
@@ -45,10 +46,8 @@ export async function sendVerifyCode(email) {
 
   // After sending the code, we will create a db user to save code
 
-  // Create pocketbase instance
   const pb = new PocketBase("http://127.0.0.1:8090");
 
-  // Auth as admin to create user
   await pb.admins.authWithPassword(
     process.env.dbUsername,
     process.env.dbPassword
@@ -62,7 +61,7 @@ export async function sendVerifyCode(email) {
       .getFirstListItem(`email="${email}"`);
 
     if (fetchUser) {
-      if (fetchUser.permission === "codeVerifying") {
+      if (fetchUser.permission === "almostUser") {
         const data = {
           verifyCode: token,
           password: temporaryPassword,
@@ -83,19 +82,6 @@ export async function sendVerifyCode(email) {
         return { ok: true, email: email, password: temporaryPassword };
       }
 
-      if (fetchUser.permission === "almostUser") {
-        const data = {
-          password: temporaryPassword,
-          passwordConfirm: temporaryPassword,
-        };
-
-        const record = await pb
-          .collection("users")
-          .update(`${fetchUser.id}`, data);
-
-        return { ok: true, email: email, password: temporaryPassword };
-      }
-
       return { ok: false, message: "Bu kullanıcı zaten kayıtlı." };
     }
   } catch (error) {
@@ -112,7 +98,8 @@ export async function sendVerifyCode(email) {
       password: temporaryPassword,
       passwordConfirm: temporaryPassword,
       name: temporaryUsername,
-      permission: "codeVerifying",
+      permission: "almostUser",
+      verifyCode: token,
     };
 
     const record = await pb.collection("users").create(data);
