@@ -8,17 +8,12 @@ import Loading from "../../components/LoadingButton";
 export default function SubmitButton({ state }) {
   const { pending } = useFormStatus();
 
-  const id = "rate";
   const error = (message) => {
-    toast.error(message, {
-      toastId: id,
-    });
+    toast.error(message);
   };
 
   const success = (message) => {
-    toast.success(message, {
-      toastId: id,
-    });
+    toast.success(message);
   };
 
   useEffect(() => {
@@ -27,7 +22,11 @@ export default function SubmitButton({ state }) {
     }
 
     if (!pending && state.message) {
-      success("Oylama kaydedildi.");
+      if (state?.isAlreadySaved) {
+        success("Oylama güncellendi.");
+      } else {
+        success("Oylama kaydedildi.");
+      }
     }
   }, [pending]);
 

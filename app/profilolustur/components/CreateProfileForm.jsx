@@ -1,19 +1,22 @@
 "use client";
 
 import Input from "../../components/Input";
-import Button from "../../components/Button";
 import {
   validatePassword,
   validateUsername,
 } from "../../components/validations";
 import { toast } from "react-toastify";
 import { createProfile } from "./createProfile";
-import { signIn } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
+import SubmitButtonWithLoading from "../../components/SubmitButtonWithLoading";
+import { useState } from "react";
 
 export default function CreateProfileForm() {
   const notify = (message) => {
     toast.error(message);
   };
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,8 +28,9 @@ export default function CreateProfileForm() {
     const passwordValidation = validatePassword(password);
 
     if (usernameValidation && passwordValidation) {
+      setIsLoading(true);
       const response = await createProfile(username, password);
-
+      setIsLoading(false);
       if (!response?.ok) notify(response?.error);
 
       if (response?.ok) {
@@ -51,7 +55,7 @@ export default function CreateProfileForm() {
     <form onSubmit={handleSubmit} className="px-8 pt-12 flex flex-col gap-6">
       <Input placeholder="Kullanıcı Adı" name="username" />
       <Input placeholder="Şifre" name="password" />
-      <Button text="Onayla" />
+      <SubmitButtonWithLoading isLoading={isLoading} text="Onayla" />
     </form>
   );
 }

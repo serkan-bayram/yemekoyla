@@ -45,7 +45,7 @@ export async function saveRating(prevState, formData) {
   if (isAlreadySaved) {
     try {
       const record = await pb.collection("ratings").update(`${recordId}`, data);
-      return { message: true };
+      return { message: true, isAlreadySaved: true };
     } catch (error) {
       console.log("Error: ", error);
     }

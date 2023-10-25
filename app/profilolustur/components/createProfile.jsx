@@ -54,7 +54,7 @@ export async function createProfile(username, password) {
       .collection("users")
       .update(session.user.record.id, data);
   } catch (error) {
-    console.log("Error", error);
+    console.log("Error on updating: ", error);
     return { ok: false, error: "Başarısız işlem, lütfen tekrar deneyin." };
   }
 
