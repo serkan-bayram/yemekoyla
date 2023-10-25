@@ -36,7 +36,7 @@ export default function VerifyForm() {
       setIsLoading(false);
 
       if (!response?.ok) {
-        notify(response?.error);
+        notify(response?.message);
       }
 
       if (response?.email) {
@@ -48,7 +48,7 @@ export default function VerifyForm() {
 
         if (!ok) notify("Profil oluşturulamadı.");
 
-        if (ok) router.replace("/profiolustur");
+        if (ok) router.replace("/profilolustur");
       }
     } else {
       notify("Geçersiz kod.");

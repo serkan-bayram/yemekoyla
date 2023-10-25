@@ -1,34 +1,23 @@
 "use server";
 
-import { cookies } from "next/headers";
 import jsonwebtoken from "jsonwebtoken";
 import { validateVerifyCode } from "../../components/validations";
 import randomize from "randomatic";
 import PocketBase from "pocketbase";
+import { getSession } from "../../components/getSession";
+import { cookies } from "next/headers";
 
 export async function verifyCode(code) {
-  console.log("on the server");
   const validation = validateVerifyCode(code);
 
   // Validate the user input before continuing
-  if (!validation) return { ok: false, error: "Geçersiz kod." };
-
-  // Get token
-  const cookieStore = cookies();
-  const token = cookieStore.get("codeToken")?.value;
+  if (!validation) return { ok: false, message: "Geçersiz kod." };
 
   const secret = process.env.tokenSecret;
 
-  // Decode token
-  const decoded = jsonwebtoken.verify(token, secret, function (err, decoded) {
-    if (err) {
-      return new Error(err);
-    }
-    return decoded;
-  });
+  const { session } = await getSession();
 
-  // Check is input code correct
-  if (decoded.code !== code) return { ok: false, error: "Yanlış kod." };
+  const email = session.user.record.email;
 
   // Create pocketbase instance
   const pb = new PocketBase("http://127.0.0.1:8090");
@@ -40,39 +29,53 @@ export async function verifyCode(code) {
   );
 
   // First, we check is this user already signed up
+  let dbCode;
+  let recordId;
   try {
     const fetchUser = await pb
       .collection("users")
-      .getFirstListItem(`email="${decoded.email}"`);
+      .getFirstListItem(`email="${email}"`);
+
     if (fetchUser) {
-      return { ok: false, error: "Bu kullanıcı zaten kayıtlı." };
+      dbCode = fetchUser.verifyCode;
+      recordId = fetchUser.id;
+
+      // Decode token
+      const decoded = jsonwebtoken.verify(
+        dbCode,
+        secret,
+        function (err, decoded) {
+          if (err) {
+            return new Error(err);
+          }
+          return decoded;
+        }
+      );
+
+      if (decoded.code !== code) return { ok: false, message: "Yanlış kod." };
     }
   } catch (error) {
     console.log("Error:", error);
   }
 
-  // User's data
-  // Maybe we should use jwt token to sign password
   const temporaryPassword = randomize("aA0!", 32);
-  const temporaryUsername = randomize("aA0", 32);
+
   const data = {
-    username: temporaryUsername,
-    email: decoded.email,
-    emailVisibility: true,
+    permission: "almostUser",
     password: temporaryPassword,
     passwordConfirm: temporaryPassword,
-    name: temporaryUsername,
-    permission: "almostUser",
+    verifyCode: "verified",
   };
 
   try {
-    // Create user
-    const record = await pb.collection("users").create(data);
+    const record = await pb.collection("users").update(`${recordId}`, data);
   } catch (error) {
-    console.log("Error:", error);
-    return { ok: false, error: "Başarısız işlem, lütfen tekrar deneyin." };
+    console.log("Error: ", error);
+    return { ok: false, message: "Başarısız işlem." };
   }
 
-  cookieStore.delete("codeToken");
-  return { email: decoded.email, password: temporaryPassword };
+  const cookieStore = cookies();
+  cookieStore.delete("next-auth.session-token");
+
+  return { email: email, password: temporaryPassword };
 }

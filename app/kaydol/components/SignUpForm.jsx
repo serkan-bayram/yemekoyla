@@ -7,6 +7,8 @@ import { validateEmail } from "../../components/validations";
 import { toast } from "react-toastify";
 import SubmitButtonWithLoading from "../../components/SubmitButtonWithLoading";
 import { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function SignUpForm() {
   const id = "falseEmail";
@@ -15,6 +17,8 @@ export default function SignUpForm() {
       toastId: id,
     });
   };
+
+  const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -32,10 +36,25 @@ export default function SignUpForm() {
       setIsLoading(true);
       const response = await sendVerifyCode(email);
       setIsLoading(false);
-      if (!response?.ok) return;
-    }
 
-    notify("Geçersiz E-Posta.");
+      if (!response?.ok) {
+        notify(response?.message);
+      }
+
+      if (response?.ok) {
+        const { ok } = await signIn("credentials", {
+          username: response.email,
+          password: response.password,
+          redirect: false,
+        });
+
+        if (!ok) notify("Profil oluşturulamadı.");
+
+        if (ok) router.replace("/dogrula");
+      }
+    } else {
+      notify("Geçersiz E-Posta.");
+    }
   };
 
   return (

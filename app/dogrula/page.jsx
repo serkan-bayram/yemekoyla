@@ -1,15 +1,14 @@
 import Header from "../components/Header";
 import VerifyForm from "./components/VerifyForm";
-import { redirect } from "next/navigation";
 import { getSession } from "../components/getSession";
 import OnlyLogoNavbar from "../components/OnyLogoNavbar";
-import AltText from "../components/AltText";
+import { redirect } from "next/navigation";
+import SignOutButton from "../components/SignOutButton";
 
 export default async function Page() {
-  const { session } = await getSession();
+  const { permission } = await getSession();
 
-  // if the user is already authenticated it shouldn't see the login page
-  if (session) {
+  if (permission !== "codeVerifying") {
     redirect("/oyla");
   }
 
@@ -23,7 +22,7 @@ export default async function Page() {
         <div>
           <Header text="Lütfen hesabınızı doğrulamak için E-postanıza gelen kodu giriniz." />
           <VerifyForm />
-          <AltText linkText="Geri Dön." href="/kaydol" text="" />
+          <SignOutButton />
         </div>
       </div>
     </>

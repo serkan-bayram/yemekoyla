@@ -3,7 +3,7 @@ import CreateProfileForm from "./components/CreateProfileForm";
 import { getSession } from "../components/getSession";
 import { redirect } from "next/navigation";
 import Notification from "../components/Notification";
-import SignOutButton from "./components/SignOutButton";
+import SignOutButton from "../components/SignOutButton";
 
 export default async function Page() {
   const { permission } = await getSession();
