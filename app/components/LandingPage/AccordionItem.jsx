@@ -14,7 +14,7 @@ export default function AccordionItem({ heading, content }) {
   };
 
   return (
-    <div className="w-full border-b-2 last:border-b-0 border-primary">
+    <div className="w-full border odd:border-b-0   border-primary">
       <div className="w-full bg-secondary  p-4 rounded-sm">
         <AccordionHeading
           isOpen={isOpen}

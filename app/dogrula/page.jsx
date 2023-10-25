@@ -3,6 +3,7 @@ import VerifyForm from "./components/VerifyForm";
 import { redirect } from "next/navigation";
 import { getSession } from "../components/getSession";
 import OnlyLogoNavbar from "../components/OnyLogoNavbar";
+import AltText from "../components/AltText";
 
 export default async function Page() {
   const { session } = await getSession();
@@ -22,6 +23,7 @@ export default async function Page() {
         <div>
           <Header text="Lütfen hesabınızı doğrulamak için E-postanıza gelen kodu giriniz." />
           <VerifyForm />
+          <AltText linkText="Geri Dön." href="/kaydol" text="" />
         </div>
       </div>
     </>

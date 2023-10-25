@@ -6,9 +6,9 @@ export default function AltText({ text, href, linkText }) {
       {text}{" "}
       <Link
         className="text-gray-500 
-      relative ml-1
+      relative 
     after:transition-all after:duration-300
-    after:h-1 after:bg-white after:absolute after:left-0 after:-bottom-[3px]
+    after:h-1 after:bg-accent after:absolute after:left-0 after:-bottom-1
     after:scale-y-50 underlined-link
             "
         href={href}

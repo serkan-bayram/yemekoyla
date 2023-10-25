@@ -23,7 +23,7 @@ export default async function Navbar() {
         links: [
           { selector: "#home", text: "Ana Sayfa" },
           { selector: "#why", text: "Neden?" },
-          { selector: "#how", text: "Nasıl?" },
+          { selector: "#how", text: "S.S.S" },
           { selector: "#contact", text: "İletişim" },
         ],
       },
@@ -41,7 +41,7 @@ export default async function Navbar() {
         links: [
           { selector: "#home", text: "Ana Sayfa" },
           { selector: "#why", text: "Neden?" },
-          { selector: "#how", text: "Nasıl?" },
+          { selector: "#how", text: "S.S.S?" },
           { selector: "#contact", text: "İletişim" },
           { href: "/api/auth/signout", text: "Çıkış Yap" },
         ],

@@ -9,7 +9,7 @@ function UnderlinedText({ text }) {
     <button
       className="relative
 after:transition-all after:duration-300
-after:h-1 after:bg-white after:absolute after:left-0 after:bottom-0
+after:h-1 after:bg-accent after:absolute after:left-0 after:bottom-0
 after:scale-y-50 underlined-link"
     >
       <li className="">{text}</li>
@@ -44,8 +44,8 @@ export default function NavItems({ isOpen, closeMenu, navigation, state }) {
      lg:flex-row lg:items-center
      lg:static lg:h-full lg:bg-transparent 
      gap-12 font-body fixed right-0 
-     flex-col justify-start pt-48 items-center
-     top-12 h-screen w-full bg-secondary z-50
+     flex-col justify-center items-center
+     top-12 h-[100dvh] w-full bg-secondary z-50
      transition-transform
      lg:translate-x-0 lg:pt-0 lg:justify-center
      lg:opacity-100

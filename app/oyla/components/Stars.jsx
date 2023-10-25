@@ -10,13 +10,17 @@ export function BigStars() {
   useEffect(() => {
     const asyncFunction = async () => {
       // BE CAREFUL, this might create cache
-      const response = await fetch(
-        "http://localhost:3000/api/ratings/getRating"
-      );
+      try {
+        const response = await fetch(
+          "http://localhost:3000/api/ratings/getRating"
+        );
 
-      const { ok, savedRating } = await response.json();
+        const { ok, savedRating } = await response.json();
 
-      if (ok) setValue(parseFloat(savedRating));
+        if (ok) setValue(parseFloat(savedRating));
+      } catch (error) {
+        console.log("Can't fetch user rating.");
+      }
 
       setIsLoading(false);
     };

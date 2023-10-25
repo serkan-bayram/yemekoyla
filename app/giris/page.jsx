@@ -16,7 +16,7 @@ export default async function Page() {
   return (
     <>
       <OnlyLogoNavbar />
-      <div className="w-full h-screen flex justify-center items-center">
+      <div className="w-full h-[100dvh] flex justify-center items-center">
         <div className="w-5/6 lg:w-1/3 h-5/6 bg-secondary rounded-md border border-primary shadow">
           <Header text="Giriş Yap" />
           <SignInForm />

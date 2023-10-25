@@ -8,7 +8,7 @@ export default function SignInButton() {
         href="/giris"
         className="text-gray-400 ml-1 font-semibold relative
   after:transition-all after:duration-300
-  after:h-1 after:bg-white after:absolute after:left-0 after:bottom-0
+  after:h-1 after:bg-accent after:absolute after:left-0 after:-bottom-1
   after:scale-y-50 underlined-link
   "
       >

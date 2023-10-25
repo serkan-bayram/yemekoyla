@@ -6,7 +6,7 @@ export default function HowSection() {
   return (
     <>
       <ScrollTarget id="how" />
-      <HeroSecondHeading text="Nasıl?" />
+      <HeroSecondHeading text="S.S.S" />
       <Accordion />
     </>
   );

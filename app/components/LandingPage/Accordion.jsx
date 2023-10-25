@@ -5,13 +5,19 @@ export default function Accordion() {
   const items = [
     {
       heading: "Okul E-posta'mı nasıl bulabilirim?",
-      content:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum omnis molestias, ut quia voluptates exercitationem odio optio fuga qui fugit?",
+      content: "Content1",
     },
     {
       heading: "E-Posta'mın şifresini nasıl sıfırlayabilirim?",
-      content:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum omnis molestias, ut quia voluptates exercitationem odio optio fuga qui fugit?",
+      content: "Content2",
+    },
+    {
+      heading: "Neden kaydolmak için Okul E-posta'sı istiyoruz?",
+      content: "Content3",
+    },
+    {
+      heading: "E-posta'ma gelen kodu nereden bulabilirim?",
+      content: "Content4",
     },
   ];
 

@@ -39,7 +39,7 @@ export default function Notification({ text }) {
         className={`
       ${notification ? "animate-show-notification" : ""}
       ${notification !== "" ? "animate-hide-notification" : ""} 
-      fixed -bottom-32 w-2/3 h-16 p-2 flex justify-center md:justify-start rounded-sm border border-primary 
+      fixed -bottom-32 w-2/3 lg:w-1/2 h-16 p-2 flex justify-center md:justify-start rounded-sm border border-primary 
       text-white text-sm  bg-background 
       ${
         notification ? "after:animate-start-progressbar" : "after:w-full"
