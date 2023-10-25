@@ -3,9 +3,8 @@
 import { useEffect, useState } from "react";
 import Rating from "@mui/material/Rating";
 
-export function BigStars() {
+export function BigStars({ isLoading, setIsLoading }) {
   const [value, setValue] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const asyncFunction = async () => {
@@ -47,7 +46,7 @@ export function BigStars() {
           }}
         />
       </div>
-      <div className="mt-4 text-[#111214] text-sm">
+      <div className="mt-4 text-gray-500 text-sm">
         {value ? value * 2 : 0} / 10
       </div>
     </div>

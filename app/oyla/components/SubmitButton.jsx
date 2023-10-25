@@ -5,7 +5,7 @@ import { experimental_useFormStatus as useFormStatus } from "react-dom";
 import { toast } from "react-toastify";
 import Loading from "../../components/LoadingButton";
 
-export default function SubmitButton({ state }) {
+export default function SubmitButton({ isLoading, state }) {
   const { pending } = useFormStatus();
 
   const error = (message) => {
@@ -36,6 +36,7 @@ export default function SubmitButton({ state }) {
         <Loading />
       ) : (
         <button
+          disabled={isLoading}
           type="submit"
           className={`rounded-md mx-auto bg-primary w-full h-full py-2  text-white border
      border-gray-700 hover:bg-transparent transition-all duration-300

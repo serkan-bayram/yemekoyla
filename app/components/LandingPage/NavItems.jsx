@@ -79,13 +79,14 @@ export default function NavItems({ isOpen, closeMenu, navigation, state }) {
           });
         }
       })}
-      <div className="lg:absolute right-0">
+      <li className="lg:absolute right-0">
         <NavbarButton
           closeMenu={closeMenu}
           state={state}
           pathname={currentPathname}
         />
-      </div>
+      </li>
+      <li></li>
     </ul>
   );
 }

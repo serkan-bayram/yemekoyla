@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import RatingContainer from "./RatingContainer";
 import { saveRating } from "./saveRating";
 import SubmitButton from "./SubmitButton";
@@ -12,10 +13,13 @@ export default function RatingForm() {
 
   const [state, formAction] = useFormState(saveRating, initialState);
 
+  // Waiting for the fetch of getRating api
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
     <form action={formAction}>
-      <RatingContainer />
-      <SubmitButton state={state} />
+      <RatingContainer setIsLoading={setIsLoading} isLoading={isLoading} />
+      <SubmitButton isLoading={isLoading} state={state} />
     </form>
   );
 }
