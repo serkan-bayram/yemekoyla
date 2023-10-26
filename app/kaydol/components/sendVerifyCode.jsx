@@ -6,7 +6,7 @@ import jsonwebtoken from "jsonwebtoken";
 import { validateEmail } from "../../components/validations";
 import PocketBase from "pocketbase";
 
-async function sendEmail(email, sixDigitCode) {
+export async function sendEmail(email, sixDigitCode) {
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
