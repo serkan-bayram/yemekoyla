@@ -6,11 +6,12 @@ import {
   validatePassword,
   validateVerifyCode,
 } from "../../components/validations";
-import PocketBase from "pocketbase";
 import { cookies } from "next/headers";
+import { authAsAdmin } from "../../components/authAsAdmin";
+import { fetchUserByEmail } from "../../components/fetchUserByEmail";
 
 export async function resetPassword(email, code, password) {
-  const _cookies = cookies();
+  // const _cookies = cookies();
 
   const emailValidation = validateEmail(email);
   if (!emailValidation) return { ok: false, message: "Geçersiz E-Posta." };
@@ -23,49 +24,35 @@ export async function resetPassword(email, code, password) {
 
   const secret = process.env.tokenSecret;
 
-  const pb = new PocketBase("http://127.0.0.1:8090");
-
-  await pb.admins.authWithPassword(
-    process.env.dbUsername,
-    process.env.dbPassword
-  );
+  const pb = await authAsAdmin();
 
   try {
-    const fetchUser = await pb
-      .collection("users")
-      .getFirstListItem(`email="${email}"`);
+    const { id, resetPasswordCode } = await fetchUserByEmail(pb, email);
 
-    if (fetchUser) {
-      // Decode token
-      let dbCode = fetchUser.resetPasswordCode;
-
-      const decoded = jsonwebtoken.verify(
-        dbCode,
-        secret,
-        function (err, decoded) {
-          if (err) {
-            return new Error(err);
-          }
-          return decoded;
+    const decoded = jsonwebtoken.verify(
+      resetPasswordCode,
+      secret,
+      function (err, decoded) {
+        if (err) {
+          return new Error(err);
         }
-      );
+        return decoded;
+      }
+    );
 
-      if (decoded.code !== code) return { ok: false, message: "Yanlış kod." };
+    if (decoded.code !== code) return { ok: false, message: "Yanlış kod." };
 
-      const data = {
-        password: password,
-        passwordConfirm: password,
-        resetPasswordCode: "",
-      };
+    const data = {
+      password: password,
+      passwordConfirm: password,
+      resetPasswordCode: "",
+    };
 
-      const record = await pb
-        .collection("users")
-        .update(`${fetchUser.id}`, data);
+    await pb.collection("users").update(`${id}`, data);
 
-      return { ok: true, message: "Şifreniz Sıfırlandı." };
-    }
+    return { ok: true, message: "Şifreniz Sıfırlandı." };
   } catch (error) {
-    console.log("Error on fetchUser:", error);
+    console.log("Error on resetPassword:", error);
   }
 
   return { ok: false, message: "Başarısız işlem, lütfen tekrar deneyiniz." };

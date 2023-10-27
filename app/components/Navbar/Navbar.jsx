@@ -1,21 +1,14 @@
-import Logo from "./Logo";
+import Logo from "../LandingPage/Logo";
 import NavbarClient from "./NavbarClient";
 import { getSession } from "../getSession";
 
-export default async function Navbar() {
-  const { session, permission } = await getSession();
-
-  // {
-  //   pathname: ["/oyla"],
-  //   links: [
-  //     { href: "/", text: "Ana Sayfa" },
-  //     { href: "/#why", text: "Neden?" },
-  //     { href: "/#how", text: "Nasıl?" },
-  //     { href: "/#contact", text: "İletişim" },
-  //   ],
-  // },
+// If onlyLogo is true navbar only renders Logo and not items
+export default async function Navbar({ onlyLogo = false }) {
+  const { session } = await getSession();
 
   let navigation;
+
+  // User is not authenticated
   if (!session) {
     navigation = [
       {
@@ -34,6 +27,7 @@ export default async function Navbar() {
     ];
   }
 
+  // User is authenticated
   if (session) {
     navigation = [
       {
@@ -52,7 +46,6 @@ export default async function Navbar() {
       },
       {
         pathname: ["/oyla"],
-
         links: [
           { href: "/", text: "Ana Sayfa" },
           { href: "/api/auth/signout", text: "Çıkış Yap" },
@@ -68,7 +61,7 @@ export default async function Navbar() {
      bg-secondary shadow border-b border-b-primary"
     >
       <Logo />
-      <NavbarClient navigation={navigation} state={!!session} />
+      {!onlyLogo && <NavbarClient navigation={navigation} state={!!session} />}
     </div>
   );
 }

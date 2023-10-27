@@ -2,22 +2,16 @@
 
 import { sendVerifyCode } from "./sendVerifyCode";
 import Input from "../../components/Input";
-import Button from "../../components/Button";
 import { validateEmail } from "../../components/validations";
-import { toast } from "react-toastify";
-import SubmitButtonWithLoading from "../../components/SubmitButtonWithLoading";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { error, success } from "../../components/notify";
+import { getFormData } from "../../components/getFormData";
+import AuthButton from "../../components/AuthButton";
+import AuthForm from "../../components/AuthForm";
 
 export default function SignUpForm() {
-  const id = "falseEmail";
-  const notify = (message) => {
-    toast.error(message, {
-      toastId: id,
-    });
-  };
-
   const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -25,20 +19,20 @@ export default function SignUpForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.target);
-    const { email } = Object.fromEntries(formData);
+    const { email } = getFormData(e);
 
     // We first check on the client side and server side afterwards
-    const validation = validateEmail(email);
+    const emailValidation = validateEmail(email);
 
-    if (validation) {
+    if (emailValidation) {
       // validate in server side
       setIsLoading(true);
       const response = await sendVerifyCode(email);
       setIsLoading(false);
 
-      if (!response?.ok) {
-        notify(response?.message);
+      if (!response.ok) {
+        error(response.message);
+        return;
       }
 
       if (response?.ok) {
@@ -48,19 +42,23 @@ export default function SignUpForm() {
           redirect: false,
         });
 
-        if (!ok) notify("Profil oluşturulamadı.");
+        if (ok) {
+          success("E-Posta'nıza doğrulama kodu gönderildi.");
+          router.refresh();
+          return;
+        }
 
-        if (ok) router.refresh();
+        error("Profil oluşturulamadı, lütfen tekrar deneyin.");
       }
     } else {
-      notify("Geçersiz E-Posta.");
+      error("Geçersiz E-Posta.");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="px-8 pt-12 flex flex-col gap-6">
+    <AuthForm handleSubmit={handleSubmit}>
       <Input placeholder="ornek@ogrenci.bilecik.edu.tr" name="email" />
-      <SubmitButtonWithLoading isLoading={isLoading} text="Kaydol" />
-    </form>
+      <AuthButton text="Kaydol" isLoading={isLoading} />
+    </AuthForm>
   );
 }

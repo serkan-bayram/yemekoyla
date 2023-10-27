@@ -6,22 +6,16 @@ import {
   validatePassword,
   validateVerifyCode,
 } from "../../components/validations";
-import { toast } from "react-toastify";
-import SubmitButtonWithLoading from "../../components/SubmitButtonWithLoading";
 import { useState } from "react";
-import { sendResetCode } from "./sendResetCode";
+import { sendPasswordResetCode } from "./sendPasswordResetCode";
 import { resetPassword } from "./resetPassword";
 import { useRouter } from "next/navigation";
+import AuthForm from "../../components/AuthForm";
+import AuthButton from "../../components/AuthButton";
+import { getFormData } from "../../components/getFormData";
+import { success, error } from "../../components/notify";
 
 export default function SignUpForm() {
-  const error = (message) => {
-    toast.error(message);
-  };
-
-  const success = (message) => {
-    toast.success(message);
-  };
-
   const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -31,16 +25,15 @@ export default function SignUpForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.target);
-    const { email } = Object.fromEntries(formData);
+    const { email } = getFormData(e);
 
     // We first check on the client side and server side afterwards
-    const validation = validateEmail(email);
+    const emailValidation = validateEmail(email);
 
-    if (validation) {
+    if (emailValidation) {
       // validate in server side
       setIsLoading(true);
-      const response = await sendResetCode(email);
+      const response = await sendPasswordResetCode(email);
       setIsLoading(false);
 
       if (!response?.ok) {
@@ -54,15 +47,14 @@ export default function SignUpForm() {
         }
       }
     } else {
-      notify("Geçersiz E-Posta.");
+      error("Geçersiz E-Posta.");
     }
   };
 
   const handleResetSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.target);
-    const { email, code, password } = Object.fromEntries(formData);
+    const { email, code, password } = getFormData(e);
 
     // We first check on the client side and server side afterwards
     const emailValidation = validateEmail(email);
@@ -94,22 +86,19 @@ export default function SignUpForm() {
 
   return !isSend ? (
     <>
-      <form onSubmit={handleSubmit} className="px-8 pt-12 flex flex-col gap-6">
+      <AuthForm handleSubmit={handleSubmit}>
         <Input placeholder="ornek@ogrenci.bilecik.edu.tr" name="email" />
-        <SubmitButtonWithLoading isLoading={isLoading} text="Sıfırla" />
-      </form>
+        <AuthButton isLoading={isLoading} text="Sıfırla" />
+      </AuthForm>
     </>
   ) : (
     <>
-      <form
-        onSubmit={handleResetSubmit}
-        className="px-8 pt-12 flex flex-col gap-6"
-      >
+      <AuthForm handleSubmit={handleResetSubmit}>
         <Input placeholder="E-Posta'nız" name="email" />
         <Input placeholder="E-Posta'nıza Gelen Kod" name="code" />
         <Input placeholder="Yeni Şifreniz" name="password" />
-        <SubmitButtonWithLoading isLoading={isLoading} text="Sıfırla" />
-      </form>
+        <AuthButton isLoading={isLoading} text="Sıfırla" />
+      </AuthForm>
     </>
   );
 }

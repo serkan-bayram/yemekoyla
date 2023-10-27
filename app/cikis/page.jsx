@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { getSession } from "../components/getSession";
 import SignOutForm from "./components/SignOutForm";
 import Link from "next/link";
-import AltText from "../components/AltText";
+import AltText from "../components/TextWithLink";
 
 export default async function Page() {
   const { session } = await getSession();

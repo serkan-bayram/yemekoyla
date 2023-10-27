@@ -1,7 +1,7 @@
 import Others from "./components/Others";
 import Food from "./components/Food";
 import RatingForm from "./components/RatingForm";
-import Navbar from "../components/LandingPage/Navbar";
+import Navbar from "../components/Navbar/Navbar";
 import UserInfo from "./components/UserInfo";
 import { getSession } from "../components/getSession";
 

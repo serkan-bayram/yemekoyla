@@ -2,40 +2,32 @@ import Link from "next/link";
 import ScrollIntoView from "react-scroll-into-view";
 import { v4 as uuidv4 } from "uuid";
 import { usePathname } from "next/navigation";
-import NavbarButton from "../NavbarButton";
+import NavbarButton from "./NavbarButton";
+import UnderlinedText from "../UnderlinedText";
 
-function UnderlinedText({ text }) {
+// Let's you scroll to an element
+function ScrollNavItem({ selector, text, closeMenu }) {
   return (
-    <li
-      className="relative
-after:transition-all after:duration-300
-after:h-1 after:bg-accent after:absolute after:left-0 after:bottom-0
-after:scale-y-50 underlined-link"
-    >
-      <button>{text}</button>
+    <li>
+      <ScrollIntoView onClick={closeMenu} selector={selector}>
+        <UnderlinedText text={text} />
+      </ScrollIntoView>
     </li>
   );
 }
 
-function ScrollNavItem({ selector, text, closeMenu }) {
-  return (
-    <ScrollIntoView onClick={closeMenu} selector={selector}>
-      <UnderlinedText text={text} />
-    </ScrollIntoView>
-  );
-}
-
-// TODO: there is a bug, it does not seem good
+// Link to a page
 function LinkNavItem({ href, text, closeMenu }) {
   return (
-    <Link onClick={closeMenu} href={href}>
-      <UnderlinedText text={text} />
-    </Link>
+    <li>
+      <Link onClick={closeMenu} href={href}>
+        <UnderlinedText text={text} />
+      </Link>
+    </li>
   );
 }
 
-// TODO: Change items according to path
-export default function NavItems({ isOpen, closeMenu, navigation, state }) {
+export default function NavbarItems({ isOpen, closeMenu, navigation, state }) {
   const currentPathname = usePathname();
 
   return (
@@ -54,21 +46,24 @@ export default function NavItems({ isOpen, closeMenu, navigation, state }) {
      `}
     >
       {navigation.map((item) => {
+        // pathname includes paths like /, /oyla, /giris
+        // we render specific links according to these paths
         const { pathname, links } = item;
-
-        if (pathname.includes(currentPathname)) {
-          return links.map((link) => {
-            if (link?.href) {
-              return (
-                <LinkNavItem
-                  key={uuidv4()}
-                  closeMenu={closeMenu}
-                  href={link.href}
-                  text={link.text}
-                />
-              );
-            }
-            return (
+        {
+          /* link?.href -> If a item has href that means it's going to link somewhere 
+          so we render LinkNavItem */
+        }
+        return (
+          pathname.includes(currentPathname) &&
+          links.map((link) => {
+            return link?.href ? (
+              <LinkNavItem
+                key={uuidv4()}
+                closeMenu={closeMenu}
+                href={link.href}
+                text={link.text}
+              />
+            ) : (
               <ScrollNavItem
                 key={uuidv4()}
                 closeMenu={closeMenu}
@@ -76,8 +71,8 @@ export default function NavItems({ isOpen, closeMenu, navigation, state }) {
                 text={link.text}
               />
             );
-          });
-        }
+          })
+        );
       })}
       <li className="lg:absolute right-0">
         <NavbarButton

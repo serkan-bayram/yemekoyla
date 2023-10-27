@@ -6,9 +6,10 @@ import {
   validateUsername,
   validateVerifyCode,
 } from "../../components/validations";
-import PocketBase from "pocketbase";
 import { cookies } from "next/headers";
 import jsonwebtoken from "jsonwebtoken";
+import { authAsAdmin } from "../../components/authAsAdmin";
+import { fetchUserByEmail } from "../../components/fetchUserByEmail";
 
 export async function createProfile(username, password, code) {
   const usernameValidation = validateUsername(username);
@@ -16,63 +17,49 @@ export async function createProfile(username, password, code) {
   const codeValidation = validateVerifyCode(code);
 
   if (!usernameValidation)
-    return { ok: false, error: "Geçersiz kullanıcı adı." };
+    return { ok: false, message: "Geçersiz kullanıcı adı." };
 
-  if (!passwordValidation) return { ok: false, error: "Geçersiz şifre." };
+  if (!passwordValidation) return { ok: false, message: "Geçersiz şifre." };
 
-  if (!codeValidation) return { ok: false, error: "Geçersiz kod." };
+  if (!codeValidation) return { ok: false, message: "Geçersiz kod." };
 
   const { session } = await getSession();
+  const id = session.user.record.id;
+  const email = session.user.record.email;
 
-  // Create pocketbase instance
-  const pb = new PocketBase("http://127.0.0.1:8090");
+  const pb = await authAsAdmin();
 
-  // Auth as admin to create user
-  await pb.admins.authWithPassword(
-    process.env.dbUsername,
-    process.env.dbPassword
-  );
-
+  // Check is username taken
   try {
-    const isUsernameTaken = await pb
-      .collection("users")
-      .getFirstListItem(`username="${username}"`);
+    // If this line of code does not throw an error, it means username is taken
+    await pb.collection("users").getFirstListItem(`username="${username}"`);
 
-    if (isUsernameTaken) {
-      return { ok: false, error: "Bu kullanıcı adı kullanılıyor." };
-    }
+    return { ok: false, message: "Bu kullanıcı adı kullanılıyor." };
   } catch (error) {
     console.log("Error: ", error);
   }
 
   // validate code
-
   const secret = process.env.tokenSecret;
-  const email = session.user.record.email;
 
-  let dbCode;
   try {
-    const fetchUser = await pb
-      .collection("users")
-      .getFirstListItem(`email="${email}"`);
+    const { verifyCode } = await fetchUserByEmail(pb, email);
 
-    if (fetchUser) {
-      dbCode = fetchUser.verifyCode;
-
-      // Decode token
-      const decoded = jsonwebtoken.verify(
-        dbCode,
-        secret,
-        function (err, decoded) {
-          if (err) {
-            return new Error(err);
-          }
-          return decoded;
+    // Decode token
+    const decoded = jsonwebtoken.verify(
+      verifyCode,
+      secret,
+      function (err, decoded) {
+        if (err) {
+          return new Error(err);
         }
-      );
+        return decoded;
+      }
+    );
 
-      if (decoded.code !== code) return { ok: false, error: "Yanlış kod." };
-    }
+    console.log(decoded.code, code);
+
+    if (decoded.code !== code) return { ok: false, message: "Yanlış kod." };
   } catch (error) {
     console.log("Error:", error);
   }
@@ -89,16 +76,14 @@ export async function createProfile(username, password, code) {
 
   // update with id
   try {
-    const record = await pb
-      .collection("users")
-      .update(session.user.record.id, data);
+    await pb.collection("users").update(id, data);
   } catch (error) {
     console.log("Error on updating: ", error);
-    return { ok: false, error: "Başarısız işlem, lütfen tekrar deneyin." };
+    return { ok: false, message: "Başarısız işlem, lütfen tekrar deneyin." };
   }
 
   const cookieStore = cookies();
   cookieStore.delete("next-auth.session-token");
 
-  return { ok: true };
+  return { ok: true, message: "Profiliniz başarıyla oluşturuldu." };
 }

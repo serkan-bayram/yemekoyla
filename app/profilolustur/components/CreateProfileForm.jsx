@@ -6,25 +6,23 @@ import {
   validateUsername,
   validateVerifyCode,
 } from "../../components/validations";
-import { toast } from "react-toastify";
 import { createProfile } from "./createProfile";
 import { signIn } from "next-auth/react";
-import SubmitButtonWithLoading from "../../components/SubmitButtonWithLoading";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import AuthButton from "../../components/AuthButton";
+import { error, success } from "../../components/notify";
+import { getFormData } from "../../components/getFormData";
+import AuthForm from "../../components/AuthForm";
 
 export default function CreateProfileForm() {
-  const notify = (message) => {
-    toast.error(message);
-  };
-
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const { username, password, code } = Object.fromEntries(formData);
+
+    const { username, password, code } = getFormData(e);
 
     // We first check on the client side and server side afterwards
     const usernameValidation = validateUsername(username);
@@ -35,40 +33,48 @@ export default function CreateProfileForm() {
       setIsLoading(true);
       const response = await createProfile(username, password, code);
       setIsLoading(false);
-      if (!response?.ok) notify(response?.error);
 
-      if (response?.ok) {
-        const { ok } = await signIn("credentials", {
-          username: username,
-          password: password,
-          redirect: false,
-        });
-
-        if (ok) router.refresh();
+      if (!response.ok) {
+        error(response.message);
+        return;
       }
+
+      const { ok } = await signIn("credentials", {
+        username: username,
+        password: password,
+        redirect: false,
+      });
+
+      if (ok) {
+        success("Profiliniz başarıyla oluşturuldu.");
+        router.refresh();
+        return;
+      }
+
+      error("Başarısız işlem, lütfen tekrar deneyiniz.");
     }
 
     if (!usernameValidation) {
-      notify("Geçersiz kullanıcı adı.");
+      error("Geçersiz kullanıcı adı.");
       return;
     }
 
     if (!passwordValidation) {
-      notify("Geçersiz şifre.");
+      error("Geçersiz şifre.");
       return;
     }
 
     if (!codeValidation) {
-      notify("Geçersiz kod.");
+      error("Geçersiz kod.");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="px-8 pt-12 flex flex-col gap-6">
+    <AuthForm handleSubmit={handleSubmit}>
       <Input placeholder="Kullanıcı Adı" name="username" />
       <Input placeholder="Şifre" name="password" />
       <Input placeholder="E-posta'nıza Gelen Kod" name="code" />
-      <SubmitButtonWithLoading isLoading={isLoading} text="Onayla" />
-    </form>
+      <AuthButton isLoading={isLoading} text="Onayla" />
+    </AuthForm>
   );
 }
