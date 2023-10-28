@@ -11,9 +11,8 @@ export function BigStars({ isLoading, setIsLoading }) {
     const asyncFunction = async () => {
       // BE CAREFUL, this might create cache
       try {
-        const response = await fetch(
-          "http://localhost:3000/api/ratings/getRating"
-        );
+        const apiUrl = process.env.API_URL;
+        const response = await fetch(`${apiUrl}/api/ratings/getRating`);
 
         const { ok, savedRating } = await response.json();
 
