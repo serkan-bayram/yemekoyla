@@ -13,8 +13,8 @@ export default function Page() {
   return (
     <>
       <Navbar />
+      <HeroSection />
       <Padding>
-        <HeroSection />
         <WhySection />
         <HowSection />
         <ContactSection />

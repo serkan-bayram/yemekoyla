@@ -8,6 +8,10 @@
   -webkit-text-fill-color: transparent;
 } */
 
+:root {
+  color-scheme: dark;
+}
+
 .card-container:hover .card-heading::after {
   height: 1rem;
 }

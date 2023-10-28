@@ -16,7 +16,7 @@ function Content1() {
       className="tracking-wide leading-relaxed w-full 
     bg-primary font-body p-4 text-white rounded-md"
     >
-      E-posta'nızı almak için ilk olarak{" "}
+      E-posta&apos;nızı almak için ilk olarak{" "}
       <HighlightedText
         text="Sofra"
         href="https://sofra.bilecik.edu.tr/OturumAc"
@@ -50,10 +50,10 @@ function Content3() {
       className="tracking-wide leading-relaxed w-full 
     bg-primary font-body p-4 text-white rounded-md"
     >
-      Okul E-posta'larının bir çok kişi tarafından aktif olarak kullanılmadığını
-      ve buraya kaydolmak için ekstra zahmet getirdiğinin farkındayız fakat,
-      daha gerçekçi veriler elde edebilmek için malesef bu yola başvurmak
-      zorundayız.
+      Okul E-posta&apos;larının bir çok kişi tarafından aktif olarak
+      kullanılmadığını ve buraya kaydolmak için ekstra zahmet getirdiğinin
+      farkındayız fakat, daha gerçekçi veriler elde edebilmek için malesef bu
+      yola başvurmak zorundayız.
     </div>
   );
 }
@@ -68,7 +68,8 @@ function Content4() {
         text="Bu adrese"
         href="https://ogrenci.bilecik.edu.tr/mail/?_task=mail&_mbox=INBOX"
       />{" "}
-      giderek E-posta'nıza giriş yapabilir ve gelecek olan kodu alabilirsiniz.
+      giderek E-posta&apos;nıza giriş yapabilir ve gelecek olan kodu
+      alabilirsiniz.
     </div>
   );
 }
