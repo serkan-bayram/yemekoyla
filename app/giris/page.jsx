@@ -1,10 +1,10 @@
 import { redirect } from "next/navigation";
-import AuthHeader from "../components/AuthHeader";
+import AuthHeader from "../components/Auth/AuthHeader";
 import SignInForm from "./components/SignInForm";
-import { getSession } from "../components/getSession";
+import { getSession } from "../components/Functions/getSession";
 import TextWithLink from "../components/TextWithLink";
 import Navbar from "../components/Navbar/Navbar";
-import AuthContainer from "../components/AuthContainer";
+import AuthContainer from "../components/Auth/AuthContainer";
 import BottomTextWithLink from "../components/BottomTextWithLink";
 
 export default async function Page() {

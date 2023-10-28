@@ -2,7 +2,7 @@ import HeroHeading from "./HeroHeading";
 import SignUpButton from "./SignUpButton";
 import SignInButton from "./SignInButton";
 import ScrollTarget from "./ScrollTarget";
-import { getSession } from "../getSession";
+import { getSession } from "../Functions/getSession";
 
 export default async function HeroSection() {
   const backgroundStyles = {

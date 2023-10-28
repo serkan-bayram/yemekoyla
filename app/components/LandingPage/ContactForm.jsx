@@ -1,30 +1,20 @@
 "use client";
 
 import Input, { Textarea } from "../Input";
-import { sendEmail } from "./sendEmail";
-import { validateUserEmail, validateMessage } from "../validations";
-import { toast } from "react-toastify";
+import { sendEmail } from "../Functions/sendEmail";
+import { validateUserEmail, validateMessage } from "../Functions/validations";
 import { useState } from "react";
-import SubmitButtonWithLoading from "../../components/SubmitButtonWithLoading";
+import AuthButton from "../Auth/AuthButton";
+import { error, success } from "../Functions/notify";
+import { getFormData } from "../Functions/getFormData";
 
 export default function ContactForm() {
-  const id = "contact";
-  const notify = (message) => {
-    toast.error(message, {
-      toastId: id,
-    });
-  };
-
   const [isLoading, setIsLoading] = useState(false);
-
-  const success = (message) => {
-    toast.success(message, { toastId: id });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const { userEmail, userMessage } = Object.fromEntries(formData);
+
+    const { userEmail, userMessage } = getFormData(e);
 
     const userEmailValidation = validateUserEmail(userEmail);
     const userMessageValidation = validateMessage(userMessage);
@@ -32,16 +22,17 @@ export default function ContactForm() {
     if (userEmailValidation.ok && userMessageValidation.ok) {
       setIsLoading(true);
       const response = await sendEmail({ userEmail, userMessage });
+      setIsLoading(false);
 
       if (response.ok) {
         success("Mesajınız gönderildi!");
-      } else {
-        notify(response.message);
+        return;
       }
-      setIsLoading(false);
+
+      error(response.message);
     } else {
-      if (!userEmailValidation.ok) notify(userEmailValidation.message);
-      if (!userMessageValidation.ok) notify(userMessageValidation.message);
+      if (!userEmailValidation.ok) error(userEmailValidation.message);
+      if (!userMessageValidation.ok) error(userMessageValidation.message);
     }
   };
 
@@ -53,7 +44,7 @@ export default function ContactForm() {
       <div className="w-96 flex flex-col gap-4">
         <Input name="userEmail" placeholder="E-posta Adresiniz" />
         <Textarea name="userMessage" placeholder="Mesajınız" />
-        <SubmitButtonWithLoading isLoading={isLoading} text="Gönder" />
+        <AuthButton isLoading={isLoading} text="Gönder" />
       </div>
     </form>
   );

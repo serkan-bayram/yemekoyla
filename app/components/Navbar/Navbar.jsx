@@ -1,6 +1,6 @@
 import Logo from "../LandingPage/Logo";
 import NavbarClient from "./NavbarClient";
-import { getSession } from "../getSession";
+import { getSession } from "../Functions/getSession";
 
 // If onlyLogo is true navbar only renders Logo and not items
 export default async function Navbar({ onlyLogo = false }) {

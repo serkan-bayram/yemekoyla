@@ -5,15 +5,15 @@ import {
   validateEmail,
   validatePassword,
   validateVerifyCode,
-} from "../../components/validations";
+} from "../../components/Functions/validations";
 import { useState } from "react";
 import { sendPasswordResetCode } from "./sendPasswordResetCode";
 import { resetPassword } from "./resetPassword";
 import { useRouter } from "next/navigation";
-import AuthForm from "../../components/AuthForm";
-import AuthButton from "../../components/AuthButton";
-import { getFormData } from "../../components/getFormData";
-import { success, error } from "../../components/notify";
+import AuthButton from "../../components/Auth/AuthButton";
+import AuthForm from "../../components/Auth/AuthForm";
+import { getFormData } from "../../components/Functions/getFormData";
+import { success, error } from "../../components/Functions/notify";
 
 export default function SignUpForm() {
   const router = useRouter();

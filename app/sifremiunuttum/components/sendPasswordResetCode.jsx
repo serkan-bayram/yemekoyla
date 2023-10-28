@@ -2,10 +2,10 @@
 
 import randomize from "randomatic";
 import jsonwebtoken from "jsonwebtoken";
-import { validateEmail } from "../../components/validations";
+import { validateEmail } from "../../components/Functions/validations";
 import { sendEmail } from "../../kaydol/components/sendVerifyCode";
-import { authAsAdmin } from "../../components/authAsAdmin";
-import { fetchUserByEmail } from "../../components/fetchUserByEmail";
+import { authAsAdmin } from "../../components/Functions/authAsAdmin";
+import { fetchUserByEmail } from "../../components/Functions/fetchUserByEmail";
 
 export async function sendPasswordResetCode(email) {
   const emailValidation = validateEmail(email);

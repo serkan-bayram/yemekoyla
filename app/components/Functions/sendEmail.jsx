@@ -1,10 +1,7 @@
 "use server";
 
 import nodemailer from "nodemailer";
-import {
-  validateMessage,
-  validateUserEmail,
-} from "../../components/validations";
+import { validateMessage, validateUserEmail } from "./validations";
 
 export async function sendEmail({ userEmail, userMessage }) {
   const userEmailValidation = validateUserEmail(userEmail);

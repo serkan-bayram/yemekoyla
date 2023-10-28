@@ -5,15 +5,15 @@ import {
   validatePassword,
   validateUsername,
   validateVerifyCode,
-} from "../../components/validations";
+} from "../../components/Functions/validations";
 import { createProfile } from "./createProfile";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import AuthButton from "../../components/AuthButton";
-import { error, success } from "../../components/notify";
-import { getFormData } from "../../components/getFormData";
-import AuthForm from "../../components/AuthForm";
+import AuthForm from "../../components/Auth/AuthForm";
+import { error, success } from "../../components/Functions/notify";
+import { getFormData } from "../../components/Functions/getFormData";
+import AuthButton from "../../components/Auth/AuthButton";
 
 export default function CreateProfileForm() {
   const [isLoading, setIsLoading] = useState(false);

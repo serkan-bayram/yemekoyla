@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import Button from "../../components/AuthButton";
+import AuthButton from "../../components/Auth/AuthButton";
 import { signOut } from "next-auth/react";
 
 export default function SignOutForm() {
@@ -17,7 +17,7 @@ export default function SignOutForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Button text="Çıkış Yap" />
+      <AuthButton text="Çıkış Yap." />
     </form>
   );
 }

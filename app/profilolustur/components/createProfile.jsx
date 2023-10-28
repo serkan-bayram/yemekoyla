@@ -1,15 +1,15 @@
 "use server";
 
-import { getSession } from "../../components/getSession";
+import { getSession } from "../../components/Functions/getSession";
 import {
   validatePassword,
   validateUsername,
   validateVerifyCode,
-} from "../../components/validations";
+} from "../../components/Functions/validations";
 import { cookies } from "next/headers";
 import jsonwebtoken from "jsonwebtoken";
-import { authAsAdmin } from "../../components/authAsAdmin";
-import { fetchUserByEmail } from "../../components/fetchUserByEmail";
+import { authAsAdmin } from "../../components/Functions/authAsAdmin";
+import { fetchUserByEmail } from "../../components/Functions/fetchUserByEmail";
 
 export async function createProfile(username, password, code) {
   const usernameValidation = validateUsername(username);

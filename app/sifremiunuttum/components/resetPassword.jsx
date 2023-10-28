@@ -5,10 +5,10 @@ import {
   validateEmail,
   validatePassword,
   validateVerifyCode,
-} from "../../components/validations";
+} from "../../components/Functions/validations";
 import { cookies } from "next/headers";
-import { authAsAdmin } from "../../components/authAsAdmin";
-import { fetchUserByEmail } from "../../components/fetchUserByEmail";
+import { authAsAdmin } from "../../components/Functions/authAsAdmin";
+import { fetchUserByEmail } from "../../components/Functions/fetchUserByEmail";
 
 export async function resetPassword(email, code, password) {
   // const _cookies = cookies();

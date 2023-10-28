@@ -4,10 +4,10 @@ import { signIn } from "next-auth/react";
 import Input from "../../components/Input";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import AuthForm from "../../components/AuthForm";
-import { error } from "../../components/notify";
-import AuthButton from "../../components/AuthButton";
-import { getFormData } from "../../components/getFormData";
+import AuthForm from "../../components/Auth/AuthForm";
+import { error } from "../../components/Functions/notify";
+import AuthButton from "../../components/Auth/AuthButton";
+import { getFormData } from "../../components/Functions/getFormData";
 
 export default function SignInForm() {
   const router = useRouter();

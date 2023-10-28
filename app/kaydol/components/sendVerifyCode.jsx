@@ -3,13 +3,13 @@
 import nodemailer from "nodemailer";
 import randomize from "randomatic";
 import jsonwebtoken from "jsonwebtoken";
-import { validateEmail } from "../../components/validations";
-import { authAsAdmin } from "../../components/authAsAdmin";
+import { validateEmail } from "../../components/Functions/validations";
+import { authAsAdmin } from "../../components/Functions/authAsAdmin";
 import {
   getTemporaryUsername,
   getTemporaryPassword,
-} from "../../components/getTemporary";
-import { fetchUserByEmail } from "../../components/fetchUserByEmail";
+} from "../../components/Functions/getTemporary";
+import { fetchUserByEmail } from "../../components/Functions/fetchUserByEmail";
 
 export async function sendEmail(email, sixDigitCode) {
   const transporter = nodemailer.createTransport({

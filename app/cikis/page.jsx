@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { getSession } from "../components/getSession";
+import { getSession } from "../components/Functions/getSession";
 import SignOutForm from "./components/SignOutForm";
 import Link from "next/link";
 import AltText from "../components/TextWithLink";

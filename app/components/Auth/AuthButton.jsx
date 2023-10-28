@@ -1,4 +1,4 @@
-import Loading from "../components/LoadingButton";
+import Loading from "../LoadingButton";
 
 export default function AuthButton({ isLoading, text }) {
   return isLoading ? (

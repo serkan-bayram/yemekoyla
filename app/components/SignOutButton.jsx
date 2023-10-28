@@ -1,8 +1,8 @@
-import serverSideSignOut from "./serverSideSignOut";
+import serverSideSignOut from "./Functions/serverSideSignOut";
 
 export default function SignOutButton() {
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full flex text-sm justify-center">
       <form action={serverSideSignOut}>
         <button
           className="text-gray-500  mt-8

@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { getSession } from "../../components/getSession";
+import { getSession } from "../../components/Functions/getSession";
 import PocketBase from "pocketbase";
 
 export async function saveRating(prevState, formData) {

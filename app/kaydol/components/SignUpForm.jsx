@@ -2,14 +2,14 @@
 
 import { sendVerifyCode } from "./sendVerifyCode";
 import Input from "../../components/Input";
-import { validateEmail } from "../../components/validations";
+import { validateEmail } from "../../components/Functions/validations";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { error, success } from "../../components/notify";
-import { getFormData } from "../../components/getFormData";
-import AuthButton from "../../components/AuthButton";
-import AuthForm from "../../components/AuthForm";
+import { error, success } from "../../components/Functions/notify";
+import { getFormData } from "../../components/Functions/getFormData";
+import AuthButton from "../../components/Auth/AuthButton";
+import AuthForm from "../../components/Auth/AuthForm";
 
 export default function SignUpForm() {
   const router = useRouter();
