@@ -6,6 +6,7 @@ import Rating from "@mui/material/Rating";
 export function BigStars({ isLoading, setIsLoading }) {
   const [value, setValue] = useState(0);
 
+  // TODO: loading animation with loading stars
   useEffect(() => {
     const asyncFunction = async () => {
       // BE CAREFUL, this might create cache

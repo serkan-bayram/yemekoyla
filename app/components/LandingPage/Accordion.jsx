@@ -22,7 +22,7 @@ export default function Accordion() {
   ];
 
   return (
-    <div className="w-full px-12 mb-24 mt-16">
+    <div className="w-full mb-24 mt-16">
       {items.map((item) => {
         return (
           <AccordionItem

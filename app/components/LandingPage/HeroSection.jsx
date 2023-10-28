@@ -13,7 +13,7 @@ export default async function HeroSection() {
   const { session } = await getSession();
 
   return (
-    <section className="w-full px-12 pt-24 pb-36" style={backgroundStyles}>
+    <section className="w-full  pt-24 pb-36" style={backgroundStyles}>
       <div className="w-full flex flex-col items-center">
         <ScrollTarget id="home" />
         <HeroHeading />

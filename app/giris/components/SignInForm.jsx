@@ -2,7 +2,6 @@
 
 import { signIn } from "next-auth/react";
 import Input from "../../components/Input";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import AuthForm from "../../components/Auth/AuthForm";
 import { error } from "../../components/Functions/notify";
@@ -10,8 +9,6 @@ import AuthButton from "../../components/Auth/AuthButton";
 import { getFormData } from "../../components/Functions/getFormData";
 
 export default function SignInForm() {
-  const router = useRouter();
-
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -30,7 +27,7 @@ export default function SignInForm() {
     });
 
     if (ok) {
-      router.refresh();
+      window.location.replace("/oyla");
       return;
     }
 
@@ -41,7 +38,7 @@ export default function SignInForm() {
   return (
     <AuthForm handleSubmit={handleSubmit}>
       <Input placeholder="Kullanıcı Adı" name="username" />
-      <Input placeholder="Şifre" name="password" />
+      <Input placeholder="Şifre" name="password" isPassword={true} />
       <AuthButton text="Giriş Yap" isLoading={isLoading} />
     </AuthForm>
   );

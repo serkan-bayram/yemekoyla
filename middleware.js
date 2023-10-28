@@ -9,6 +9,17 @@ export async function middleware(req) {
   if (!!token) {
     const permission = token.user.record.permission;
 
+    // Admin can go anywhere
+    if (permission === "admin") {
+      return NextResponse.next();
+    }
+
+    // User can't go these pages if authenticated
+    const cantGoIfAuth = ["/giris", "/kaydol", "/sifremiunuttum"];
+    if (cantGoIfAuth.includes(pathname)) {
+      return NextResponse.redirect(new URL("/oyla", req.url));
+    }
+
     if (pathname.startsWith("/api/auth/signout")) {
       return NextResponse.next();
     }
@@ -24,6 +35,11 @@ export async function middleware(req) {
       return NextResponse.next();
     }
 
+    // If user does not have almostUser permission it can not go /profilolustur
+    if (pathname.startsWith("/profilolustur") && permission !== "almostUser") {
+      return NextResponse.redirect(new URL("/oyla", req.url));
+    }
+
     if (permission === "almostUser") {
       if (pathname.startsWith("/profilolustur")) {
         return NextResponse.next();
@@ -32,7 +48,8 @@ export async function middleware(req) {
       }
     }
   } else {
-    if (pathname.startsWith("/oyla")) {
+    const cantGoIfNotAuth = ["/oyla", "/profilolustur", "/cikis"];
+    if (cantGoIfNotAuth.includes(pathname)) {
       return NextResponse.redirect(new URL("/giris", req.url));
     }
   }

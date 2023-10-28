@@ -1,16 +1,9 @@
 import { redirect } from "next/navigation";
 import { getSession } from "../components/Functions/getSession";
 import SignOutForm from "./components/SignOutForm";
-import Link from "next/link";
 import AltText from "../components/TextWithLink";
 
 export default async function Page() {
-  const { session } = await getSession();
-
-  if (!session) {
-    redirect("/");
-  }
-
   return (
     <div className="flex flex-col justify-center items-center h-screen px-12">
       <div className="bg-secondary p-12 rounded-md text-center shadow border border-primary">

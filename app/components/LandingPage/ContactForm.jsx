@@ -39,7 +39,7 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full mt-16 px-12 pb-12 flex justify-center items-center"
+      className="w-full mt-16 pb-12 flex justify-center items-center"
     >
       <div className="w-96 flex flex-col gap-4">
         <Input name="userEmail" placeholder="E-posta Adresiniz" />

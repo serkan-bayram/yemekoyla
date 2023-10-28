@@ -9,15 +9,12 @@ import {
 import { useState } from "react";
 import { sendPasswordResetCode } from "./sendPasswordResetCode";
 import { resetPassword } from "./resetPassword";
-import { useRouter } from "next/navigation";
 import AuthButton from "../../components/Auth/AuthButton";
 import AuthForm from "../../components/Auth/AuthForm";
 import { getFormData } from "../../components/Functions/getFormData";
 import { success, error } from "../../components/Functions/notify";
 
 export default function SignUpForm() {
-  const router = useRouter();
-
   const [isLoading, setIsLoading] = useState(false);
 
   const [isSend, setIsSend] = useState(false);
@@ -74,7 +71,7 @@ export default function SignUpForm() {
       } else {
         if (response?.message) {
           success(response?.message);
-          router.replace("/giris");
+          window.location.replace("/giris");
         }
       }
     } else {
@@ -96,7 +93,7 @@ export default function SignUpForm() {
       <AuthForm handleSubmit={handleResetSubmit}>
         <Input placeholder="E-Posta'nız" name="email" />
         <Input placeholder="E-Posta'nıza Gelen Kod" name="code" />
-        <Input placeholder="Yeni Şifreniz" name="password" />
+        <Input placeholder="Yeni Şifreniz" name="password" isPassword={true} />
         <AuthButton isLoading={isLoading} text="Sıfırla" />
       </AuthForm>
     </>

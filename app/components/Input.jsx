@@ -1,3 +1,5 @@
+import InputWithPassword from "./InputWithPassword";
+
 export function Textarea({ placeholder, name }) {
   return (
     <div className="w-full py-2 rounded-md border border-primary">
@@ -12,15 +14,20 @@ export function Textarea({ placeholder, name }) {
   );
 }
 
-export default function Input({ placeholder, name }) {
+export default function Input({ placeholder, name, isPassword }) {
   return (
-    <div className="w-full  py-2 rounded-md border border-primary">
-      <input
-        required
-        name={name}
-        className="w-full px-4 bg-transparent placeholder:text-sm appearance-none outline-none placeholder:text-gray-500 text-white text-sm"
-        placeholder={placeholder}
-      />
+    <div className="w-full py-2 rounded-md border border-primary">
+      {isPassword ? (
+        <InputWithPassword placeholder={placeholder} name={name} />
+      ) : (
+        <input
+          required
+          name={name}
+          className="w-full px-4 bg-transparent placeholder:text-sm appearance-none 
+        outline-none placeholder:text-gray-500 text-white text-sm"
+          placeholder={placeholder}
+        />
+      )}
     </div>
   );
 }

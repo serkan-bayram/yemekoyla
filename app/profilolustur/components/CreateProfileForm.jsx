@@ -9,7 +9,6 @@ import {
 import { createProfile } from "./createProfile";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import AuthForm from "../../components/Auth/AuthForm";
 import { error, success } from "../../components/Functions/notify";
 import { getFormData } from "../../components/Functions/getFormData";
@@ -17,7 +16,6 @@ import AuthButton from "../../components/Auth/AuthButton";
 
 export default function CreateProfileForm() {
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,7 +45,7 @@ export default function CreateProfileForm() {
 
       if (ok) {
         success("Profiliniz başarıyla oluşturuldu.");
-        router.refresh();
+        window.location.replace("/oyla");
         return;
       }
 
@@ -72,7 +70,7 @@ export default function CreateProfileForm() {
   return (
     <AuthForm handleSubmit={handleSubmit}>
       <Input placeholder="Kullanıcı Adı" name="username" />
-      <Input placeholder="Şifre" name="password" />
+      <Input placeholder="Şifre" name="password" isPassword={true} />
       <Input placeholder="E-posta'nıza Gelen Kod" name="code" />
       <AuthButton isLoading={isLoading} text="Onayla" />
     </AuthForm>

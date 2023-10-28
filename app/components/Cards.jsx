@@ -5,7 +5,12 @@ export default function Cards() {
     {
       heading: "İletim ve Geri Bildirim",
       message:
-        "Kimsenin umursamadığı şikayet kutuları yerine doğrulanmış öğrenciler tarafından yapılan değerlendirmeleri hızlı ve etkili bir şekilde yönetiyoruz.",
+        "Kimsenin kullanmadığı şikayet kutuları yerine doğrulanmış öğrenciler tarafından yapılan değerlendirmeleri hızlı ve etkili bir şekilde yönetiyoruz.",
+    },
+    {
+      heading: "Amacımız",
+      message:
+        "Öğrenciler ve yetkili kişiler arasında herkes tarafından kolayca ulaşılabilecek bir köprü yaratıyoruz, Okul E-Posta'sı kullanarak kullanıcıları doğruluyor ve bu kullanıcıların geri dönüşlerini anonim bir şekilde iletiyoruz.",
     },
     {
       heading: "Daha kalabalık, daha hızlı",

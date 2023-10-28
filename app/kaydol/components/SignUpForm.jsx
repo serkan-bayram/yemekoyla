@@ -5,15 +5,12 @@ import Input from "../../components/Input";
 import { validateEmail } from "../../components/Functions/validations";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import { error, success } from "../../components/Functions/notify";
 import { getFormData } from "../../components/Functions/getFormData";
 import AuthButton from "../../components/Auth/AuthButton";
 import AuthForm from "../../components/Auth/AuthForm";
 
 export default function SignUpForm() {
-  const router = useRouter();
-
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -44,7 +41,7 @@ export default function SignUpForm() {
 
         if (ok) {
           success("E-Posta'nıza doğrulama kodu gönderildi.");
-          router.refresh();
+          window.location.replace("/profilolustur");
           return;
         }
 
