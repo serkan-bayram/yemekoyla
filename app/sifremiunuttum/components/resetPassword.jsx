@@ -6,13 +6,10 @@ import {
   validatePassword,
   validateVerifyCode,
 } from "../../components/Functions/validations";
-import { cookies } from "next/headers";
 import { authAsAdmin } from "../../components/Functions/authAsAdmin";
 import { fetchUserByEmail } from "../../components/Functions/fetchUserByEmail";
 
 export async function resetPassword(email, code, password) {
-  // const _cookies = cookies();
-
   const emailValidation = validateEmail(email);
   if (!emailValidation) return { ok: false, message: "Geçersiz E-Posta." };
 

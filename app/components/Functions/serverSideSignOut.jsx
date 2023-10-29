@@ -1,12 +1,10 @@
 "use server";
 
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { deleteSessionCookie } from "./deleteSessionCookie";
 
 export default async function serverSideSignOut() {
-  const cookieStore = cookies();
-
-  cookieStore.delete("next-auth.session-token");
+  deleteSessionCookie();
 
   redirect("/kaydol");
 }

@@ -6,10 +6,10 @@ import {
   validateUsername,
   validateVerifyCode,
 } from "../../components/Functions/validations";
-import { cookies } from "next/headers";
 import jsonwebtoken from "jsonwebtoken";
 import { authAsAdmin } from "../../components/Functions/authAsAdmin";
 import { fetchUserByEmail } from "../../components/Functions/fetchUserByEmail";
+import { deleteSessionCookie } from "../../components/Functions/deleteSessionCookie";
 
 export async function createProfile(username, password, code) {
   const usernameValidation = validateUsername(username);
@@ -82,8 +82,7 @@ export async function createProfile(username, password, code) {
     return { ok: false, message: "Başarısız işlem, lütfen tekrar deneyin." };
   }
 
-  const cookieStore = cookies();
-  cookieStore.delete("next-auth.session-token");
+  deleteSessionCookie();
 
   return { ok: true, message: "Profiliniz başarıyla oluşturuldu." };
 }
