@@ -1,13 +1,7 @@
-import PocketBase from "pocketbase";
+import { authAsAdmin } from "../../components/Functions/authAsAdmin";
 
 export const getOtherRatings = async () => {
-  const pb = new PocketBase("http://127.0.0.1:8090");
-
-  // Auth as admin to create user
-  await pb.admins.authWithPassword(
-    process.env.dbUsername,
-    process.env.dbPassword
-  );
+  const pb = await authAsAdmin();
 
   pb.autoCancellation(false);
   try {

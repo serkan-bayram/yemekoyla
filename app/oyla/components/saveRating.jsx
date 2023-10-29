@@ -2,21 +2,14 @@
 
 import { revalidatePath } from "next/cache";
 import { getSession } from "../../components/Functions/getSession";
-import PocketBase from "pocketbase";
+import { authAsAdmin } from "../../components/Functions/authAsAdmin";
 
 export async function saveRating(prevState, formData) {
   const rating = formData.get("rating") || 0;
   const { session } = await getSession();
   const userId = session.user.record.id;
 
-  // Create pocketbase instance
-  const pb = new PocketBase("http://127.0.0.1:8090");
-
-  // Auth as admin
-  await pb.admins.authWithPassword(
-    process.env.dbUsername,
-    process.env.dbPassword
-  );
+  const pb = await authAsAdmin();
 
   let isAlreadySaved = false;
   // Will update according to this id

@@ -1,17 +1,11 @@
 import { getServerSession } from "next-auth";
 import { options } from "../../auth/[...nextauth]/options";
-import PocketBase from "pocketbase";
+import { authAsAdmin } from "../../../components/Functions/authAsAdmin";
 
 export async function GET() {
   const session = await getServerSession(options);
 
-  const pb = new PocketBase("http://127.0.0.1:8090");
-
-  // Auth as admin to create user
-  await pb.admins.authWithPassword(
-    process.env.dbUsername,
-    process.env.dbPassword
-  );
+  const pb = await authAsAdmin();
 
   try {
     const record = await pb

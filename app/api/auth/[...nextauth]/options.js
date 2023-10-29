@@ -1,5 +1,5 @@
 import CredentialsProvider from "next-auth/providers/credentials";
-import PocketBase from "pocketbase";
+import { authAsAdmin } from "../../../components/Functions/authAsAdmin";
 
 // TODO: does not redirect after verifying code, does not update sessions, or not???
 export const options = {
@@ -8,7 +8,7 @@ export const options = {
       async authorize(credentials, req) {
         const { username, password } = credentials;
 
-        const pb = new PocketBase("http://127.0.0.1:8090");
+        const pb = await authAsAdmin();
 
         const authData = await pb
           .collection("users")

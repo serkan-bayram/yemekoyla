@@ -31,7 +31,7 @@ export default async function Others() {
             );
           })
         ) : (
-          <div></div>
+          <li></li>
         )}
       </ul>
     </div>
