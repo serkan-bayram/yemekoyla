@@ -6,23 +6,27 @@ export const options = {
   providers: [
     CredentialsProvider({
       async authorize(credentials, req) {
-        const { username, password } = credentials;
+        try {
+          const { username, password } = credentials;
 
-        const pb = await authAsAdmin();
+          const pb = await authAsAdmin();
 
-        const authData = await pb
-          .collection("users")
-          .authWithPassword(username, password);
+          const authData = await pb
+            .collection("users")
+            .authWithPassword(username, password);
 
-        // If no error and we have user data, return it
+          // If no error and we have user data, return it
 
-        // TODO: Returning all of database information is bad idea problably, fix
-        // We can create a token out of this and decode it whenever we want
-        if (pb.authStore.isValid) {
-          return authData;
+          // TODO: Returning all of database information is bad idea problably, fix
+          // We can create a token out of this and decode it whenever we want
+          if (pb.authStore.isValid) {
+            return authData;
+          }
+          // Return null if user data could not be retrieved
+          return null;
+        } catch (error) {
+          console.log("Error on signin", error);
         }
-        // Return null if user data could not be retrieved
-        return null;
       },
     }),
   ],
