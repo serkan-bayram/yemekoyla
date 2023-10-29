@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 
 export function deleteSessionCookie() {
   const cookieStore = cookies();
+  console.log(cookieStore.getAll());
   const isLocal = cookieStore.has("next-auth.session-token");
   if (isLocal) cookieStore.delete("next-auth.session-token");
   // production
