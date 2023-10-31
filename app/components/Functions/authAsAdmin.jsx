@@ -1,7 +1,7 @@
 import PocketBase from "pocketbase";
 
 export async function authAsAdmin() {
-  const pb = new PocketBase("https://yemek-oyla.pockethost.io/");
+  const pb = new PocketBase(process.env.dbURL);
 
   await pb.admins.authWithPassword(
     process.env.dbUsername,

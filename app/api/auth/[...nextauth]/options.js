@@ -9,7 +9,7 @@ export const options = {
         try {
           const { username, password } = credentials;
 
-          const pb = new PocketBase("https://yemek-oyla.pockethost.io/");
+          const pb = new PocketBase(process.env.dbURL);
 
           const authData = await pb
             .collection("users")
