@@ -46,7 +46,7 @@ export function BigStars({ isLoading, setIsLoading }) {
           }}
         />
       </div>
-      <div className="mt-4 text-gray-500 text-sm">
+      <div className="mt-4 text-gray-300 text-sm">
         {value ? value * 2 : 0} / 10
       </div>
     </div>

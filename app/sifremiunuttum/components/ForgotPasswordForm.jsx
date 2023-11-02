@@ -13,11 +13,14 @@ import AuthButton from "../../components/Auth/AuthButton";
 import AuthForm from "../../components/Auth/AuthForm";
 import { getFormData } from "../../components/Functions/getFormData";
 import { success, error } from "../../components/Functions/notify";
+import { useRouter } from "next/navigation";
 
 export default function SignUpForm() {
   const [isLoading, setIsLoading] = useState(false);
 
   const [isSend, setIsSend] = useState(false);
+
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -71,7 +74,7 @@ export default function SignUpForm() {
       } else {
         if (response?.message) {
           success(response?.message);
-          window.location.replace("/giris");
+          router.replace("/giris");
         }
       }
     } else {

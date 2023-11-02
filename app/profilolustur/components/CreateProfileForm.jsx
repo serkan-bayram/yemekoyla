@@ -13,9 +13,12 @@ import AuthForm from "../../components/Auth/AuthForm";
 import { error, success } from "../../components/Functions/notify";
 import { getFormData } from "../../components/Functions/getFormData";
 import AuthButton from "../../components/Auth/AuthButton";
+import { useRouter } from "next/navigation";
 
 export default function CreateProfileForm() {
   const [isLoading, setIsLoading] = useState(false);
+
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,7 +48,7 @@ export default function CreateProfileForm() {
 
       if (ok) {
         success("Profiliniz başarıyla oluşturuldu.");
-        window.location.replace("/oyla");
+        router.replace("/oyla");
         return;
       }
 

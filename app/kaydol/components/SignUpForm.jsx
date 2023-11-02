@@ -9,9 +9,12 @@ import { error, success } from "../../components/Functions/notify";
 import { getFormData } from "../../components/Functions/getFormData";
 import AuthButton from "../../components/Auth/AuthButton";
 import AuthForm from "../../components/Auth/AuthForm";
+import { useRouter } from "next/navigation";
 
 export default function SignUpForm() {
   const [isLoading, setIsLoading] = useState(false);
+
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,7 +44,7 @@ export default function SignUpForm() {
 
         if (ok) {
           success("E-Posta'nıza doğrulama kodu gönderildi.");
-          window.location.replace("/profilolustur");
+          router.replace("/profilolustur");
           return;
         }
 
