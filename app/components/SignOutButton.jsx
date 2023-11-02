@@ -6,8 +6,8 @@ export default function SignOutButton() {
   return (
     <div className="w-full flex justify-center">
       <button
-        onClick={async () => {
-          await signOut();
+        onClick={() => {
+          signOut({ callbackUrl: "/giris" });
         }}
         className="text-gray-500  mt-8 text-sm
 relative 
