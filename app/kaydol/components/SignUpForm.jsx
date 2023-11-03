@@ -28,10 +28,10 @@ export default function SignUpForm() {
       // validate in server side
       setIsLoading(true);
       const response = await sendVerifyCode(email);
-      setIsLoading(false);
 
       if (!response.ok) {
         error(response.message);
+        setIsLoading(false);
         return;
       }
 
@@ -49,6 +49,7 @@ export default function SignUpForm() {
         }
 
         error("Profil oluşturulamadı, lütfen tekrar deneyin.");
+        setIsLoading(false);
       }
     } else {
       error("Geçersiz E-Posta.");

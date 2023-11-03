@@ -7,6 +7,7 @@ export const options = {
     CredentialsProvider({
       async authorize(credentials, req) {
         try {
+          console.log("signing in");
           const { username, password } = credentials;
 
           const pb = new PocketBase(process.env.dbURL);

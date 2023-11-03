@@ -7,7 +7,7 @@ import {
   validateVerifyCode,
 } from "../../components/Functions/validations";
 import { createProfile } from "./createProfile";
-import { signIn } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { useState } from "react";
 import AuthForm from "../../components/Auth/AuthForm";
 import { error, success } from "../../components/Functions/notify";
@@ -33,10 +33,10 @@ export default function CreateProfileForm() {
     if (usernameValidation && passwordValidation && codeValidation) {
       setIsLoading(true);
       const response = await createProfile(username, password, code);
-      setIsLoading(false);
 
       if (!response.ok) {
         error(response.message);
+        setIsLoading(false);
         return;
       }
 
@@ -47,12 +47,13 @@ export default function CreateProfileForm() {
       });
 
       if (ok) {
-        success("Profiliniz başarıyla oluşturuldu.");
+        success("Profiliniz başarıyla oluşturuldu! Yönlendiriliyorsunuz.");
         router.replace("/oyla");
         return;
       }
 
       error("Başarısız işlem, lütfen tekrar deneyiniz.");
+      setIsLoading(false);
     }
 
     if (!usernameValidation) {

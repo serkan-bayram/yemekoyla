@@ -41,7 +41,10 @@ export async function middleware(req) {
     }
 
     if (permission === "almostUser") {
-      if (pathname.startsWith("/profilolustur")) {
+      if (
+        pathname.startsWith("/profilolustur") ||
+        pathname.startsWith("/api/auth/csrf")
+      ) {
         return NextResponse.next();
       } else {
         return NextResponse.redirect(new URL("/profilolustur", req.url));
