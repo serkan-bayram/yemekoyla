@@ -13,11 +13,13 @@ import { useRouter } from "next/navigation";
 
 export default function SignUpForm() {
   const [isLoading, setIsLoading] = useState(false);
+  const [inputError, setInputError] = useState({});
 
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setInputError({});
 
     const { email } = getFormData(e);
 
@@ -52,13 +54,20 @@ export default function SignUpForm() {
         setIsLoading(false);
       }
     } else {
-      error("Geçersiz E-Posta.");
+      setInputError({
+        name: "email",
+        message: "Geçersiz E-Posta.",
+      });
     }
   };
 
   return (
     <AuthForm handleSubmit={handleSubmit}>
-      <Input placeholder="ornek@ogrenci.bilecik.edu.tr" name="email" />
+      <Input
+        inputError={inputError}
+        placeholder="ornek@ogrenci.bilecik.edu.tr"
+        name="email"
+      />
       <AuthButton text="Kaydol" isLoading={isLoading} />
     </AuthForm>
   );

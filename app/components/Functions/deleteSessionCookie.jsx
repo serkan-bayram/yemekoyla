@@ -7,8 +7,6 @@ export async function deleteSessionCookie() {
     .getAll()
     .forEach((cookie) => {
       if (cookie.name.includes("next-auth")) {
-        console.log("includessss");
-        console.log(cookie.name);
         cookies().delete(cookie.name);
       }
     });

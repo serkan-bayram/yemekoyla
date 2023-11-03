@@ -85,9 +85,5 @@ export async function createProfile(username, password, code) {
 
   await deleteSessionCookie();
 
-  console.log("cookies are deleted");
-
-  console.log(cookies().getAll());
-
   return { ok: true, message: "Profiliniz başarıyla oluşturuldu." };
 }

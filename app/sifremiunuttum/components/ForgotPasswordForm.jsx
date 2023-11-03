@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 
 export default function SignUpForm() {
   const [isLoading, setIsLoading] = useState(false);
+  const [inputError, setInputError] = useState({});
 
   const [isSend, setIsSend] = useState(false);
 
@@ -24,6 +25,8 @@ export default function SignUpForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setInputError({});
 
     const { email } = getFormData(e);
 
@@ -47,12 +50,13 @@ export default function SignUpForm() {
         }
       }
     } else {
-      error("Geçersiz E-Posta.");
+      setInputError({ name: "email", message: "Geçersiz E-Posta." });
     }
   };
 
   const handleResetSubmit = async (e) => {
     e.preventDefault();
+    setInputError({});
 
     const { email, code, password } = getFormData(e);
 
@@ -78,25 +82,53 @@ export default function SignUpForm() {
         }
       }
     } else {
-      if (!emailValidation) error("Geçersiz E-Posta.");
-      if (!codeValidation) error("Geçersiz Kod.");
-      if (!passwordValidation) error("Geçersiz Şifre.");
+      if (!emailValidation) {
+        setInputError({ name: "email", message: "Geçersiz E-Posta." });
+        return;
+      }
+      if (!codeValidation) {
+        setInputError({ name: "code", message: "Geçersiz kod." });
+        return;
+      }
+      if (!passwordValidation) {
+        setInputError({
+          name: "password",
+          message:
+            password.length < 8
+              ? "Şifreniz en az 8 karakter uzunluğunda olmalı."
+              : "Şifreniz birer büyük harf, küçük harf, özel karakter ve sayı içermelidir.",
+        });
+        return;
+      }
     }
   };
 
   return !isSend ? (
     <>
       <AuthForm handleSubmit={handleSubmit}>
-        <Input placeholder="ornek@ogrenci.bilecik.edu.tr" name="email" />
+        <Input
+          inputError={inputError}
+          placeholder="ornek@ogrenci.bilecik.edu.tr"
+          name="email"
+        />
         <AuthButton isLoading={isLoading} text="Sıfırla" />
       </AuthForm>
     </>
   ) : (
     <>
       <AuthForm handleSubmit={handleResetSubmit}>
-        <Input placeholder="E-Posta'nız" name="email" />
-        <Input placeholder="E-Posta'nıza Gelen Kod" name="code" />
-        <Input placeholder="Yeni Şifreniz" name="password" isPassword={true} />
+        <Input inputError={inputError} placeholder="E-Posta'nız" name="email" />
+        <Input
+          inputError={inputError}
+          placeholder="E-Posta'nıza Gelen Kod"
+          name="code"
+        />
+        <Input
+          inputError={inputError}
+          placeholder="Yeni Şifreniz"
+          name="password"
+          isPassword={true}
+        />
         <AuthButton isLoading={isLoading} text="Sıfırla" />
       </AuthForm>
     </>

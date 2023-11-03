@@ -18,6 +18,7 @@ module.exports = {
         background: "#1E1F23",
         accent: "#4b4bb4",
         lightAccent: "#6767c9",
+        error: "#b91c1c",
       },
       fontFamily: {
         body: ["Poppins", "sans-serif"],
@@ -41,12 +42,19 @@ module.exports = {
         "button-clicked": {
           "80%, 100%": { width: "20%" },
         },
+        shake: {
+          "0%": { marginLeft: "0rem" },
+          "25%": { marginLeft: "0.5rem" },
+          "75%": { marginLeft: "-0.5rem" },
+          "100%": { marginLeft: "0rem" },
+        },
       },
       animation: {
         "show-notification": "show-notification .7s ease forwards",
         "hide-notification": "hide-notification 1.25s ease forwards",
         "start-progressbar": "start-progressbar 5s linear forwards",
         "button-clicked": "button-clicked 400ms linear forwards",
+        shake: "shake 0.2s ease-in-out 0s 2",
       },
     },
   },

@@ -1,6 +1,6 @@
 export function validateUsername(username) {
   // Define the regular expression pattern for a valid username.
-  const usernameRegex = /^[\wğüşıöçĞÜŞİÖÇ-]{3,20}$/;
+  const usernameRegex = /^(?=.*[a-zA-Z])[a-zA-Z0-9]{3,16}$/;
 
   // Test the username against the pattern.
   if (usernameRegex.test(username)) {

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
-export default function InputWithPassword({ placeholder, name }) {
+export default function InputWithPassword({ placeholder, name, errorState }) {
   const [isVisible, setIsVisible] = useState(false);
 
   const handleClick = () => {

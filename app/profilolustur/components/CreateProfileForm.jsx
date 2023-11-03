@@ -7,7 +7,7 @@ import {
   validateVerifyCode,
 } from "../../components/Functions/validations";
 import { createProfile } from "./createProfile";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { useState } from "react";
 import AuthForm from "../../components/Auth/AuthForm";
 import { error, success } from "../../components/Functions/notify";
@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 
 export default function CreateProfileForm() {
   const [isLoading, setIsLoading] = useState(false);
+  const [inputError, setInputError] = useState({});
 
   const router = useRouter();
 
@@ -31,6 +32,7 @@ export default function CreateProfileForm() {
     const codeValidation = validateVerifyCode(code);
 
     if (usernameValidation && passwordValidation && codeValidation) {
+      setInputError({});
       setIsLoading(true);
       const response = await createProfile(username, password, code);
 
@@ -57,25 +59,62 @@ export default function CreateProfileForm() {
     }
 
     if (!usernameValidation) {
-      error("Geçersiz kullanıcı adı.");
+      let message =
+        "Kullanıcı adınız Türkçe karakter ve özel karakter içeremez.";
+
+      // if the input is made of numbers only
+      const isAllNumber = /^\d+$/.test(username);
+      if (isAllNumber) message = "Kullanıcı adınız sadece sayılardan oluşamaz.";
+
+      if (username.length < 3 || username.length > 16)
+        message =
+          "Kullanıcı adınız 3 karakterden kısa, 16 karakterden uzun olamaz.";
+
+      setInputError({
+        name: "username",
+        message: message,
+      });
       return;
     }
 
     if (!passwordValidation) {
-      error("Geçersiz şifre.");
+      setInputError({
+        name: "password",
+        message:
+          password.length < 8
+            ? "Şifreniz en az 8 karakter uzunluğunda olmalı."
+            : "Şifreniz birer büyük harf, küçük harf, özel karakter ve sayı içermelidir.",
+      });
       return;
     }
 
     if (!codeValidation) {
-      error("Geçersiz kod.");
+      setInputError({
+        name: "code",
+        message: "Geçersiz kod.",
+      });
+      return;
     }
   };
 
   return (
     <AuthForm handleSubmit={handleSubmit}>
-      <Input placeholder="Kullanıcı Adı" name="username" />
-      <Input placeholder="Şifre" name="password" isPassword={true} />
-      <Input placeholder="E-posta'nıza Gelen Kod" name="code" />
+      <Input
+        inputError={inputError}
+        placeholder="Kullanıcı Adı"
+        name="username"
+      />
+      <Input
+        inputError={inputError}
+        placeholder="Şifre"
+        name="password"
+        isPassword={true}
+      />
+      <Input
+        inputError={inputError}
+        placeholder="E-posta'nıza Gelen Kod"
+        name="code"
+      />
       <AuthButton isLoading={isLoading} text="Onayla" />
     </AuthForm>
   );
