@@ -82,7 +82,7 @@ export async function createProfile(username, password, code) {
     return { ok: false, message: "Başarısız işlem, lütfen tekrar deneyin." };
   }
 
-  deleteSessionCookie();
+  await deleteSessionCookie();
 
   return { ok: true, message: "Profiliniz başarıyla oluşturuldu." };
 }
