@@ -10,6 +10,7 @@ import jsonwebtoken from "jsonwebtoken";
 import { authAsAdmin } from "../../components/Functions/authAsAdmin";
 import { fetchUserByEmail } from "../../components/Functions/fetchUserByEmail";
 import { deleteSessionCookie } from "../../components/Functions/deleteSessionCookie";
+import { cookies } from "next/headers";
 
 export async function createProfile(username, password, code) {
   const usernameValidation = validateUsername(username);
@@ -83,6 +84,10 @@ export async function createProfile(username, password, code) {
   }
 
   await deleteSessionCookie();
+
+  console.log("cookies are deleted");
+
+  console.log(cookies().getAll());
 
   return { ok: true, message: "Profiliniz başarıyla oluşturuldu." };
 }
