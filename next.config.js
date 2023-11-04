@@ -4,6 +4,10 @@ const nextConfig = {
     serverActions: true,
   },
   env: { API_URL: "https://yemekhane-puanla.vercel.app" },
+
+  images: {
+    domains: ["51.12.208.57"],
+  },
 };
 
 module.exports = nextConfig;
