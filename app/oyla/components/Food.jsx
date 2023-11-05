@@ -9,6 +9,7 @@ export default function Food() {
         <Image
           src="http://51.12.208.57:8080/menu.jpeg"
           fill={true}
+          sizes="30vw"
           alt="Bugünün yemeği."
           priority={true}
         />

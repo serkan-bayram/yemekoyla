@@ -3,11 +3,17 @@
 import { revalidatePath } from "next/cache";
 import { getSession } from "../../components/Functions/getSession";
 import { authAsAdmin } from "../../components/Functions/authAsAdmin";
+import { getMenuId } from "../../components/Functions/getMenuId";
 
 export async function saveRating(prevState, formData) {
   const rating = formData.get("rating") || 0;
   const { session } = await getSession();
   const userId = session.user.record.id;
+  const menuId = await getMenuId();
+
+  if (menuId === null) {
+    return { message: false };
+  }
 
   const pb = await authAsAdmin();
 
@@ -30,6 +36,7 @@ export async function saveRating(prevState, formData) {
   const data = {
     rating: rating,
     user: session.user.record.id,
+    menu: menuId,
   };
 
   revalidatePath("/oyla");

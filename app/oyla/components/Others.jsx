@@ -3,7 +3,10 @@ import { getOtherRatings } from "./getOtherRatings";
 import { v4 as uuidv4 } from "uuid";
 
 export default async function Others() {
-  const { ratings, average } = await getOtherRatings();
+  const response = await getOtherRatings();
+
+  const ratings = response?.ratings || null;
+  const average = response?.average || null;
 
   return (
     <div className="flex flex-col px-8 pt-12  ">
@@ -31,7 +34,9 @@ export default async function Others() {
             );
           })
         ) : (
-          <li></li>
+          <li className="w-full p-5 flex justify-center items-center">
+            Oylama Bulunamadı.
+          </li>
         )}
       </ul>
     </div>

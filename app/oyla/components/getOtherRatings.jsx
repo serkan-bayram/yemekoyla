@@ -1,12 +1,16 @@
 import { authAsAdmin } from "../../components/Functions/authAsAdmin";
+import { getMenuId } from "../../components/Functions/getMenuId";
 
 export const getOtherRatings = async () => {
   const pb = await authAsAdmin();
+  const menuId = await getMenuId();
 
   pb.autoCancellation(false);
+
   try {
     const records = await pb.collection("ratings").getFullList({
       sort: "-updated",
+      filter: `menu="${menuId}"`,
     });
 
     const ratings = [];
@@ -33,6 +37,7 @@ export const getOtherRatings = async () => {
 
     return { ratings, average };
   } catch (error) {
+    console.log(error);
     console.log("There is a problem about fetching ratings.");
   }
 };
