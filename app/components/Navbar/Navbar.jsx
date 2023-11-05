@@ -37,6 +37,7 @@ export default async function Navbar({ onlyLogo = false }) {
           { selector: "#why", text: "Neden?" },
           { selector: "#how", text: "S.S.S" },
           { selector: "#contact", text: "İletişim" },
+          { href: "/profilim", text: "Profilim" },
           { href: "/api/auth/signout", text: "Çıkış Yap" },
         ],
       },
@@ -48,6 +49,15 @@ export default async function Navbar({ onlyLogo = false }) {
         pathname: ["/oyla"],
         links: [
           { href: "/", text: "Ana Sayfa" },
+          { href: "/profilim", text: "Profilim" },
+          { href: "/api/auth/signout", text: "Çıkış Yap" },
+        ],
+      },
+      {
+        pathname: ["/profilim"],
+        links: [
+          { href: "/", text: "Ana Sayfa" },
+          { href: "/profilim", text: "Profilim" },
           { href: "/api/auth/signout", text: "Çıkış Yap" },
         ],
       },

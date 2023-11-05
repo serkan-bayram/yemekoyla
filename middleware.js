@@ -51,7 +51,7 @@ export async function middleware(req) {
       }
     }
   } else {
-    const cantGoIfNotAuth = ["/oyla", "/profilolustur", "/cikis"];
+    const cantGoIfNotAuth = ["/oyla", "/profilolustur", "/cikis", "/profilim"];
     if (cantGoIfNotAuth.includes(pathname)) {
       return NextResponse.redirect(new URL("/giris", req.url));
     }

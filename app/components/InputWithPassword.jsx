@@ -3,7 +3,12 @@
 import Image from "next/image";
 import { useState } from "react";
 
-export default function InputWithPassword({ placeholder, name, errorState }) {
+export default function InputWithPassword({
+  isDisabled,
+  placeholder,
+  name,
+  errorState,
+}) {
   const [isVisible, setIsVisible] = useState(false);
 
   const handleClick = () => {
@@ -13,14 +18,23 @@ export default function InputWithPassword({ placeholder, name, errorState }) {
   return (
     <div className="flex pr-4">
       <input
+        disabled={isDisabled}
         required
         type={isVisible ? "text" : "password"}
         name={name}
-        className="w-full px-4 bg-transparent placeholder:text-sm appearance-none 
-          outline-none placeholder:text-gray-500 text-white text-sm"
+        className={`${
+          isDisabled && "cursor-not-allowed"
+        } w-full px-4 bg-transparent placeholder:text-sm appearance-none 
+          outline-none placeholder:text-gray-500
+           text-white text-sm`}
         placeholder={placeholder}
       />
-      <button type="button" onClick={handleClick}>
+      <button
+        disabled={isDisabled}
+        className={`${isDisabled && "cursor-not-allowed"}`}
+        type="button"
+        onClick={handleClick}
+      >
         <Image
           alt="Şifre göster/sakla"
           width={24}

@@ -14,9 +14,15 @@ export function Textarea({ placeholder, name }) {
   );
 }
 
-export default function Input({ placeholder, name, isPassword, inputError }) {
-  const errorState = inputError?.name === name;
-  const errorMessage = inputError?.message;
+export default function Input({
+  isDisabled,
+  placeholder,
+  name,
+  isPassword,
+  inputError,
+}) {
+  const errorState = inputError && inputError?.name === name;
+  const errorMessage = inputError && inputError?.message;
 
   return (
     <>
@@ -28,15 +34,19 @@ export default function Input({ placeholder, name, isPassword, inputError }) {
       >
         {isPassword ? (
           <InputWithPassword
+            isDisabled={isDisabled}
             errorState={errorState}
             placeholder={placeholder}
             name={name}
           />
         ) : (
           <input
+            disabled={isDisabled}
             required
             name={name}
-            className={`w-full px-4 bg-transparent placeholder:text-sm appearance-none 
+            className={`${
+              isDisabled && "cursor-not-allowed"
+            } w-full px-4 bg-transparent placeholder:text-sm appearance-none 
         outline-none placeholder:text-gray-500 text-white text-sm`}
             placeholder={placeholder}
           />
