@@ -43,7 +43,12 @@ export async function changeUsername(username) {
       .forEach((cookie) => {
         if (cookie.name.includes("next-auth.session-token")) {
           console.log(cookie.name);
-          cookies().set(cookie.name, newCookie);
+          cookies().set(cookie.name, newCookie, {
+            secure: true,
+            httpOnly: true,
+            sameSite: "Lax",
+            maxAge: 30 * 24 * 60 * 60,
+          });
         }
       });
   } catch (error) {

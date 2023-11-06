@@ -86,7 +86,12 @@ export async function createProfile(username, password, code) {
       .forEach((cookie) => {
         if (cookie.name.includes("__Secure-next-auth.session-token")) {
           console.log("Cookies are changing.");
-          cookies().set(cookie.name, newCookie);
+          cookies().set(cookie.name, newCookie, {
+            secure: true,
+            httpOnly: true,
+            sameSite: "Lax",
+            maxAge: 30 * 24 * 60 * 60,
+          });
         }
       });
 
