@@ -43,7 +43,7 @@ export async function changeUsername(username) {
       .forEach((cookie) => {
         if (cookie.name.includes("next-auth.session-token")) {
           console.log(cookie.name);
-          cookies().set(cookie.name, newCookie);
+          cookies().set(cookie.name, "saassaaas");
         }
       });
   } catch (error) {

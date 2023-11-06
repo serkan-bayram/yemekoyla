@@ -5,8 +5,6 @@ export async function middleware(req) {
   const token = await getToken({ req: req });
   const pathname = req.nextUrl.pathname;
 
-  console.log("tokennnnn: ", token);
-
   // User is authenticated if there is a token.
   if (!!token) {
     const permission = token.user.record.permission;
