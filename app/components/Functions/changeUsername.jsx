@@ -41,9 +41,9 @@ export async function changeUsername(username) {
     cookies()
       .getAll()
       .forEach((cookie) => {
-        if (cookie.name.includes("__Secure-next-auth.session-token")) {
+        if (cookie.name.includes("next-auth.session-token")) {
           console.log(cookie.name);
-          cookies().set(cookie.name, "saassaaas");
+          cookies().set(cookie.name, newCookie);
         }
       });
   } catch (error) {

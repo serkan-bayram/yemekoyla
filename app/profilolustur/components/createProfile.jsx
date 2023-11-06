@@ -84,9 +84,9 @@ export async function createProfile(username, password, code) {
     cookies()
       .getAll()
       .forEach((cookie) => {
-        if (cookie.name.includes("next-auth.session-token")) {
+        if (cookie.name.includes("__Secure-next-auth.session-token")) {
           console.log(cookie.name);
-          cookies().set(cookie.name, newCookie);
+          cookies().set(cookie.name, "saassaaas");
         }
       });
   } catch (error) {
