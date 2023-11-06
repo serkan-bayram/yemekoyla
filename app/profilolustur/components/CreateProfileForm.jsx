@@ -7,7 +7,6 @@ import {
   validateVerifyCode,
 } from "../../components/Functions/validations";
 import { createProfile } from "./createProfile";
-import { signIn } from "next-auth/react";
 import { useState } from "react";
 import AuthForm from "../../components/Auth/AuthForm";
 import { error, success } from "../../components/Functions/notify";
@@ -42,13 +41,7 @@ export default function CreateProfileForm() {
         return;
       }
 
-      const { ok } = await signIn("credentials", {
-        username: username,
-        password: password,
-        redirect: false,
-      });
-
-      if (ok) {
+      if (response.ok) {
         success("Profiliniz başarıyla oluşturuldu! Yönlendiriliyorsunuz.");
         router.replace("/oyla");
         return;

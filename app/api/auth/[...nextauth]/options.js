@@ -40,6 +40,7 @@ export const options = {
       if (user) {
         token.user = user;
       }
+
       return token;
     },
   },

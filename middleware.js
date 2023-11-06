@@ -5,6 +5,8 @@ export async function middleware(req) {
   const token = await getToken({ req: req });
   const pathname = req.nextUrl.pathname;
 
+  console.log("tokennnnn: ", token);
+
   // User is authenticated if there is a token.
   if (!!token) {
     const permission = token.user.record.permission;
@@ -67,7 +69,7 @@ export const config = {
 // const noAuthPaths = ["/", "/giris", "/kaydol", "/dogrula"];
 
 // export default withAuth(
-//   // `withAuth` augments your `Request` with the user's token.
+//   // `withAuth` augments your `req` with the user's token.
 //   function middleware(req) {
 //     const pathname = req.nextUrl.pathname;
 //     const session = req.nextauth;
@@ -107,3 +109,44 @@ export const config = {
 //     },
 //   }
 // );
+
+// console.log("on the update auth ");
+
+// if (pathname.startsWith("/api/update/session")) {
+//   const cookiesList = req.cookies.getAll();
+//   const sessionCookie = "next-auth.session-token";
+
+//   // session token present, check if it's valid
+//   const session = await fetch(`http://localhost:3000/api/auth/session`, {
+//     headers: {
+//       "content-type": "application/json",
+//       cookie: req.cookies.toString(),
+//     },
+//   });
+//   const json = await session.json();
+//   const data = Object.keys(json).length > 0 ? json : null;
+
+//   const email = data.user.record.email;
+
+//   const pb = await authAsAdmin();
+
+//   console.log(data);
+
+//   // session token is valid so we can continue
+//   const record = await fetchUserByEmail(pb, email); // or a server-side function call
+//   record.username = "abc";
+//   const newToken = { record };
+//   const response = NextResponse.next();
+//   const newSessionToken = await encode({
+//     secret: process.env.NEXTAUTH_SECRET,
+//     token: {
+//       user: newToken,
+//     },
+//     maxAge: 30 * 24 * 60 * 60, // 30 days, or get the previous token's exp
+//   });
+
+//   // update session token with new access token
+//   response.cookies.set(sessionCookie, newSessionToken);
+
+//   return response;
+// }

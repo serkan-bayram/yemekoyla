@@ -11,16 +11,6 @@ import { getFormData } from "../../components/Functions/getFormData";
 import { changeUsername } from "../../components/Functions/changeUsername";
 import { changePassword } from "../../components/Functions/changePassword";
 import { error, success } from "../../components/Functions/notify";
-import { useRouter } from "next/navigation";
-import { signOut } from "next-auth/react";
-
-function Warning() {
-  return (
-    <div className="text-sm  text-error mt-1 max-w-[20ch] md:max-w-none">
-      Bu işlem tekrar giriş yapmayı gerektirir!
-    </div>
-  );
-}
 
 function DefaultField({ label, placeholder, title }) {
   return (
@@ -33,12 +23,7 @@ function DefaultField({ label, placeholder, title }) {
   );
 }
 
-const handleUsernameChange = async (
-  router,
-  username,
-  setIsLoading,
-  setInputError
-) => {
+const handleUsernameChange = async (username, setIsLoading, setInputError) => {
   const usernameValidation = validateUsername(username);
 
   if (usernameValidation) {
@@ -55,7 +40,7 @@ const handleUsernameChange = async (
 
     if (response.ok) {
       success(response.message);
-      signOut({ callbackUrl: "/giris" });
+      setIsLoading(false);
       return;
     }
 
@@ -84,12 +69,7 @@ const handleUsernameChange = async (
   }
 };
 
-const handlePasswordChange = async (
-  router,
-  password,
-  setIsLoading,
-  setInputError
-) => {
+const handlePasswordChange = async (password, setIsLoading, setInputError) => {
   const passwordValidation = validatePassword(password);
 
   if (passwordValidation) {
@@ -106,7 +86,7 @@ const handlePasswordChange = async (
 
     if (response.ok) {
       success(response.message);
-      router.replace("/oyla");
+      setIsLoading(false);
       return;
     }
 
@@ -129,29 +109,17 @@ const handlePasswordChange = async (
 function EditField({ field, placeholder, inputError, setInputError }) {
   const [isLoading, setIsLoading] = useState(false);
 
-  const router = useRouter();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const { inputValue } = getFormData(e);
 
     if (field === "username") {
-      await handleUsernameChange(
-        router,
-        inputValue,
-        setIsLoading,
-        setInputError
-      );
+      await handleUsernameChange(inputValue, setIsLoading, setInputError);
     }
 
     if (field === "password") {
-      await handlePasswordChange(
-        router,
-        inputValue,
-        setIsLoading,
-        setInputError
-      );
+      await handlePasswordChange(inputValue, setIsLoading, setInputError);
     }
   };
 
@@ -166,7 +134,6 @@ function EditField({ field, placeholder, inputError, setInputError }) {
           placeholder={placeholder}
         />
         <AuthButton isLoading={isLoading} text="Kaydet" />
-        {field === "username" && <Warning />}
       </form>
     </div>
   );

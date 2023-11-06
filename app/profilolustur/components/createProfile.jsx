@@ -9,7 +9,7 @@ import {
 import jsonwebtoken from "jsonwebtoken";
 import { authAsAdmin } from "../../components/Functions/authAsAdmin";
 import { fetchUserByEmail } from "../../components/Functions/fetchUserByEmail";
-import { deleteSessionCookie } from "../../components/Functions/deleteSessionCookie";
+import { updateSession } from "../../components/Functions/updateSession";
 import { cookies } from "next/headers";
 
 export async function createProfile(username, password, code) {
@@ -77,13 +77,25 @@ export async function createProfile(username, password, code) {
 
   // update with id
   try {
-    await pb.collection("users").update(id, data);
+    const record = await pb.collection("users").update(id, data);
+
+    const newCookie = await updateSession(record);
+
+    cookies()
+      .getAll()
+      .forEach((cookie) => {
+        if (cookie.name.includes("next-auth.session-token")) {
+          console.log(cookie.name);
+          cookies().set(cookie.name, newCookie);
+        }
+      });
   } catch (error) {
     console.log("Error on updating: ", error);
     return { ok: false, message: "Başarısız işlem, lütfen tekrar deneyin." };
   }
 
-  await deleteSessionCookie();
-
-  return { ok: true, message: "Profiliniz başarıyla oluşturuldu." };
+  return {
+    ok: true,
+    message: "Profiliniz başarıyla oluşturuldu! Yönlendiriliyorsunuz.",
+  };
 }

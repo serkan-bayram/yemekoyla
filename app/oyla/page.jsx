@@ -10,6 +10,8 @@ export default async function Page() {
 
   const username = session.user.record.username;
 
+  console.log(username);
+
   return (
     <div className="pt-12">
       <Navbar />

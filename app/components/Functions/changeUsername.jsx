@@ -3,7 +3,8 @@
 import { authAsAdmin } from "./authAsAdmin";
 import { getSession } from "./getSession";
 import { validateUsername } from "./validations";
-import { deleteSessionCookie } from "./deleteSessionCookie";
+import { updateSession } from "./updateSession";
+import { cookies } from "next/headers";
 
 export async function changeUsername(username) {
   const usernameValidation = validateUsername(username);
@@ -33,13 +34,25 @@ export async function changeUsername(username) {
 
   // update with id
   try {
-    await pb.collection("users").update(id, data);
+    const record = await pb.collection("users").update(id, data);
+
+    const newCookie = await updateSession(record);
+
+    cookies()
+      .getAll()
+      .forEach((cookie) => {
+        if (cookie.name.includes("next-auth.session-token")) {
+          console.log(cookie.name);
+          cookies().set(cookie.name, newCookie);
+        }
+      });
   } catch (error) {
     console.log("Error on updating: ", error);
     return { ok: false, message: "Başarısız işlem, lütfen tekrar deneyin." };
   }
 
-  // await deleteSessionCookie();
-
-  return { ok: true, message: "Kullanıcı adınız başarıyla değiştirildi." };
+  return {
+    ok: true,
+    message: "Kullanıcı adınız başarıyla değiştirildi!",
+  };
 }
