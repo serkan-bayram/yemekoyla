@@ -13,6 +13,8 @@ import { updateSession } from "../../components/Functions/updateSession";
 import { cookies } from "next/headers";
 
 export async function createProfile(username, password, code) {
+  const _cookies = cookies();
+
   const usernameValidation = validateUsername(username);
   const passwordValidation = validatePassword(password);
   const codeValidation = validateVerifyCode(code);
