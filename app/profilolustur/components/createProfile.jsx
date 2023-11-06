@@ -84,24 +84,13 @@ export async function createProfile(username, password, code) {
     cookies()
       .getAll()
       .forEach((cookie) => {
-        if (cookie.name.includes("__Secure-next-auth.session-token")) {
-          console.log("Cookies are changing.");
+        if (cookie.name.includes("next-auth.session-token")) {
           cookies().set(cookie.name, newCookie, {
             secure: true,
             httpOnly: true,
             sameSite: "Lax",
             maxAge: 30 * 24 * 60 * 60,
           });
-        }
-      });
-
-    cookies()
-      .getAll()
-      .forEach((cookie) => {
-        if (cookie.name.includes("__Secure-next-auth.session-token")) {
-          if (cookie.value === newCookie) {
-            console.log("Cookies are updated.");
-          }
         }
       });
   } catch (error) {

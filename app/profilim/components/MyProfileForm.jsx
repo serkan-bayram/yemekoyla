@@ -159,7 +159,7 @@ export default function MyProfileForm({ userEmail, username }) {
         title="E-Posta'nızı değiştiremezsiniz."
       />
       <DefaultField label="Kullanıcı Adı" placeholder={username} />
-      <div className="flex gap-5">
+      <div className="flex gap-5 md:flex-row flex-col">
         <AuthButton
           handleClick={() => {
             setEdit((prevValue) => {

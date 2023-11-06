@@ -42,7 +42,6 @@ export async function changeUsername(username) {
       .getAll()
       .forEach((cookie) => {
         if (cookie.name.includes("next-auth.session-token")) {
-          console.log(cookie.name);
           cookies().set(cookie.name, newCookie, {
             secure: true,
             httpOnly: true,
