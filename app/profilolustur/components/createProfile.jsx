@@ -13,8 +13,6 @@ import { updateSession } from "../../components/Functions/updateSession";
 import { cookies } from "next/headers";
 
 export async function createProfile(username, password, code) {
-  const _cookies = cookies();
-
   const usernameValidation = validateUsername(username);
   const passwordValidation = validatePassword(password);
   const codeValidation = validateVerifyCode(code);
@@ -87,8 +85,18 @@ export async function createProfile(username, password, code) {
       .getAll()
       .forEach((cookie) => {
         if (cookie.name.includes("__Secure-next-auth.session-token")) {
-          console.log(cookie.name);
-          cookies().set(cookie.name, "saassaaas");
+          console.log("Cookies are changing.");
+          cookies().set(cookie.name, newCookie);
+        }
+      });
+
+    cookies()
+      .getAll()
+      .forEach((cookie) => {
+        if (cookie.name.includes("__Secure-next-auth.session-token")) {
+          if (cookie.value === newCookie) {
+            console.log("Cookies are updated.");
+          }
         }
       });
   } catch (error) {
