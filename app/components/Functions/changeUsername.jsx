@@ -39,7 +39,7 @@ export async function changeUsername(username) {
     return { ok: false, message: "Başarısız işlem, lütfen tekrar deneyin." };
   }
 
-  await deleteSessionCookie();
+  // await deleteSessionCookie();
 
   return { ok: true, message: "Kullanıcı adınız başarıyla değiştirildi." };
 }

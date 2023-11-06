@@ -12,6 +12,7 @@ import { changeUsername } from "../../components/Functions/changeUsername";
 import { changePassword } from "../../components/Functions/changePassword";
 import { error, success } from "../../components/Functions/notify";
 import { useRouter } from "next/navigation";
+import { signOut } from "next-auth/react";
 
 function Warning() {
   return (
@@ -54,7 +55,7 @@ const handleUsernameChange = async (
 
     if (response.ok) {
       success(response.message);
-      router.replace("/giris");
+      signOut({ callbackUrl: "/giris" });
       return;
     }
 
