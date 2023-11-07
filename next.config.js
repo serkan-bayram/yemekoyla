@@ -9,20 +9,6 @@ const nextConfig = {
   //   domains: ["51.12.208.57"],
   // },
 
-  async headers() {
-    return [
-      {
-        source: "51.12.208.57",
-        headers: [
-          {
-            key: "x-custom-header",
-            value: "my custom header value",
-          },
-        ],
-      },
-    ];
-  },
-
   images: {
     remotePatterns: [
       {
