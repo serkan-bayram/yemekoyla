@@ -4,6 +4,8 @@ import { getMenuURL } from "../../components/Functions/getMenuURL";
 
 // aspect-[1024/768]
 
+export const dynamic = "force-dynamic";
+
 export default async function Food() {
   const src = await getMenuURL();
 
