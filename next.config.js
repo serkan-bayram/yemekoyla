@@ -6,7 +6,7 @@ const nextConfig = {
   env: { API_URL: "https://yemekhane-puanla.vercel.app" },
 
   images: {
-    minimumCacheTTL: 10,
+    minimumCacheTTL: 1,
     remotePatterns: [
       {
         protocol: "http",
