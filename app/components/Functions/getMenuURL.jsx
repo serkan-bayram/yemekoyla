@@ -1,5 +1,4 @@
 import { authAsAdmin } from "../Functions/authAsAdmin";
-import { getMenuId } from "../Functions/getMenuId";
 
 export async function getMenuURL() {
   try {

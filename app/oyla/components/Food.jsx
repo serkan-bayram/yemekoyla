@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ImageInfo from "./ImageInfo";
+import { getMenuURL } from "../../components/Functions/getMenuURL";
 
 // aspect-[1024/768]
 
