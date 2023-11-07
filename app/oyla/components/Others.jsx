@@ -35,7 +35,7 @@ export default async function Others() {
           })
         ) : (
           <li className="w-full p-5 flex justify-center items-center">
-            Oylama Bulunamadı.
+            İlk oyu siz verin!
           </li>
         )}
       </ul>

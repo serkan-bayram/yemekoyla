@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 export default function Accordion() {
   const items = [
     {
-      heading: "Okul E-posta'mı nasıl bulabilirim?",
+      heading: "Okul E-Posta'mı nasıl bulabilirim?",
       content: "Content1",
     },
     {
@@ -12,11 +12,11 @@ export default function Accordion() {
       content: "Content2",
     },
     {
-      heading: "Neden kaydolmak için Okul E-posta'sı istiyoruz?",
+      heading: "Neden kaydolmak için Okul E-Posta'sı istiyoruz?",
       content: "Content3",
     },
     {
-      heading: "E-posta'ma gelen kodu nereden bulabilirim?",
+      heading: "E-Posta'ma gelen kodu nereden bulabilirim?",
       content: "Content4",
     },
   ];

@@ -16,7 +16,7 @@ function Content1() {
       className="tracking-wide leading-relaxed w-full 
     bg-primary font-body p-4 text-white rounded-md"
     >
-      E-posta&apos;nızı almak için ilk olarak{" "}
+      E-Posta&apos;nızı almak için ilk olarak{" "}
       <HighlightedText
         text="Sofra"
         href="https://sofra.bilecik.edu.tr/OturumAc"
@@ -34,7 +34,7 @@ function Content2() {
       className="tracking-wide leading-relaxed w-full 
     bg-primary font-body p-4 text-white rounded-md"
     >
-      E-posta adresiniz var ama şifresini hatırlamıyorsanız{" "}
+      E-Posta adresiniz var ama şifresini hatırlamıyorsanız{" "}
       <HighlightedText
         text="bu adrese"
         href="https://sofra.bilecik.edu.tr/YeniParolaOlustur"
@@ -50,10 +50,13 @@ function Content3() {
       className="tracking-wide leading-relaxed w-full 
     bg-primary font-body p-4 text-white rounded-md"
     >
-      Okul E-posta&apos;larının bir çok kişi tarafından aktif olarak
+      Okul E-Posta&apos;larının bir çok kişi tarafından aktif olarak
       kullanılmadığını ve buraya kaydolmak için ekstra zahmet getirdiğinin
-      farkındayız fakat, daha gerçekçi veriler elde edebilmek için malesef bu
-      yola başvurmak zorundayız.
+      farkındayız fakat daha gerçekçi veriler elde edebilmek için bu yola
+      başvurmak zorundayız. <br />
+      Bununla birlikte giriş yaparken kullandığınız okul E-Posta&apos;sının asla
+      <b> 3. şahıslarla paylaşılmadığını</b>, sadece oy kullanan kişinin öğrenci
+      olup olmadığını doğrulamak için kullandığımızı rahatça söyleyebiliriz.
     </div>
   );
 }
@@ -68,7 +71,7 @@ function Content4() {
         text="Bu adrese"
         href="https://ogrenci.bilecik.edu.tr/mail/?_task=mail&_mbox=INBOX"
       />{" "}
-      giderek E-posta&apos;nıza giriş yapabilir ve gelecek olan kodu
+      giderek E-Posta&apos;nıza giriş yapabilir ve gelecek olan kodu
       alabilirsiniz.
     </div>
   );

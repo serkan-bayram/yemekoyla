@@ -38,7 +38,7 @@ export function BigStars({ isLoading, setIsLoading }) {
           className={isLoading ? "animate-pulse pointer-events-none" : ""}
           sx={{
             "& .MuiRating-iconEmpty": {
-              color: "#111214",
+              color: "#d1d5db",
             },
           }}
           onChange={(event, newValue) => {
@@ -52,3 +52,5 @@ export function BigStars({ isLoading, setIsLoading }) {
     </div>
   );
 }
+
+// #111214

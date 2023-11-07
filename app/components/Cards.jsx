@@ -10,12 +10,12 @@ export default function Cards() {
     {
       heading: "Amacımız",
       message:
-        "Öğrenciler ve yetkili kişiler arasında herkes tarafından kolayca ulaşılabilecek bir köprü yaratıyoruz, Okul E-Posta'sı kullanarak kullanıcıları doğruluyor ve bu kullanıcıların geri dönüşlerini anonim bir şekilde iletiyoruz.",
+        "Öğrenciler ve yetkili kişiler arasında herkes tarafından kolayca kullanılabilecek bir köprü oluşturuyor, Okul E-Posta'sı kullanarak kullanıcıları doğruluyor ve bu kullanıcıların geri dönüşlerini anonim bir şekilde iletiyoruz.",
     },
     {
       heading: "Daha kalabalık, daha hızlı",
       message:
-        "Her geçen yıl daha kötüye giden yemekhane yemeklerini değiştirmek için bu yolda hep beraber ilerliyoruz, ne kadar fazla  sesimiz olursa o kadar çabuk bir etki görebiliriz.",
+        "Her geçen yıl daha kötüye giden yemekhane yemeklerini değiştirmek için bu yolda hep beraber ilerliyoruz, ne kadar fazla sesimiz olursa o kadar çabuk bir etki görebiliriz.",
     },
   ];
 
