@@ -2,6 +2,9 @@ import Image from "next/image";
 import ImageInfo from "./ImageInfo";
 
 // aspect-[1024/768]
+
+export const revalidate = 5;
+
 export default function Food() {
   return (
     <div className="flex flex-col items-center pt-8 gap-6">
