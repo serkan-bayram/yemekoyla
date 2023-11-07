@@ -5,15 +5,12 @@ const nextConfig = {
   },
   env: { API_URL: "https://yemekhane-puanla.vercel.app" },
 
-  // images: {
-  //   domains: ["51.12.208.57"],
-  // },
-
   images: {
+    minimumCacheTTL: 10,
     remotePatterns: [
       {
         protocol: "http",
-        hostname: "51.12.208.55",
+        hostname: "51.12.208.57",
       },
     ],
   },
