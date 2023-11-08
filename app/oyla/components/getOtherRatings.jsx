@@ -25,7 +25,11 @@ export const getOtherRatings = async () => {
         .then(async (result) => {
           const { username } = result;
           average += parseFloat(record.rating);
-          ratings.push({ username: username, rating: record.rating });
+          ratings.push({
+            username: username,
+            rating: record.rating,
+            comment: record?.comment || null,
+          });
         });
       promises.push(promise);
     });

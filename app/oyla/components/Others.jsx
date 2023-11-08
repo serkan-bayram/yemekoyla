@@ -28,6 +28,7 @@ export default async function Others() {
               <OtherRatings
                 username={rating.username || "Anonim"}
                 rating={parseFloat(rating.rating)}
+                comment={rating?.comment || ""}
                 key={uuidv4()}
                 index={index}
               />

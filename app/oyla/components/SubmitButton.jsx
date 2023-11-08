@@ -1,11 +1,19 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { experimental_useFormStatus as useFormStatus } from "react-dom";
 import { toast } from "react-toastify";
 import Loading from "../../components/LoadingButton";
+import disableScroll from "disable-scroll";
 
-export default function SubmitButton({ isLoading, state }) {
+export default function SubmitButton({
+  showPopup,
+  setShowPopup,
+  isLoading,
+  state,
+  didUserCommented,
+  setIsEditComment,
+}) {
   const { pending } = useFormStatus();
 
   const error = (message) => {
@@ -27,8 +35,20 @@ export default function SubmitButton({ isLoading, state }) {
       } else {
         success("Oylama kaydedildi.");
       }
+      if (!didUserCommented) {
+        setShowPopup(true);
+        setIsEditComment(false);
+      }
     }
   }, [pending]);
+
+  useEffect(() => {
+    if (showPopup) {
+      disableScroll.on();
+    } else {
+      disableScroll.off();
+    }
+  }, [showPopup]);
 
   return (
     <div className="flex items-center gap-1 pt-6 w-1/2 md:w-1/3 mx-auto min-w-[250px]">
