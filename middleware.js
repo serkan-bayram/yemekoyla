@@ -9,6 +9,10 @@ export async function middleware(req) {
   if (!!token) {
     const permission = token.user.record.permission;
 
+    if (permission === "banned" && !pathname.startsWith("/banned")) {
+      return NextResponse.redirect(new URL("/banned", req.url));
+    }
+
     // Admin can go anywhere
     if (permission === "admin") {
       return NextResponse.next();
