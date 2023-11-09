@@ -13,8 +13,12 @@ export async function middleware(req) {
       return NextResponse.redirect(new URL("/banned", req.url));
     }
 
+    if (permission !== "banned" && pathname.startsWith("/banned")) {
+      return NextResponse.redirect(new URL("/oyla", req.url));
+    }
+
     // Admin can go anywhere
-    if (permission === "admin") {
+    else if (permission === "admin") {
       return NextResponse.next();
     }
 
@@ -55,7 +59,13 @@ export async function middleware(req) {
       }
     }
   } else {
-    const cantGoIfNotAuth = ["/oyla", "/profilolustur", "/cikis", "/profilim"];
+    const cantGoIfNotAuth = [
+      "/oyla",
+      "/profilolustur",
+      "/cikis",
+      "/profilim",
+      "/banned",
+    ];
     if (cantGoIfNotAuth.includes(pathname)) {
       return NextResponse.redirect(new URL("/giris", req.url));
     }
