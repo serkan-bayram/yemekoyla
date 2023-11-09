@@ -2,8 +2,8 @@ import OtherRatings from "./OtherRatings";
 import { getOtherRatings } from "./getOtherRatings";
 import { v4 as uuidv4 } from "uuid";
 
-export default async function Others() {
-  const response = await getOtherRatings();
+export default async function Others({ pb }) {
+  const response = await getOtherRatings(pb);
 
   const ratings = response?.ratings || null;
   const average = response?.average || null;
@@ -26,7 +26,7 @@ export default async function Others() {
           ratings.map((rating, index) => {
             return (
               <OtherRatings
-                username={rating.username || "Anonim"}
+                username={rating?.username || "Anonim"}
                 rating={parseFloat(rating.rating)}
                 comment={rating?.comment || ""}
                 key={uuidv4()}

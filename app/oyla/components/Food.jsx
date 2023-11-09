@@ -1,11 +1,12 @@
 import ImageInfo from "./ImageInfo";
-import { getMenuURL } from "../../components/Functions/getMenuURL";
 import Image from "next/image";
 
 // aspect-[1024/768]
 
-export default async function Food() {
-  const src = await getMenuURL();
+export default async function Food({ menu }) {
+  const src = menu.url;
+  const menuDate = menu.date;
+  const menuArray = JSON.parse(menu.menu);
 
   return (
     <div className="flex flex-col items-center pt-8 gap-6">
@@ -24,7 +25,7 @@ export default async function Food() {
           </div>
         )}
       </div>
-      <ImageInfo />
+      <ImageInfo menuDate={menuDate} menu={menuArray} />
     </div>
   );
 }

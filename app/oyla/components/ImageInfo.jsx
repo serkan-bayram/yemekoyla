@@ -1,11 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
-import { getFoodList } from "../../components/Functions/getFoodList";
-import { getMenuDate } from "../../components/Functions/getMenuDate";
 
-export default async function ImageInfo() {
-  const menu = await getFoodList();
-  const menuDate = await getMenuDate();
-
+export default async function ImageInfo({ menuDate, menu }) {
   return (
     <div>
       <ul className="max-w-[30ch] md:max-w-[50ch]">

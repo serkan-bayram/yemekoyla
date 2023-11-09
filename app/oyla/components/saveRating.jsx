@@ -3,59 +3,40 @@
 import { revalidatePath } from "next/cache";
 import { getSession } from "../../components/Functions/getSession";
 import { authAsAdmin } from "../../components/Functions/authAsAdmin";
-import { getMenuId } from "../../components/Functions/getMenuId";
 
 export async function saveRating(prevState, formData) {
-  const rating = formData.get("rating") || 0;
-  const { session } = await getSession();
-  const userId = session.user.record.id;
-  const menuId = await getMenuId();
-
-  if (menuId === null) {
-    return { message: false };
-  }
+  const rating = formData.get("rating");
+  const ratingId = formData.get("ratingId");
+  const menuId = formData.get("menuId");
 
   const pb = await authAsAdmin();
 
-  let isAlreadySaved = false;
-  // Will update according to this id
-  let recordId;
-  try {
-    // This throws an error if nothing is found
-    const record = await pb
-      .collection("ratings")
-      .getFirstListItem(`user.id="${userId}"`);
-    recordId = record.id;
-    isAlreadySaved = true;
-  } catch (error) {
-    isAlreadySaved = false;
-    console.log("Error:", error.response.message);
-  }
+  const { session } = await getSession();
 
-  // example create data
+  const userId = session.user.record.id;
+
   const data = {
     rating: rating,
-    user: session.user.record.id,
+    user: userId,
     menu: menuId,
   };
 
-  revalidatePath("/oyla");
-
   // update record if it is already saved
-  if (isAlreadySaved) {
-    try {
-      const record = await pb.collection("ratings").update(`${recordId}`, data);
-      return { message: true, isAlreadySaved: true };
-    } catch (error) {
-      console.log("Error: ", error);
-    }
-  } else {
-    try {
-      const record = await pb.collection("ratings").create(data);
-      return { message: true };
-    } catch (error) {
-      console.log("Error:", error);
-    }
+  try {
+    const record = await pb.collection("ratings").update(ratingId, data);
+    revalidatePath("/oyla");
+    return { message: true, isAlreadySaved: true };
+  } catch (error) {
+    console.log("Error on saveRating, update: ", error);
+  }
+
+  // create if not updated
+  try {
+    const record = await pb.collection("ratings").create(data);
+    revalidatePath("/oyla");
+    return { message: true };
+  } catch (error) {
+    console.log("Error:", error);
   }
 
   return { message: false };

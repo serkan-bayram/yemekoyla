@@ -1,37 +1,19 @@
 "use server";
 
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 import { authAsAdmin } from "./authAsAdmin";
-import { getSession } from "./getSession";
-import { updateSession } from "./updateSession";
-import { cookies } from "next/headers";
 
-export async function saveComment(comment) {
-  const { session } = await getSession();
-
-  const userId = session.user.record.id;
-
+export async function saveComment(comment, ratingId) {
   const pb = await authAsAdmin();
-
-  let recordId;
-  try {
-    // This throws an error if nothing is found
-    const record = await pb
-      .collection("ratings")
-      .getFirstListItem(`user.id="${userId}"`);
-    recordId = record.id;
-  } catch (error) {
-    console.log("Error:", error);
-  }
 
   const data = {
     comment: comment,
   };
 
   try {
-    await pb.collection("ratings").update(recordId, data);
+    await pb.collection("ratings").update(ratingId, data);
 
-    revalidateTag("comment");
+    revalidatePath("/oyla");
 
     return { ok: true, message: "Yorumunuz başarıyla kaydedildi." };
   } catch (error) {

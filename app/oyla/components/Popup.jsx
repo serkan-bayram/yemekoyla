@@ -25,7 +25,7 @@ function Header({ text }) {
   );
 }
 
-function CommentSection({ setComment, isEditComment, userComment }) {
+function CommentSection({ setComment, isEditComment, rating }) {
   // Yorumunu düzenle yanında çöp kutusu olacak silmek için
 
   return (
@@ -35,7 +35,7 @@ function CommentSection({ setComment, isEditComment, userComment }) {
       </div>
       <div>
         <textarea
-          defaultValue={userComment && userComment}
+          defaultValue={rating?.comment && rating?.comment}
           autoFocus={false}
           onChange={(e) => {
             setComment(e.target.value);
@@ -72,13 +72,13 @@ appearance-none focus:ring ring-secondary shadow-md`}
   );
 }
 
-function Form({ setShowPopup, isEditComment, userComment }) {
+function Form({ setShowPopup, isEditComment, rating }) {
   const [comment, setComment] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = async () => {
     setIsLoading(true);
-    const response = await saveComment(comment);
+    const response = await saveComment(comment, rating.ratingId);
 
     if (response.ok) {
       success(response.message);
@@ -94,7 +94,7 @@ function Form({ setShowPopup, isEditComment, userComment }) {
     <>
       <CommentSection
         isEditComment={isEditComment}
-        userComment={userComment}
+        rating={rating}
         setComment={setComment}
       />
       <SaveButton isLoading={isLoading} handleClick={handleClick} />
@@ -104,7 +104,7 @@ function Form({ setShowPopup, isEditComment, userComment }) {
 
 export default function Popup({
   isEditComment,
-  userComment,
+  rating,
   showPopup,
   setShowPopup,
 }) {
@@ -113,10 +113,10 @@ export default function Popup({
       <OpacityBackground setShowPopup={setShowPopup} />
       <div className="relative z-20 bg-secondary w-full mx-8 md:w-1/3 p-6 rounded-md border border-gray-700">
         <CloseButton setState={setShowPopup} />
-        <Header text={isEditComment ? "" : "Oylaman Kaydedildi!"} />
+        <Header text={isEditComment ? "Düzenle" : "Oylaman Kaydedildi!"} />
         <Form
           isEditComment={isEditComment}
-          userComment={userComment}
+          rating={rating}
           setShowPopup={setShowPopup}
         />
       </div>

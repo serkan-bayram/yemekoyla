@@ -1,31 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Rating from "@mui/material/Rating";
 
-export function BigStars({ isLoading, setIsLoading }) {
-  const [value, setValue] = useState(0);
-
-  // TODO: loading animation with loading stars
-  useEffect(() => {
-    const asyncFunction = async () => {
-      // BE CAREFUL, this might create cache
-      try {
-        const apiUrl = process.env.API_URL;
-        const response = await fetch(`${apiUrl}/api/ratings/getRating`);
-
-        const { ok, savedRating } = await response.json();
-
-        if (ok) setValue(parseFloat(savedRating));
-      } catch (error) {
-        console.log("Can't fetch user rating.");
-      }
-
-      setIsLoading(false);
-    };
-
-    asyncFunction();
-  }, []);
+export function BigStars({ rating }) {
+  const [value, setValue] = useState(rating);
 
   return (
     <div className="flex flex-col items-center">
@@ -35,7 +14,6 @@ export function BigStars({ isLoading, setIsLoading }) {
           value={value}
           precision={0.5}
           size="large"
-          className={isLoading ? "animate-pulse pointer-events-none" : ""}
           sx={{
             "& .MuiRating-iconEmpty": {
               color: "#d1d5db",

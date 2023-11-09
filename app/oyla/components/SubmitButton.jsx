@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { experimental_useFormStatus as useFormStatus } from "react-dom";
 import { toast } from "react-toastify";
 import Loading from "../../components/LoadingButton";
@@ -11,7 +11,7 @@ export default function SubmitButton({
   setShowPopup,
   isLoading,
   state,
-  didUserCommented,
+  rating,
   setIsEditComment,
 }) {
   const { pending } = useFormStatus();
@@ -35,7 +35,7 @@ export default function SubmitButton({
       } else {
         success("Oylama kaydedildi.");
       }
-      if (!didUserCommented) {
+      if (rating?.comment <= 0) {
         setShowPopup(true);
         setIsEditComment(false);
       }
@@ -56,7 +56,6 @@ export default function SubmitButton({
         <Loading />
       ) : (
         <button
-          disabled={isLoading}
           type="submit"
           className={`rounded-md mx-auto bg-primary w-full h-full py-2  text-white border
      border-gray-700 hover:bg-transparent transition-all duration-300

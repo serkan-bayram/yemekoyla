@@ -3,7 +3,6 @@
 import { authAsAdmin } from "./authAsAdmin";
 import { getSession } from "./getSession";
 import { validatePassword } from "./validations";
-import { deleteSessionCookie } from "./deleteSessionCookie";
 
 export async function changePassword(password) {
   const passwordValidation = validatePassword(password);
