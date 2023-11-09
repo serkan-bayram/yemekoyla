@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CloseButton from "./CloseButton";
 import { saveComment } from "../../components/Functions/saveComment";
 import { error, success } from "../../components/Functions/notify";
@@ -25,15 +25,33 @@ function Header({ text }) {
   );
 }
 
-function CommentSection({ setComment, isEditComment, rating }) {
+// TODO prevent or delete multiple \n
+function CommentSection({ comment, setComment, isEditComment, rating }) {
   // Yorumunu düzenle yanında çöp kutusu olacak silmek için
+
+  const ref = useRef(0);
+
+  const [divWidth, setDivWidth] = useState(0);
+
+  useEffect(() => {
+    // Calculate divWidth after the component has mounted
+    if (ref.current) {
+      setDivWidth(ref.current.offsetWidth);
+    }
+  }, []); // Empty dependency array ensures that this effect runs only once after the initial render
+
+  const progressbarCalculation = divWidth / 280;
+
+  const commentLength = comment.length;
+
+  const progressbarWidth = (commentLength * progressbarCalculation).toFixed(0);
 
   return (
     <div>
       <div className="font-body mt-8 mb-4">
         {isEditComment ? "Yorumunu Düzenle" : "Yorum yapmak ister misin?"}
       </div>
-      <div>
+      <div ref={ref} className="relative rounded-md overflow-hidden">
         <textarea
           defaultValue={rating?.comment && rating?.comment}
           autoFocus={false}
@@ -44,10 +62,25 @@ function CommentSection({ setComment, isEditComment, rating }) {
           name="comment"
           rows={6}
           placeholder="Yorumunuz..."
-          className="resize-none w-full pr-4 pl-2 pt-2  border border-primary bg-transparent rounded-md
+          className="resize-none w-full pr-4 pl-2 pt-2 pb-24 md:pb-9  border border-primary bg-transparent rounded-md
              placeholder:text-sm
+             overflow-y-hidden
               appearance-none outline-none placeholder:text-gray-500 text-white text-sm"
         ></textarea>
+        <div className="absolute bottom-5 right-3 text-sm font-body">
+          {commentLength} / 280
+        </div>
+        <div
+          style={{
+            width: `${progressbarWidth}px` || "1px",
+          }}
+          className={`absolute bottom-[6px] rounded-bl-sm ${
+            parseInt(progressbarWidth) === divWidth
+              ? "rounded-br-sm"
+              : "rounded-br-sm rounded-tr-sm"
+          }
+       left-0 bg-accent h-1`}
+        ></div>
       </div>
     </div>
   );
@@ -73,7 +106,7 @@ appearance-none focus:ring ring-secondary shadow-md`}
 }
 
 function Form({ setShowPopup, isEditComment, rating }) {
-  const [comment, setComment] = useState(null);
+  const [comment, setComment] = useState(rating?.comment);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = async () => {
@@ -93,6 +126,7 @@ function Form({ setShowPopup, isEditComment, rating }) {
   return (
     <>
       <CommentSection
+        comment={comment}
         isEditComment={isEditComment}
         rating={rating}
         setComment={setComment}
