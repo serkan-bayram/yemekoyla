@@ -18,15 +18,20 @@ export default function RatingForm({ rating }) {
   const [showPopup, setShowPopup] = useState(false);
   const [isEditComment, setIsEditComment] = useState(false);
 
-  const ratingId = rating?.ratingId;
-  const menuId = rating?.menuId;
-  const userRating = rating?.rating;
-  const comment = rating?.comment;
+  const ratingId = rating.ratingId;
+  const menuId = rating.menuId;
+  const userRating = rating.rating;
+  const comment = rating.comment;
 
   return (
     <form action={formAction}>
-      <input name="ratingId" value={ratingId} className="hidden" readOnly />
-      <input name="menuId" value={menuId} className="hidden" readOnly />
+      <input
+        name="ratingId"
+        value={ratingId || "-1"}
+        className="hidden"
+        readOnly
+      />
+      <input name="menuId" value={menuId || "-1"} className="hidden" readOnly />
       <AddComment
         setShowPopup={setShowPopup}
         setIsEditComment={setIsEditComment}

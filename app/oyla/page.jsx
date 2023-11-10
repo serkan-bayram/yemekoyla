@@ -18,11 +18,13 @@ export default async function Page() {
   const rating = await getRatings(pb, username, menu);
 
   const clientSafeRatingInfo = {
-    comment: rating?.comment,
-    rating: rating?.rating,
-    ratingId: rating?.id,
-    menuId: menu?.id,
+    comment: rating?.comment || "",
+    rating: rating?.rating || null,
+    ratingId: rating?.id || null,
+    menuId: menu?.id || null,
   };
+
+  console.log("rating info: ", clientSafeRatingInfo);
 
   return (
     <div className="pt-12">

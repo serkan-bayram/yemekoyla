@@ -12,7 +12,7 @@ export async function getRatings(pb, username, menu) {
 
     return record;
   } catch (error) {
-    console.log("Error on getRatings: ", error);
+    console.log("User has not rated yet: ", error);
     return null;
   }
 }

@@ -22,12 +22,14 @@ export async function saveRating(prevState, formData) {
   };
 
   // update record if it is already saved
-  try {
-    const record = await pb.collection("ratings").update(ratingId, data);
-    revalidatePath("/oyla");
-    return { message: true, isAlreadySaved: true };
-  } catch (error) {
-    console.log("Error on saveRating, update: ", error);
+  if (ratingId !== "-1") {
+    try {
+      const record = await pb.collection("ratings").update(ratingId, data);
+      revalidatePath("/oyla");
+      return { message: true, isAlreadySaved: true };
+    } catch (error) {
+      console.log("Error on saveRating, update: ", error);
+    }
   }
 
   // create if not updated
