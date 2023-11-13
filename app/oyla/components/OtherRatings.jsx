@@ -2,19 +2,18 @@ import SmallStars from "./SmallStars";
 
 export default function OtherRatings({ username, comment, index, rating }) {
   return (
-    <li>
-      <div
-        className={`${
-          index % 2 == 0 ? "bg-secondary" : "bg-primary"
-        } flex justify-between items-center text-white h-auto  p-2`}
-      >
+    <li
+      className="border-l-0 border-r-0 border border-primary
+     first:border-t-0 last:border-b-0 p-1"
+    >
+      <div className={`text-white h-auto  p-2`}>
         <div>
-          <div>
-            {username} {comment && ":"}{" "}
+          <div className="flex justify-between items-center">
+            <div className="font-heading font-bold ">{username}</div>
+            <SmallStars index={index} rating={rating} />
           </div>
-          <p className="pr-3 break-all">{comment}</p>
+          <p className="mt-3 leading-6">{comment}</p>
         </div>
-        <SmallStars index={index} rating={rating} />
       </div>
     </li>
   );

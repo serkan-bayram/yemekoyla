@@ -9,19 +9,11 @@ export default async function Others({ pb }) {
   const average = response?.average || null;
 
   return (
-    <div className="flex flex-col px-8 pt-12  ">
-      <div className="text-gray-500 pb-1 flex justify-between items-center">
-        <div>Diğer Oylamalar</div>
-        {!!average ? (
-          <div>
-            Genel Puan:{" "}
-            <span className="text-white">{average.toFixed(2)}/5</span>
-          </div>
-        ) : (
-          <div></div>
-        )}
-      </div>
-      <ul className="mb-8 shadow border  border-gray-700">
+    <div className="flex flex-col px-2 pt-12 lg:pt-0  ">
+      <ul
+        className="mb-8 shadow border  border-gray-700
+       bg-secondary"
+      >
         {!!average ? (
           ratings.map((rating, index) => {
             return (
@@ -42,4 +34,17 @@ export default async function Others({ pb }) {
       </ul>
     </div>
   );
+}
+
+{
+  /* <div className="text-gray-500 pb-1 lg:pb-0 flex justify-between items-center">
+<div>Diğer Oylamalar</div>
+{!!average ? (
+  <div>
+    Ortalama: <span className="text-white">{average.toFixed(2)}/5</span>
+  </div>
+) : (
+  <div></div>
+)}
+</div> */
 }
