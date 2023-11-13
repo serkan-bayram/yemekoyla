@@ -16,6 +16,7 @@ export default function StatusClient({ emoji, text }) {
       cursor-pointer fixed top-20
       right-0 
        bg-black
+       select-none
        transition-all shadow border border-primary 
         rounded-tl-md rounded-bl-md flex  py-2"
       onMouseOver={() => {
