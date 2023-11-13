@@ -10,7 +10,7 @@ export default function StatusClient({ emoji, text }) {
       style={
         onHover
           ? { transform: `translateX(0)`, opacity: "100%" }
-          : { transform: `translateX(calc(100% - 2.5rem)`, opacity: "25%" }
+          : { transform: `translateX(calc(100% - 2.5rem))`, opacity: "25%" }
       }
       className="font-body z-50
       cursor-pointer fixed top-20
