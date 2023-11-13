@@ -9,7 +9,11 @@ export default async function Others({ pb }) {
   const average = response?.average || null;
 
   return (
-    <div className="flex flex-col px-2 pt-12 lg:pt-0  ">
+    <div className="flex flex-col px-2 pt-12 lg:pt-0 lg:px-48  ">
+      <div className="flex justify-between mb-1 font-heading">
+        <div>Yorumlar</div>
+        {!!average ? <div>Ortalama: {average.toFixed(2)}</div> : <div></div>}
+      </div>
       <ul
         className="mb-8 shadow border  border-gray-700
        bg-secondary"

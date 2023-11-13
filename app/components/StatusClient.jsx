@@ -1,33 +1,23 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 export default function StatusClient({ emoji, text }) {
-  const ref = useRef(null);
-
-  const [divWidth, setDivWidth] = useState(0);
   const [onHover, setOnHover] = useState(false);
-
-  useEffect(() => {
-    // Calculate divWidth after the component has mounted
-    if (ref.current) {
-      setDivWidth(ref.current.offsetWidth);
-    }
-  }, []); // Empty dependency array ensures that this effect runs only once after the initial render
 
   return (
     <div
       style={
         onHover
-          ? { transform: `translateX(0px)`, opacity: "100%" }
-          : { transform: `translateX(${divWidth}px)`, opacity: "25%" }
+          ? { transform: `translateX(0)`, opacity: "100%" }
+          : { transform: `translateX(calc(100% - 2.5rem)`, opacity: "25%" }
       }
       className="font-body z-50
       cursor-pointer fixed top-20
       right-0 
        bg-black
        transition-all shadow border border-primary 
-        rounded-tl-md rounded-bl-md flex pl-2 py-2"
+        rounded-tl-md rounded-bl-md flex  py-2"
       onMouseOver={() => {
         setOnHover(true);
       }}
@@ -35,11 +25,18 @@ export default function StatusClient({ emoji, text }) {
         setOnHover(false);
       }}
     >
-      <div className="text-xl px-2  flex ">{emoji}</div>
-      <div
-        ref={ref}
-        className="px-4  whitespace-nowrap text-md flex  items-center"
-      >
+      {onHover && (
+        <div
+          className="p-1 px-2 whitespace-nowrap rounded-sm bg-black
+       absolute right-1 top-12 text-xs"
+        >
+          Günün Yemeği
+        </div>
+      )}
+      <div className="text-xl  flex  w-10 justify-center pl-1 items-center ">
+        {emoji}
+      </div>
+      <div className=" whitespace-nowrap text-md flex px-2 pr-4 items-center">
         {text}
       </div>
     </div>

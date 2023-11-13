@@ -12,7 +12,7 @@ export default function OtherRatings({ username, comment, index, rating }) {
             <div className="font-heading font-bold ">{username}</div>
             <SmallStars index={index} rating={rating} />
           </div>
-          <p className="mt-3 leading-6">{comment}</p>
+          <p className="mt-3 leading-6 max-w-prose">{comment}</p>
         </div>
       </div>
     </li>

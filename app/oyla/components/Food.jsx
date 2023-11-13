@@ -9,7 +9,7 @@ export default async function Food({ menu }) {
   const menuArray = JSON.parse(menu.menu);
 
   return (
-    <div className="flex flex-col items-center pt-8 lg:pt-0 gap-6">
+    <div className="flex flex-col items-center  gap-6">
       <div className="w-64 md:w-[20rem] border shadow border-primary aspect-[1024/768] flex items-center justify-center relative">
         {!!src ? (
           <Image

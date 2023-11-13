@@ -5,7 +5,7 @@ import { getSession } from "../../components/Functions/getSession";
 import { authAsAdmin } from "../../components/Functions/authAsAdmin";
 
 export async function saveRating(prevState, formData) {
-  const rating = formData.get("rating");
+  const rating = formData.get("rating") || 0;
   const ratingId = formData.get("ratingId");
   const menuId = formData.get("menuId");
 

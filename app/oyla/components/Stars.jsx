@@ -20,7 +20,11 @@ export function BigStars({ rating }) {
             },
           }}
           onChange={(event, newValue) => {
-            setValue(newValue);
+            if (newValue === null) {
+              setValue(0);
+            } else {
+              setValue(newValue);
+            }
           }}
         />
       </div>

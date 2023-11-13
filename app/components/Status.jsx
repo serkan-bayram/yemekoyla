@@ -8,8 +8,6 @@ export default async function Status() {
 
   const average = response?.average || null;
 
-  console.log(average);
-
   let emoji, text;
 
   if (average === null) {
@@ -18,10 +16,13 @@ export default async function Status() {
   } else if (average < 2) {
     emoji = "😭";
     text = "Çok Kötü";
-  } else if (average >= 2 && average <= 4) {
+  } else if (average >= 2 && average < 3) {
+    emoji = "😔";
+    text = "Kötü";
+  } else if (average >= 3 && average < 4) {
     emoji = "🙂";
     text = "İyi";
-  } else if (average > 4) {
+  } else if (average >= 4) {
     emoji = "😄";
     text = "Çok İyi";
   }
