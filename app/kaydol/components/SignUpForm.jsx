@@ -63,6 +63,7 @@ export default function SignUpForm() {
 
   return (
     <AuthForm handleSubmit={handleSubmit}>
+      <label className="mb-1 font-heading text-md">Okul E-Postanız</label>
       <Input
         inputError={inputError}
         placeholder="ornek@ogrenci.bilecik.edu.tr"

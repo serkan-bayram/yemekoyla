@@ -1,6 +1,6 @@
 import Rating from "@mui/material/Rating";
 
-export default function SmallStars({ rating, index }) {
+export default function SmallStars({ rating }) {
   return (
     <Rating
       size="small"
