@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Suspense } from "react";
 import Loading from "./loading";
 import Beta from "./components/Beta";
+import Status from "./components/Status";
 
 export default async function RootLayout({ children }) {
   return (
@@ -23,7 +24,7 @@ export default async function RootLayout({ children }) {
       </head>
       <body className="bg-background">
         <Suspense fallback={Loading}>
-          {children} <Beta />
+          {children} <Status />
         </Suspense>
         <ToastContainer
           position="top-center"

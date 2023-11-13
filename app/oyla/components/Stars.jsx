@@ -4,7 +4,7 @@ import { useState } from "react";
 import Rating from "@mui/material/Rating";
 
 export function BigStars({ rating }) {
-  const [value, setValue] = useState(rating);
+  const [value, setValue] = useState(parseFloat(rating));
 
   return (
     <div className="flex flex-col items-center">
