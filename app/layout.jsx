@@ -4,8 +4,8 @@ import { Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Suspense } from "react";
 import Loading from "./loading";
-import Beta from "./components/Beta";
 import Status from "./components/Status";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export default async function RootLayout({ children }) {
   return (
@@ -26,6 +26,7 @@ export default async function RootLayout({ children }) {
         <Suspense fallback={Loading}>
           {children} <Status />
         </Suspense>
+        <SpeedInsights />
         <ToastContainer
           position="top-center"
           theme="dark"
