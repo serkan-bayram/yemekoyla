@@ -6,6 +6,7 @@ import { Suspense } from "react";
 import Loading from "./loading";
 import Status from "./components/Status";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 
 export default async function RootLayout({ children }) {
   return (
@@ -27,6 +28,7 @@ export default async function RootLayout({ children }) {
           {children} <Status />
         </Suspense>
         <SpeedInsights />
+        <Analytics />
         <ToastContainer
           position="top-center"
           theme="dark"
