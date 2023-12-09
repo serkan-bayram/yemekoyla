@@ -20,6 +20,7 @@ export const getOtherRatings = async (pb) => {
 
   records.forEach((record) => {
     ratings.push({
+      ratingId: record.id,
       rating: record.rating,
       comment: record?.comment || null,
       username: record.expand.user.username,

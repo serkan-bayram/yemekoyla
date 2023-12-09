@@ -2,20 +2,22 @@ import Others from "./components/Others";
 import Food from "./components/Food";
 import RatingForm from "./components/RatingForm";
 import Navbar from "../components/Navbar/Navbar";
-import UserInfo from "./components/UserInfo";
 import { getSession } from "../components/Functions/getSession";
 import { getRatings } from "../components/Functions/getRatings";
 import { getMenu } from "../components/Functions/getMenu";
 import { authAsAdmin } from "../components/Functions/authAsAdmin";
+import { getEmojis } from "./components/getEmojis";
 
 export default async function Page() {
   const { session } = await getSession();
 
   const username = session.user.record.username;
+  const userId = session.user.record.id;
 
   const pb = await authAsAdmin();
   const menu = await getMenu(pb);
   const rating = await getRatings(pb, username, menu);
+  const emojis = await getEmojis(pb);
 
   const clientSafeRatingInfo = {
     comment: rating?.comment || "",
@@ -24,12 +26,9 @@ export default async function Page() {
     menuId: menu?.id || null,
   };
 
-  console.log("rating info: ", clientSafeRatingInfo);
-
   return (
     <div className="pt-12">
       <Navbar />
-      {/* <UserInfo username={username} /> */}
       <div
         className="mb-12 mt-6 w-fit mx-auto p-8 rounded-sm
         border bg-secondary h-fit 
@@ -38,7 +37,7 @@ export default async function Page() {
         <Food menu={menu} />
         <RatingForm rating={clientSafeRatingInfo} />
       </div>
-      <Others pb={pb} />
+      <Others pb={pb} emojis={emojis} currentUser={username} />
     </div>
   );
 }

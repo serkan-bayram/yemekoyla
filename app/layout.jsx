@@ -24,7 +24,7 @@ export default async function RootLayout({ children }) {
         />
       </head>
       <body className="bg-background">
-        <Suspense fallback={Loading}>
+        <Suspense fallback={<Loading />}>
           {children} <Status />
         </Suspense>
         <SpeedInsights />

@@ -33,7 +33,7 @@ export default function NavbarItems({ isOpen, closeMenu, navigation, state }) {
   return (
     <ul
       className={`flex 
-     lg:flex-row lg:items-center
+     lg:flex-row lg:items-center 
      lg:static lg:h-full lg:bg-transparent 
      gap-12 font-body fixed right-0 
      flex-col justify-center items-center
@@ -41,6 +41,7 @@ export default function NavbarItems({ isOpen, closeMenu, navigation, state }) {
      transition-transform
      lg:translate-x-0 lg:pt-0 lg:justify-center
      lg:opacity-100
+     
      
     ${isOpen ? "translate-x-0 opacity-100" : "opacity-0 translate-x-full"}
      `}

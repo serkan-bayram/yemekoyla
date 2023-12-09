@@ -2,7 +2,7 @@ import OtherRatings from "./OtherRatings";
 import { getOtherRatings } from "./getOtherRatings";
 import { v4 as uuidv4 } from "uuid";
 
-export default async function Others({ pb }) {
+export default async function Others({ pb, emojis, currentUser }) {
   const response = await getOtherRatings(pb);
 
   const ratings = response?.ratings || null;
@@ -22,8 +22,13 @@ export default async function Others({ pb }) {
           ratings.map((rating, index) => {
             return (
               <OtherRatings
+                currentUser={currentUser}
+                emojis={emojis.filter(
+                  (emoji) => emoji.ratingId === rating.ratingId
+                )}
                 username={rating?.username || "Anonim"}
                 rating={parseFloat(rating.rating)}
+                ratingId={rating.ratingId}
                 comment={rating?.comment || ""}
                 key={uuidv4()}
                 index={index}

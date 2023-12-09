@@ -1,6 +1,14 @@
 import SmallStars from "./SmallStars";
+import Emojis from "./Emojis";
 
-export default function OtherRatings({ username, comment, index, rating }) {
+export default function OtherRatings({
+  username,
+  comment,
+  rating,
+  ratingId,
+  emojis,
+  currentUser,
+}) {
   return (
     <li
       className="border-l-0 border-r-0 border border-primary
@@ -12,8 +20,13 @@ export default function OtherRatings({ username, comment, index, rating }) {
             <div className="font-heading font-bold ">{username}</div>
             <SmallStars rating={rating} />
           </div>
-          <p className="mt-3 leading-6 max-w-prose">{comment}</p>
+          {comment && <p className="mt-3 leading-6 max-w-prose">{comment}</p>}
         </div>
+        <Emojis
+          votedEmojis={emojis}
+          ratingId={ratingId}
+          currentUser={currentUser}
+        />
       </div>
     </li>
   );

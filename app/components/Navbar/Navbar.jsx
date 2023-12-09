@@ -67,7 +67,7 @@ export default async function Navbar({ onlyLogo = false }) {
   return (
     <div
       className="fixed top-0 z-50 flex items-center
-     text-white justify-between px-12 w-full h-12 
+     text-white justify-between  px-12 w-full h-12 
      bg-secondary shadow border-b border-b-primary"
     >
       <Logo />
