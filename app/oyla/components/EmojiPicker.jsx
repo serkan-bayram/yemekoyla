@@ -14,6 +14,10 @@ export default function EmojiPicker({
 }) {
   const info = emojis[0].info;
 
+  if (!info) {
+    return null;
+  }
+
   const [mouseOver, setMouseOver] = useState(false);
 
   const handleMouseOver = () => {
