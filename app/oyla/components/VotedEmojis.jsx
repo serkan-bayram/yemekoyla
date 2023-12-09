@@ -12,7 +12,7 @@ export default function VotedEmojis({
   setEmojis,
   adminEmojis,
 }) {
-  const info = emojis[0].info;
+  const info = emojis[0]?.info || [];
 
   const [mouseOver, setMouseOver] = useState(false);
 
@@ -55,17 +55,18 @@ export default function VotedEmojis({
   return (
     <div className="">
       <ul className="flex gap-2">
-        {info.map((inf) => {
-          return (
-            <li
-              onMouseOver={() => {
-                setMouseOver(inf.emoji);
-              }}
-              onMouseOut={() => {
-                setMouseOver(false);
-              }}
-              key={uuidv4()}
-              className={`
+        {info &&
+          info.map((inf) => {
+            return (
+              <li
+                onMouseOver={() => {
+                  setMouseOver(inf.emoji);
+                }}
+                onMouseOut={() => {
+                  setMouseOver(false);
+                }}
+                key={uuidv4()}
+                className={`
 ${
   inf.isPicked
     ? "bg-primary hover:bg-transparent border border-gray-700 hover:border-primary  "
@@ -73,36 +74,36 @@ ${
 }
 md:text-lg relative
 rounded-full py-1 px-2`}
-            >
-              {mouseOver === inf.emoji && (
-                <ul
-                  className=" p-2 rounded-md text-sm
+              >
+                {mouseOver === inf.emoji && (
+                  <ul
+                    className=" p-2 rounded-md text-sm
                  bg-black border text-center
                   font-heading border-primary shadow hidden lg:absolute lg:block
                   left-1/2
                   
                   -translate-x-1/2
                  w-fit  bottom-16"
-                >
-                  {inf.username.map((usr) => {
-                    return <li key={uuidv4()}>{usr}</li>;
-                  })}
-                </ul>
-              )}
-              <button
-                onClick={() => {
-                  const isAdminEmoji = adminEmojis.some(
-                    (emoji) => inf.emoji === emoji
-                  );
+                  >
+                    {inf.username.map((usr) => {
+                      return <li key={uuidv4()}>{usr}</li>;
+                    })}
+                  </ul>
+                )}
+                <button
+                  onClick={() => {
+                    const isAdminEmoji = adminEmojis.some(
+                      (emoji) => inf.emoji === emoji
+                    );
 
-                  if (!isAdminEmoji) handleClick(inf.emoji);
-                }}
-              >
-                {inf.emoji} <span>{inf.count}</span>
-              </button>
-            </li>
-          );
-        })}
+                    if (!isAdminEmoji) handleClick(inf.emoji);
+                  }}
+                >
+                  {inf.emoji} <span>{inf.count}</span>
+                </button>
+              </li>
+            );
+          })}
       </ul>
     </div>
   );

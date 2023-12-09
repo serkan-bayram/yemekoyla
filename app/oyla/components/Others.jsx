@@ -16,8 +16,6 @@ export default async function Others({ pb, isAdmin, emojis, currentUser }) {
     adminEmojis.forEach((emoji) => {
       emojisArray.push(emoji);
     });
-
-    console.log(emojisArray);
   }
 
   return (

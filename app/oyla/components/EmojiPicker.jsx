@@ -12,13 +12,9 @@ export default function EmojiPicker({
   setEmojis,
   emojisArray,
 }) {
-  const info = emojis[0].info;
-
-  if (!info) {
-    return null;
-  }
-
   const [mouseOver, setMouseOver] = useState(false);
+
+  const info = emojis[0]?.info || [];
 
   const handleMouseOver = () => {
     setMouseOver(true);
@@ -30,7 +26,6 @@ export default function EmojiPicker({
 
   const handleClick = async (votedEmoji) => {
     const isIncludes = info.some((inf) => votedEmoji === inf.emoji);
-    window;
 
     if (!isIncludes) {
       info.forEach((inf) => {
