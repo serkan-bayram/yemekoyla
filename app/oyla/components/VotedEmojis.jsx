@@ -57,19 +57,6 @@ export default function VotedEmojis({
         {info.map((inf) => {
           return (
             <li
-              onTouchStart={(e) => {
-                for (let i = 0; i < e.targetTouches.length; i++) {
-                  // Add code to "switch" based on the force value. For example
-                  // minimum pressure vs. maximum pressure could result in
-                  // different handling of the user's input.
-                  if (e.targetTouches[i].force > 0.5) {
-                    setMouseOver(true);
-                  }
-                }
-              }}
-              onTouchEnd={() => {
-                setMouseOver(false);
-              }}
               onMouseOver={() => {
                 setMouseOver(inf.emoji);
               }}
@@ -88,8 +75,9 @@ rounded-full py-1 px-2`}
             >
               {mouseOver === inf.emoji && (
                 <ul
-                  className="p-2 rounded-md text-sm
-                 bg-black border text-center font-heading border-primary shadow absolute
+                  className=" p-2 rounded-md text-sm
+                 bg-black border text-center
+                  font-heading border-primary shadow hidden lg:absolute lg:block
                   left-1/2
                   
                   -translate-x-1/2

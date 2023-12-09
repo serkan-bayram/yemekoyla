@@ -27,6 +27,7 @@ export default function EmojiPicker({
 
   const handleClick = async (votedEmoji) => {
     const isIncludes = info.some((inf) => votedEmoji === inf.emoji);
+    window;
 
     if (!isIncludes) {
       info.forEach((inf) => {
@@ -80,18 +81,31 @@ export default function EmojiPicker({
     }
   };
 
+  window.addEventListener("click", (e) => {
+    const id = e.target.id;
+
+    if (!id.startsWith("emoji-picker")) {
+      handleMouseLeave();
+    }
+  });
+
   return (
     <div
-      onMouseLeave={handleMouseLeave}
       onMouseOver={handleMouseOver}
-      className="w-fit py-1 px-2  rounded-full  border border-primary bg-background"
+      onMouseLeave={handleMouseLeave}
+      id="emoji-picker"
+      className=" relative w-fit py-1 px-2  rounded-full  border border-primary bg-background"
     >
-      <ul className="h-full flex justify-center items-center gap-4 md:text-lg">
+      <ul
+        id="emoji-picker-ul"
+        className="h-full flex justify-center items-center gap-4 md:text-lg"
+      >
         {mouseOver ? (
           emojisArray.map((emoji) => {
             return (
-              <li key={uuidv4()}>
+              <li id="emoji-picker-li" key={uuidv4()}>
                 <button
+                  id="emoji-picker-button"
                   onClick={() => {
                     handleClick(emoji);
                   }}
@@ -102,8 +116,8 @@ export default function EmojiPicker({
             );
           })
         ) : (
-          <li>
-            <button>{emojisArray[0]}</button>
+          <li id="emoji-picker-li">
+            <button id="emoji-picker-button">{emojisArray[0]}</button>
           </li>
         )}
       </ul>
