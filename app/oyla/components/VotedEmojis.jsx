@@ -13,9 +13,6 @@ export default function VotedEmojis({
 }) {
   const info = emojis[0].info;
 
-  const touchDuration = 500;
-  let timer;
-
   const [mouseOver, setMouseOver] = useState(false);
 
   const handleClick = async (votedEmoji) => {
@@ -60,21 +57,23 @@ export default function VotedEmojis({
         {info.map((inf) => {
           return (
             <li
-              onTouchStart={() => {
-                timer = setTimeout(() => {
-                  setMouseOver(inf.emoji);
-                }, touchDuration);
+              onTouchStart={(e) => {
+                for (let i = 0; i < e.targetTouches.length; i++) {
+                  // Add code to "switch" based on the force value. For example
+                  // minimum pressure vs. maximum pressure could result in
+                  // different handling of the user's input.
+                  if (e.targetTouches[i].force > 0.5) {
+                    setMouseOver(true);
+                  }
+                }
               }}
               onTouchEnd={() => {
-                if (timer) {
-                  clearTimeout(timer);
-                  setMouseOver(false);
-                }
+                setMouseOver(false);
               }}
               onMouseOver={() => {
                 setMouseOver(inf.emoji);
               }}
-              onMouseLeave={() => {
+              onMouseOut={() => {
                 setMouseOver(false);
               }}
               key={uuidv4()}
