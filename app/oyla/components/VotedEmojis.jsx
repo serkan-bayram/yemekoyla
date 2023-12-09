@@ -10,6 +10,7 @@ export default function VotedEmojis({
   emojis,
   currentUser,
   setEmojis,
+  adminEmojis,
 }) {
   const info = emojis[0].info;
 
@@ -90,7 +91,11 @@ rounded-full py-1 px-2`}
               )}
               <button
                 onClick={() => {
-                  handleClick(inf.emoji);
+                  const isAdminEmoji = adminEmojis.some(
+                    (emoji) => inf.emoji === emoji
+                  );
+
+                  if (!isAdminEmoji) handleClick(inf.emoji);
                 }}
               >
                 {inf.emoji} <span>{inf.count}</span>

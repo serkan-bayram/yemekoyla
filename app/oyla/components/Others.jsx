@@ -2,11 +2,23 @@ import OtherRatings from "./OtherRatings";
 import { getOtherRatings } from "./getOtherRatings";
 import { v4 as uuidv4 } from "uuid";
 
-export default async function Others({ pb, emojis, currentUser }) {
+export default async function Others({ pb, isAdmin, emojis, currentUser }) {
   const response = await getOtherRatings(pb);
 
   const ratings = response?.ratings || null;
   const average = response?.average || null;
+
+  const emojisArray = ["❤", "😂", "😔", "😡", "🤗"];
+
+  const adminEmojis = ["♿", "👨‍🦽"];
+
+  if (isAdmin) {
+    adminEmojis.forEach((emoji) => {
+      emojisArray.push(emoji);
+    });
+
+    console.log(emojisArray);
+  }
 
   return (
     <div className="flex flex-col px-2 pt-12 lg:pt-0 lg:px-48  ">
@@ -22,6 +34,8 @@ export default async function Others({ pb, emojis, currentUser }) {
           ratings.map((rating, index) => {
             return (
               <OtherRatings
+                adminEmojis={adminEmojis}
+                emojisArray={emojisArray}
                 currentUser={currentUser}
                 emojis={emojis.filter(
                   (emoji) => emoji.ratingId === rating.ratingId

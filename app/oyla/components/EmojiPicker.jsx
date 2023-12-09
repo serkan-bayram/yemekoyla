@@ -10,10 +10,9 @@ export default function EmojiPicker({
   ratingId,
   emojis,
   setEmojis,
+  emojisArray,
 }) {
   const info = emojis[0].info;
-
-  const emojisArray = ["❤", "😂", "😔", "😡", "🤗"];
 
   const [mouseOver, setMouseOver] = useState(false);
 
@@ -81,13 +80,15 @@ export default function EmojiPicker({
     }
   };
 
-  window.addEventListener("click", (e) => {
-    const id = e.target.id;
+  if (typeof window !== "undefined") {
+    window.addEventListener("click", (e) => {
+      const id = e.target.id;
 
-    if (!id.startsWith("emoji-picker")) {
-      handleMouseLeave();
-    }
-  });
+      if (!id.startsWith("emoji-picker")) {
+        handleMouseLeave();
+      }
+    });
+  }
 
   return (
     <div

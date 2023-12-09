@@ -8,6 +8,8 @@ export default function OtherRatings({
   ratingId,
   emojis,
   currentUser,
+  emojisArray,
+  adminEmojis,
 }) {
   return (
     <li
@@ -23,6 +25,8 @@ export default function OtherRatings({
           {comment && <p className="mt-3 leading-6 max-w-prose">{comment}</p>}
         </div>
         <Emojis
+          adminEmojis={adminEmojis}
+          emojisArray={emojisArray}
           votedEmojis={emojis}
           ratingId={ratingId}
           currentUser={currentUser}

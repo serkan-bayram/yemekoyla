@@ -18,6 +18,7 @@ export default async function Page() {
   const menu = await getMenu(pb);
   const rating = await getRatings(pb, username, menu);
   const emojis = await getEmojis(pb);
+  const isAdmin = session.user.record.permission === "admin";
 
   const clientSafeRatingInfo = {
     comment: rating?.comment || "",
@@ -37,7 +38,12 @@ export default async function Page() {
         <Food menu={menu} />
         <RatingForm rating={clientSafeRatingInfo} />
       </div>
-      <Others pb={pb} emojis={emojis} currentUser={username} />
+      <Others
+        isAdmin={isAdmin}
+        pb={pb}
+        emojis={emojis}
+        currentUser={username}
+      />
     </div>
   );
 }
