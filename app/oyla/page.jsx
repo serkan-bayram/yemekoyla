@@ -7,6 +7,7 @@ import { getRatings } from "../components/Functions/getRatings";
 import { getMenu } from "../components/Functions/getMenu";
 import { authAsAdmin } from "../components/Functions/authAsAdmin";
 import { getEmojis } from "./components/getEmojis";
+import Notifications from "./components/Notifications";
 
 export default async function Page() {
   const { session } = await getSession();
@@ -29,6 +30,7 @@ export default async function Page() {
 
   return (
     <div className="pt-12">
+      <Notifications pb={pb} />
       <Navbar />
       <div
         className="mb-12 mt-6 w-fit mx-auto p-8 rounded-sm

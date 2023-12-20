@@ -32,7 +32,10 @@ export async function middleware(req) {
       return NextResponse.next();
     }
 
-    if (pathname.startsWith("/api/auth/session")) {
+    if (
+      pathname.startsWith("/api/auth/session") ||
+      pathname.startsWith("/admin")
+    ) {
       if (permission !== "admin") {
         return NextResponse.redirect(new URL("/giris", req.url));
       }
@@ -65,6 +68,7 @@ export async function middleware(req) {
       "/cikis",
       "/profilim",
       "/banned",
+      "/admin",
     ];
     if (cantGoIfNotAuth.includes(pathname)) {
       return NextResponse.redirect(new URL("/giris", req.url));

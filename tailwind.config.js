@@ -26,13 +26,12 @@ module.exports = {
       },
       keyframes: {
         "show-notification": {
-          "65%": { transform: "translateY(-256px)" },
-          "100%": { transform: "translateY(-248px)" },
+          "65%": { transform: "translateY(-10px)" },
+          "100%": { transform: "translateY(-6px)" },
         },
         "hide-notification": {
-          "0%": { transform: "translateY(-248px)" },
-          "5%": { transform: "translateY(-256px)" },
-          "70%": { transform: "translateY(256px)" },
+          "20%": { transform: "translateY(60px)" },
+          "70%": { transform: "translateY(-200px)" },
           "100%": { opacity: "0%" },
         },
         "start-progressbar": {
@@ -50,9 +49,9 @@ module.exports = {
         },
       },
       animation: {
-        "show-notification": "show-notification .7s ease forwards",
-        "hide-notification": "hide-notification 1.25s ease forwards",
-        "start-progressbar": "start-progressbar 5s linear forwards",
+        "show-notification": "show-notification .4s ease forwards",
+        "hide-notification": "hide-notification .7s ease forwards",
+        "start-progressbar": "start-progressbar 10s linear forwards",
         "button-clicked": "button-clicked 400ms linear forwards",
         shake: "shake 0.2s ease-in-out 0s 2",
       },
