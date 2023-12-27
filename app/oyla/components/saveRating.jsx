@@ -21,6 +21,11 @@ export async function saveRating(prevState, formData) {
     menu: menuId,
   };
 
+  // IMPORTANT TODO
+  // if there are two screens opened at the same time, there won't be any ratingId on any of them
+  // when one of them rates other one still does not have any ratingId so it does not even try to update it
+  // try another way to check is it already saved, like searching.
+
   // update record if it is already saved
   if (ratingId !== "-1") {
     try {
