@@ -9,7 +9,7 @@ import { authAsAdmin } from "../components/Functions/authAsAdmin";
 import { getEmojis } from "./components/getEmojis";
 import Notifications from "./components/Notifications";
 import SnowfallClient from "./components/SnowfallClient";
-import { cookies, headers } from "next/headers";
+import { headers } from "next/headers";
 import GuestPage from "./components/GuestPage";
 
 export default async function Page() {
