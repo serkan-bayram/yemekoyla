@@ -1,12 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import RatingContainer from "./RatingContainer";
+import RatingContainer, { RatingContainerGuest } from "./RatingContainer";
 import { saveRating } from "./saveRating";
-import SubmitButton from "./SubmitButton";
+import SubmitButton, { SubmitButtonGuest } from "./SubmitButton";
 import { experimental_useFormState as useFormState } from "react-dom";
 import Popup from "./Popup";
 import AddComment from "../../components/AddComment";
+
+export function RatingFormGuest() {
+  return (
+    <div>
+      <RatingContainerGuest />
+      <SubmitButtonGuest />
+    </div>
+  );
+}
 
 export default function RatingForm({ rating }) {
   const initialState = {

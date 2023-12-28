@@ -28,9 +28,9 @@ export default async function Navbar({ onlyLogo = false, isGuest }) {
         {
           pathname: ["/oyla"],
           links: [
-            { selector: "/", text: "Ana Sayfa" },
-            { selector: "/giris", text: "Giriş Yap" },
-            { selector: "/kaydol", text: "Kaydol" },
+            { href: "/", text: "Ana Sayfa" },
+            { href: "/giris", text: "Giriş Yap" },
+            { href: "/kaydol", text: "Kaydol" },
           ],
         },
       ];

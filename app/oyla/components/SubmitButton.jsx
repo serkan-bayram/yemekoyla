@@ -6,6 +6,21 @@ import { toast } from "react-toastify";
 import Loading from "../../components/LoadingButton";
 import disableScroll from "disable-scroll";
 
+export function SubmitButtonGuest() {
+  return (
+    <div className="flex items-center gap-1 pt-6 w-1/2 md:w-1/3 mx-auto min-w-[250px]">
+      <button
+        type="button"
+        className={`rounded-md mx-auto bg-primary w-full h-full py-2  text-white border
+ border-gray-700 hover:bg-transparent transition-all duration-300
+  appearance-none focus:ring ring-secondary shadow-md cursor-not-allowed`}
+      >
+        Kaydet
+      </button>
+    </div>
+  );
+}
+
 export default function SubmitButton({
   showPopup,
   setShowPopup,

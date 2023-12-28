@@ -1,6 +1,7 @@
 import Navbar from "../../components/Navbar/Navbar";
 import Food from "./Food";
 import Notifications from "./Notifications";
+import { RatingFormGuest } from "./RatingForm";
 import SnowfallClient from "./SnowfallClient";
 
 export default function GuestPage({ pb, menu, emojis }) {
@@ -15,7 +16,7 @@ export default function GuestPage({ pb, menu, emojis }) {
         border-gray-700 lg:shadow-xl"
       >
         <Food menu={menu} />
-        {/* <RatingForm rating={clientSafeRatingInfo} /> */}
+        <RatingFormGuest />
       </div>
       {/* <Others
         isAdmin={isAdmin}
