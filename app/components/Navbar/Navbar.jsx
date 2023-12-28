@@ -34,22 +34,23 @@ export default async function Navbar({ onlyLogo = false, isGuest }) {
           ],
         },
       ];
+    } else {
+      navigation = [
+        {
+          pathname: ["/"],
+          links: [
+            { selector: "#home", text: "Ana Sayfa" },
+            { selector: "#why", text: "Neden?" },
+            { selector: "#how", text: "S.S.S" },
+            { selector: "#contact", text: "İletişim" },
+          ],
+        },
+        {
+          pathname: ["/giris", "/kaydol", "/dogrula"],
+          links: [],
+        },
+      ];
     }
-    navigation = [
-      {
-        pathname: ["/"],
-        links: [
-          { selector: "#home", text: "Ana Sayfa" },
-          { selector: "#why", text: "Neden?" },
-          { selector: "#how", text: "S.S.S" },
-          { selector: "#contact", text: "İletişim" },
-        ],
-      },
-      {
-        pathname: ["/giris", "/kaydol", "/dogrula"],
-        links: [],
-      },
-    ];
   }
 
   // User is authenticated
