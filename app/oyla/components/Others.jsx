@@ -1,4 +1,4 @@
-import { OtherRatingsGuest } from "./OtherRatings";
+import OtherRatings, { OtherRatingsGuest } from "./OtherRatings";
 import { getOtherRatings } from "./getOtherRatings";
 import { v4 as uuidv4 } from "uuid";
 
