@@ -5,7 +5,9 @@ import { voteEmoji } from "./voteEmoji";
 import { deleteEmoji } from "./deleteEmoji";
 import { useState } from "react";
 
-export function VotedEmojisGuest() {
+export function VotedEmojisGuest({ emojis }) {
+  const info = emojis[0]?.info || [];
+
   const [mouseOver, setMouseOver] = useState(false);
 
   return (

@@ -16,11 +16,7 @@ export function EmojisGuest({ votedEmojis, ratingId }) {
 
   return (
     <div className="flex flex-wrap items-center mt-4 gap-2">
-      <VotedEmojisGuest
-        ratingId={ratingId}
-        votedEmojis={votedEmojis}
-        emojis={emojis}
-      />
+      <VotedEmojisGuest emojis={emojis} />
     </div>
   );
 }
