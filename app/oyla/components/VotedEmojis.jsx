@@ -5,6 +5,52 @@ import { voteEmoji } from "./voteEmoji";
 import { deleteEmoji } from "./deleteEmoji";
 import { useState } from "react";
 
+export function VotedEmojisGuest() {
+  const [mouseOver, setMouseOver] = useState(false);
+
+  return (
+    <div className="">
+      <ul className="flex gap-2">
+        {info &&
+          info.map((inf) => {
+            return (
+              <li
+                onMouseOver={() => {
+                  setMouseOver(inf.emoji);
+                }}
+                onMouseOut={() => {
+                  setMouseOver(false);
+                }}
+                key={uuidv4()}
+                className={`border border-primary hover:bg-primary hover:border-gray-700
+md:text-lg relative
+rounded-full py-1 px-2`}
+              >
+                {mouseOver === inf.emoji && (
+                  <ul
+                    className="p-2 rounded-md text-sm
+                 bg-black border text-center
+                  font-heading border-primary shadow hidden lg:absolute lg:block
+                  left-1/2
+                  -translate-x-1/2
+                 w-fit  bottom-16"
+                  >
+                    {inf.username.map((usr) => {
+                      return <li key={uuidv4()}>{usr}</li>;
+                    })}
+                  </ul>
+                )}
+                <button type="button" className="cursor-not-allowed">
+                  {inf.emoji} <span>{inf.count}</span>
+                </button>
+              </li>
+            );
+          })}
+      </ul>
+    </div>
+  );
+}
+
 export default function VotedEmojis({
   ratingId,
   emojis,

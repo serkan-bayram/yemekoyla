@@ -2,7 +2,28 @@
 
 import { useEffect, useState } from "react";
 import EmojiPicker from "./EmojiPicker";
-import VotedEmojis from "./VotedEmojis";
+import VotedEmojis, { VotedEmojisGuest } from "./VotedEmojis";
+
+export function EmojisGuest({ votedEmojis, ratingId }) {
+  useEffect(() => {
+    // we delete ratingId because we don't need it anymore
+    votedEmojis.forEach((emoji) => {
+      delete emoji.ratingId;
+    });
+  }, []);
+
+  const [emojis, setEmojis] = useState(votedEmojis);
+
+  return (
+    <div className="flex flex-wrap items-center mt-4 gap-2">
+      <VotedEmojisGuest
+        ratingId={ratingId}
+        votedEmojis={votedEmojis}
+        emojis={emojis}
+      />
+    </div>
+  );
+}
 
 export default function Emojis({
   emojisArray,

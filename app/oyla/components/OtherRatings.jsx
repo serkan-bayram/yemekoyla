@@ -1,5 +1,5 @@
 import SmallStars from "./SmallStars";
-import Emojis from "./Emojis";
+import Emojis, { EmojisGuest } from "./Emojis";
 
 export function OtherRatingsGuest({
   username,
@@ -22,13 +22,7 @@ export function OtherRatingsGuest({
           </div>
           {comment && <p className="mt-3 leading-6 max-w-prose">{comment}</p>}
         </div>
-        {/* <Emojis
-          adminEmojis={adminEmojis}
-          emojisArray={emojisArray}
-          votedEmojis={emojis}
-          ratingId={ratingId}
-          currentUser={currentUser}
-        /> */}
+        <EmojisGuest votedEmojis={emojis} ratingId={ratingId} />
       </div>
     </li>
   );
