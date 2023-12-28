@@ -9,8 +9,17 @@ import { authAsAdmin } from "../components/Functions/authAsAdmin";
 import { getEmojis } from "./components/getEmojis";
 import Notifications from "./components/Notifications";
 import SnowfallClient from "./components/SnowfallClient";
+import { cookies } from "next/headers";
 
 export default async function Page() {
+  const isGuest = cookies().get("is-guest");
+
+  console.log("isGuest: " + isGuest);
+
+  if (isGuest === "1") {
+    return <div>you are guest</div>;
+  }
+
   const { session } = await getSession();
 
   const username = session.user.record.username;
