@@ -1,6 +1,21 @@
 import { getToken } from "next-auth/jwt";
 import { NextResponse, NextRequest } from "next/server";
 
+function ipToNumber(ip) {
+  const parts = ip.split(".").map(Number);
+  return (parts[0] << 24) | (parts[1] << 16) | (parts[2] << 8) | parts[3];
+}
+
+function isIPInRange(ip, startRange, endRange) {
+  const ipNumber = ipToNumber(ip);
+  const startNumber = ipToNumber(startRange.split("/")[0]);
+  const subnetMask = parseInt(startRange.split("/")[1], 10);
+
+  const endNumber = startNumber + Math.pow(2, 32 - subnetMask) - 1;
+
+  return ipNumber >= startNumber && ipNumber <= endNumber;
+}
+
 export async function middleware(req) {
   const userIp = req.ip;
 
@@ -64,27 +79,22 @@ export async function middleware(req) {
       }
     }
   } else {
-    // user is not authenticated in here
-    if (userIp === "176.233.64.108") {
-      // user is guest but not authenticated
+    const ipRangeStart = "79.123.224.0/22";
 
-      // if user is guest
-      // we set cookies as guest
+    // user is not authenticated in here
+    if (isIPInRange(userIp, ipRangeStart)) {
+      // user is guest but not authenticated
 
       const guestPaths = ["/", "/oyla"];
 
       if (guestPaths.includes(pathname)) {
+        // if user is guest
+        // we set headers as guest
         const newHeaders = new Headers(req.headers);
 
         newHeaders.set("is-guest", "1");
 
         return NextResponse.next({ request: { headers: newHeaders } });
-
-        // const response = NextResponse.next();
-
-        // response.cookies.set("is-guest", "1");
-
-        // return response;
       }
     }
 
