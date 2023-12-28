@@ -2,7 +2,7 @@ import { getToken } from "next-auth/jwt";
 import { NextResponse, NextRequest } from "next/server";
 
 export async function middleware(req) {
-  console.log(req.ip);
+  const userIp = req.ip;
 
   const token = await getToken({ req: req });
   const pathname = req.nextUrl.pathname;
@@ -64,6 +64,25 @@ export async function middleware(req) {
       }
     }
   } else {
+    // user is not authenticated in here
+    if (userIp === "176.233.64.108") {
+      // user is guest but not authenticated
+
+      // if user is guest
+      // we set cookies as guest
+
+      const guestPaths = ["/", "/oyla"];
+
+      if (guestPaths.includes(pathname)) {
+        const response = NextResponse.next();
+
+        response.cookies.set("is-guest", "1");
+
+        return response;
+      }
+    }
+
+    // user is not guest and not authenticated
     const cantGoIfNotAuth = [
       "/oyla",
       "/profilolustur",
