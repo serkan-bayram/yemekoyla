@@ -1,6 +1,6 @@
 import { getSession } from "../../components/Functions/getSession";
 
-export const getEmojis = async (pb) => {
+export const getEmojis = async (pb, isGuest) => {
   try {
     const records = await pb
       .collection("emojis")
@@ -82,6 +82,10 @@ export const getEmojis = async (pb) => {
 
       mergedInfosByEmoji.push({ ratingId: item.ratingId, info: updatedInfo });
     });
+
+    if (isGuest === "1") {
+      return mergedInfosByEmoji;
+    }
 
     // determine isPicked and count
 
