@@ -16,9 +16,7 @@ export default async function Page() {
 
   console.log(isGuest);
 
-  // console.log("isGuest: " + isGuest);
-
-  if (isGuest === "1") {
+  if (isGuest.value === "1") {
     return <div>you are guest</div>;
   }
 
