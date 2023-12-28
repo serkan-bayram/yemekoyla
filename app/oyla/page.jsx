@@ -16,13 +16,11 @@ export default async function Page() {
 
   const isGuest = headersList.get("is-guest");
 
-  console.log(isGuest);
+  console.log(typeof isGuest);
 
-  return <div>trying</div>;
-
-  // if (isGuest?.value === "1") {
-  //   return <div>you are guest</div>;
-  // }
+  if (isGuest === "1") {
+    return <div>you are guest</div>;
+  }
 
   const { session } = await getSession();
 
