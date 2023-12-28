@@ -15,10 +15,31 @@ export default async function Page() {
   const headersList = headers();
   const isGuest = headersList.get("is-guest");
 
+  const notifications = [
+    {
+      title: (
+        <div className="font-heading">
+          Görünüşe göre <b>Eduroam</b> ile bağlanıyorsunuz.
+        </div>
+      ),
+      content: (
+        <p className="font-body mt-1">
+          Kaydolmadan devam etmek için{" "}
+          <Link
+            className="font-semibold text-accent font-body cursor-pointer"
+            href={"/oyla"}
+          >
+            buraya tıklayın.
+          </Link>
+        </p>
+      ),
+    },
+  ];
+
   return (
     <>
       <Navbar />
-      {isGuest && <NotificationsGuest />}
+      {isGuest && <NotificationsGuest notifications={notifications} />}
       <HeroSection />
       <Padding>
         <WhySection />

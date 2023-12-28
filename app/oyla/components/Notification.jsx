@@ -37,7 +37,6 @@ export function NotificationGuest({ title, content }) {
             : "animate-show-notification "
         } flex flex-col gap-2
        bg-background border
-       cursor-pointer
         border-primary rounded-md p-3 shadow relative`}
       >
         {title}
