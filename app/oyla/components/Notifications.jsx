@@ -1,7 +1,7 @@
 import Notification, { NotificationGuest } from "./Notification";
 import { getNotifications } from "./getNotifications";
 import { v4 as uuidv4 } from "uuid";
-import TextLinkWith from "../../components/TextWithLink";
+import Link from "next/link";
 
 export function NotificationsGuest() {
   const notifications = [
@@ -12,9 +12,11 @@ export function NotificationsGuest() {
         </div>
       ),
       content: (
-        <p className="font-body">
-          Giriş yapmadan devam etmek için{" "}
-          <TextLinkWith linkText={"buraya tıklayın."} href={"/oyla"} text="" />
+        <p className="font-body mt-1">
+          Giriş yapmadan devam etmek için
+          <Link className="font-semibold text-accent" href={"/oyla"}>
+            buraya tıklayın.
+          </Link>
         </p>
       ),
     },
