@@ -10,27 +10,25 @@ import { getEmojis } from "./components/getEmojis";
 import Notifications from "./components/Notifications";
 import SnowfallClient from "./components/SnowfallClient";
 import { cookies, headers } from "next/headers";
+import GuestPage from "./components/GuestPage";
 
 export default async function Page() {
-  const headersList = headers();
+  const pb = await authAsAdmin();
+  const menu = await getMenu(pb);
+  const emojis = await getEmojis(pb);
 
+  const headersList = headers();
   const isGuest = headersList.get("is-guest");
 
-  console.log(typeof isGuest);
-
   if (isGuest === "1") {
-    return <div>you are guest</div>;
+    return <GuestPage pb={pb} menu={menu} emojis={emojis} />;
   }
 
   const { session } = await getSession();
-
   const username = session.user.record.username;
   const userId = session.user.record.id;
 
-  const pb = await authAsAdmin();
-  const menu = await getMenu(pb);
   const rating = await getRatings(pb, username, menu);
-  const emojis = await getEmojis(pb);
   const isAdmin = session.user.record.permission === "admin";
 
   const clientSafeRatingInfo = {
