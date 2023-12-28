@@ -14,7 +14,9 @@ import { cookies } from "next/headers";
 export default async function Page() {
   const isGuest = cookies().get("is-guest");
 
-  console.log("isGuest: " + isGuest);
+  console.log(isGuest);
+
+  // console.log("isGuest: " + isGuest);
 
   if (isGuest === "1") {
     return <div>you are guest</div>;
