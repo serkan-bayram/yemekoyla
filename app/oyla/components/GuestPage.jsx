@@ -1,6 +1,7 @@
 import Navbar from "../../components/Navbar/Navbar";
 import Food from "./Food";
 import Notifications from "./Notifications";
+import { OthersGuest } from "./Others";
 import { RatingFormGuest } from "./RatingForm";
 import SnowfallClient from "./SnowfallClient";
 
@@ -18,12 +19,7 @@ export default function GuestPage({ pb, menu, emojis }) {
         <Food menu={menu} />
         <RatingFormGuest />
       </div>
-      {/* <Others
-        isAdmin={isAdmin}
-        pb={pb}
-        emojis={emojis}
-        currentUser={username}
-      /> */}
+      <OthersGuest pb={pb} emojis={emojis} />
     </div>
   );
 }

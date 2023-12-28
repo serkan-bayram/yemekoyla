@@ -12,8 +12,8 @@ export function SubmitButtonGuest() {
       <button
         type="button"
         className={`rounded-md mx-auto bg-primary w-full h-full py-2  text-white border
- border-gray-700 hover:bg-transparent transition-all duration-300
-  appearance-none focus:ring ring-secondary shadow-md cursor-not-allowed`}
+ border-gray-700  duration-300
+  appearance-none  shadow-md cursor-not-allowed`}
       >
         Kaydet
       </button>

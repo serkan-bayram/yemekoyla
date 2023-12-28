@@ -10,8 +10,8 @@ export function RatingContainerGuest() {
           <Rating
             name="rating"
             precision={0.5}
-            size="large"
             readOnly
+            size="large"
             sx={{
               "& .MuiRating-iconEmpty": {
                 color: "#d1d5db",
@@ -19,6 +19,7 @@ export function RatingContainerGuest() {
             }}
           />
         </div>
+        <div className="mt-4"></div>
       </div>
     </div>
   );
