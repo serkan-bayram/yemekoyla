@@ -74,11 +74,17 @@ export async function middleware(req) {
       const guestPaths = ["/", "/oyla"];
 
       if (guestPaths.includes(pathname)) {
-        const response = NextResponse.next();
+        const newHeaders = new Headers(req.headers);
 
-        response.cookies.set("is-guest", "1");
+        newHeaders.set("is-guest", "1");
 
-        return response;
+        return NextResponse.next({ request: { headers: newHeaders } });
+
+        // const response = NextResponse.next();
+
+        // response.cookies.set("is-guest", "1");
+
+        // return response;
       }
     }
 
