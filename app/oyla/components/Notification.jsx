@@ -18,6 +18,10 @@ export function NotificationGuest({ title, content }) {
     }, 10000);
   }, []);
 
+  const handleDelete = () => {
+    setIsApplyAnimation(true);
+  };
+
   if (isApplyAnimation) {
     setTimeout(() => {
       setIsDelete(true);
@@ -41,6 +45,18 @@ export function NotificationGuest({ title, content }) {
       >
         {title}
         {content}
+        <button
+          onClick={handleDelete}
+          type="button"
+          className="mt-2 ml-auto hover:scale-110 transition-all"
+        >
+          <Image
+            alt="Bildirimi Sil."
+            width={24}
+            height={24}
+            src={"/remove.png"}
+          />
+        </button>
         <div
           className={`absolute left-0 bottom-0 h-1 bg-accent 
         animate-start-progressbar
