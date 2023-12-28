@@ -1,12 +1,22 @@
 import Notification, { NotificationGuest } from "./Notification";
 import { getNotifications } from "./getNotifications";
 import { v4 as uuidv4 } from "uuid";
+import TextLinkWith from "../../components/TextWithLink";
 
 export function NotificationsGuest() {
   const notifications = [
     {
-      title: "Görünüşe göre Eduroam ile bağlanıyorsunuz.",
-      content: "Giriş yapmadan devam etmek için buraya tıklayın.",
+      title: (
+        <div className="font-heading">
+          Görünüşe göre <b>Eduroam</b> ile bağlanıyorsunuz.
+        </div>
+      ),
+      content: (
+        <p className="font-body">
+          Giriş yapmadan devam etmek için{" "}
+          <TextLinkWith linkText={"buraya tıklayın."} href={"/oyla"} text="" />
+        </p>
+      ),
     },
   ];
 

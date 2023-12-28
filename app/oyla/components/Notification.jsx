@@ -11,17 +11,12 @@ export function NotificationGuest({ title, content }) {
 
   useEffect(() => {
     setIsCheckCompleted(true);
-
     // animate-start-progressbar lasts 10 seconds, it is important to change if
     // we change 10000
     setTimeout(() => {
       setIsApplyAnimation(true);
     }, 10000);
   }, []);
-
-  const handleDelete = () => {
-    setIsApplyAnimation(true);
-  };
 
   if (isApplyAnimation) {
     setTimeout(() => {
@@ -36,7 +31,6 @@ export function NotificationGuest({ title, content }) {
   return (
     isCheckCompleted && (
       <div
-        onClick={handleDelete}
         className={`${
           isApplyAnimation
             ? "animate-hide-notification"
@@ -46,21 +40,11 @@ export function NotificationGuest({ title, content }) {
        cursor-pointer
         border-primary rounded-md p-3 shadow relative`}
       >
-        <div className="font-heading font-bold">{title}</div>
-
-        <p className="font-body">{content}</p>
-        <button className="mt-2 ml-auto hover:scale-110 transition-all">
-          <Image
-            alt="Bildirimi Sil."
-            width={24}
-            height={24}
-            src={"/remove.png"}
-          />
-        </button>
+        {title}
+        {content}
         <div
           className={`absolute left-0 bottom-0 h-1 bg-accent 
         animate-start-progressbar
-        
         `}
         ></div>
       </div>
