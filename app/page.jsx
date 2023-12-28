@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import { headers } from "next/headers";
 import { NotificationsGuest } from "./oyla/components/Notifications";
+import Link from "next/link";
 
 function Padding({ children }) {
   return <div className="px-12">{children}</div>;
