@@ -8,7 +8,7 @@ export default function GuestPage({ pb, menu, emojis }) {
     <div className="pt-12">
       <Notifications pb={pb} />
       <SnowfallClient />
-      {/* <Navbar /> */}
+      <Navbar isGuest={true} />
       <div
         className="mb-12 mt-6 w-fit mx-auto p-8 rounded-sm
         border bg-secondary h-fit 
