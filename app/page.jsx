@@ -19,12 +19,12 @@ export default async function Page() {
   const notifications = [
     {
       title: (
-        <div className="font-heading">
+        <div className="font-heading text-md">
           Görünüşe göre <b>Eduroam</b> ile bağlanıyorsunuz.
         </div>
       ),
       content: (
-        <p className="font-body mt-1">
+        <p className="font-body mt-1 text-sm">
           Kaydolmadan devam etmek için{" "}
           <Link
             className="font-semibold text-accent font-body cursor-pointer"

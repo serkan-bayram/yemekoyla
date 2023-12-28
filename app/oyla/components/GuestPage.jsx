@@ -8,9 +8,13 @@ import SnowfallClient from "./SnowfallClient";
 export default function GuestPage({ pb, menu, emojis }) {
   const notifications = [
     {
-      title: <div className="font-heading">Misafir olarak giriş yaptınız.</div>,
+      title: (
+        <div className="font-heading text-md">
+          Misafir olarak giriş yaptınız.
+        </div>
+      ),
       content: (
-        <p className="font-body mt-1">
+        <p className="font-body mt-1 text-sm">
           En iyi deneyimi yaşamak için giriş yapın veya kaydolun.
         </p>
       ),
