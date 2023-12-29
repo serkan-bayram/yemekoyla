@@ -37,6 +37,7 @@ export default function OtherRatings({
   currentUser,
   emojisArray,
   adminEmojis,
+  gif,
 }) {
   return (
     <li
@@ -51,6 +52,11 @@ export default function OtherRatings({
           </div>
           {comment && <p className="mt-3 leading-6 max-w-prose">{comment}</p>}
         </div>
+        {gif.length > 0 && (
+          <div className="mt-4">
+            <img src={gif} width={200} height={200} />
+          </div>
+        )}
         <Emojis
           adminEmojis={adminEmojis}
           emojisArray={emojisArray}

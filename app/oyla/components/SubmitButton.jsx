@@ -59,9 +59,9 @@ export default function SubmitButton({
 
   useEffect(() => {
     if (showPopup) {
-      disableScroll.on();
+      document.body.style.overflow = "hidden";
     } else {
-      disableScroll.off();
+      document.body.style.overflow = "auto";
     }
   }, [showPopup]);
 

@@ -3,11 +3,12 @@
 import { revalidatePath } from "next/cache";
 import { authAsAdmin } from "./authAsAdmin";
 
-export async function saveComment(comment, ratingId) {
+export async function saveComment(comment, ratingId, selectedGif) {
   const pb = await authAsAdmin();
 
   const data = {
     comment: comment,
+    gif: selectedGif.length > 0 ? selectedGif : null,
   };
 
   try {

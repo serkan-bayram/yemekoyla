@@ -11,6 +11,10 @@ const nextConfig = {
         protocol: "http",
         hostname: "51.12.208.57",
       },
+      {
+        protocol: "https",
+        hostname: "**.giphy.com",
+      },
     ],
   },
 };

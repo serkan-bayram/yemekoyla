@@ -24,6 +24,7 @@ export const getOtherRatings = async (pb) => {
       rating: record.rating,
       comment: record?.comment || null,
       username: record.expand.user.username,
+      gif: record?.gif || null,
     });
     average += parseFloat(record.rating);
   });

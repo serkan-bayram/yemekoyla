@@ -5,6 +5,7 @@ import CloseButton from "./CloseButton";
 import { saveComment } from "../../components/Functions/saveComment";
 import { error, success } from "../../components/Functions/notify";
 import Loading from "../../components/LoadingButton";
+import Gif from "./Gif";
 
 function OpacityBackground({ setShowPopup }) {
   return (
@@ -108,10 +109,11 @@ appearance-none focus:ring ring-secondary shadow-md`}
 function Form({ setShowPopup, isEditComment, rating }) {
   const [comment, setComment] = useState(rating?.comment);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedGif, setSelectedGif] = useState(rating?.gif);
 
   const handleClick = async () => {
     setIsLoading(true);
-    const response = await saveComment(comment, rating.ratingId);
+    const response = await saveComment(comment, rating.ratingId, selectedGif);
 
     if (response.ok) {
       success(response.message);
@@ -131,6 +133,7 @@ function Form({ setShowPopup, isEditComment, rating }) {
         rating={rating}
         setComment={setComment}
       />
+      <Gif selectedGif={selectedGif} setSelectedGif={setSelectedGif} />
       <SaveButton isLoading={isLoading} handleClick={handleClick} />
     </>
   );
@@ -145,7 +148,7 @@ export default function Popup({
   return showPopup ? (
     <div className="fixed top-0 left-0 min-h-screen w-full flex justify-center items-center  z-50">
       <OpacityBackground setShowPopup={setShowPopup} />
-      <div className="relative z-20 bg-secondary w-full mx-8 md:w-1/3 p-6 rounded-md border border-gray-700">
+      <div className="max-h-[40rem] overflow-y-auto  relative z-20 bg-secondary w-full mx-8 md:w-1/3 p-6 rounded-md border border-gray-700">
         <CloseButton setState={setShowPopup} />
         <Header text={isEditComment ? "Düzenle" : "Oylaman Kaydedildi!"} />
         <Form

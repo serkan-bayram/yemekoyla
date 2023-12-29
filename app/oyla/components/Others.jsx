@@ -80,6 +80,7 @@ export default async function Others({ pb, isAdmin, emojis, currentUser }) {
                 adminEmojis={adminEmojis}
                 emojisArray={emojisArray}
                 currentUser={currentUser}
+                gif={rating?.gif || ""}
                 emojis={emojis.filter(
                   (emoji) => emoji.ratingId === rating.ratingId
                 )}

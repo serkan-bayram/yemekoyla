@@ -35,6 +35,7 @@ export default async function Page() {
   const clientSafeRatingInfo = {
     comment: rating?.comment || "",
     rating: rating?.rating || null,
+    gif: rating?.gif || "",
     ratingId: rating?.id || null,
     menuId: menu?.id || null,
   };

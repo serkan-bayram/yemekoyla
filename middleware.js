@@ -82,7 +82,7 @@ export async function middleware(req) {
     const ipRangeStart = "79.123.224.0/22";
 
     // user is not authenticated in here
-    if (isIPInRange(userIp, ipRangeStart)) {
+    if (userIp && isIPInRange(userIp, ipRangeStart)) {
       // user is guest but not authenticated
 
       const guestPaths = ["/", "/oyla"];

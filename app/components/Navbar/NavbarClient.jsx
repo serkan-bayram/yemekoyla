@@ -12,9 +12,9 @@ export default function NavbarClient({ navigation, state }) {
 
   useEffect(() => {
     if (isOpen) {
-      disableScroll.on();
+      document.body.style.overflow = "hidden";
     } else {
-      disableScroll.off();
+      document.body.style.overflow = "auto";
     }
   }, [isOpen]);
 
