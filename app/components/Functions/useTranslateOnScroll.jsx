@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 
-export function translateOnScroll(ref, rootMargin = "0px", timeout = 0) {
+export function useTranslateOnScroll(ref, rootMargin = "0px", timeout = 0) {
   useEffect(() => {
     if (ref.current) {
       const appearOptions = {
         rootMargin: rootMargin,
       };
 
-      const translateOnScroll = new IntersectionObserver(
-        (entries, translateOnScroll) => {
+      const useTranslateOnScroll = new IntersectionObserver(
+        (entries, useTranslateOnScroll) => {
           entries.forEach((entry) => {
             if (!entry.isIntersecting) {
               return;
@@ -17,14 +17,14 @@ export function translateOnScroll(ref, rootMargin = "0px", timeout = 0) {
                 () => entry.target.classList.add("translate-appear"),
                 timeout
               );
-              translateOnScroll.unobserve(entry.target);
+              useTranslateOnScroll.unobserve(entry.target);
             }
           });
         },
         appearOptions
       );
 
-      translateOnScroll.observe(ref.current);
+      useTranslateOnScroll.observe(ref.current);
     }
   }, [ref.current]);
 }

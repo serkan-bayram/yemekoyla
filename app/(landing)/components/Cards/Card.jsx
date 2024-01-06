@@ -2,14 +2,14 @@
 
 import Image from "next/image";
 import { useRef } from "react";
-import { translateOnScroll } from "../../../components/Functions/translateOnScroll";
+import { useTranslateOnScroll } from "../../../components/Functions/useTranslateOnScroll";
 
 export function Card({ title, content, imageSrc, imageAlt, timeout }) {
   const ref = useRef(0);
 
   const rootMargin = "-100px";
 
-  translateOnScroll(ref, rootMargin, timeout);
+  useTranslateOnScroll(ref, rootMargin, timeout);
 
   return (
     <div ref={ref} className="translate flex flex-col items-center gap-3 ">

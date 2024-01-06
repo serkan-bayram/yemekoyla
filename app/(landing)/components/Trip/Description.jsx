@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { translateOnScroll } from "../../../components/Functions/translateOnScroll";
+import { useTranslateOnScroll } from "../../../components/Functions/useTranslateOnScroll";
 
 export default function Description({ content }) {
   const ref = useRef(0);
@@ -9,7 +9,7 @@ export default function Description({ content }) {
   const rootMargin = "-50px";
   const timeout = 100;
 
-  translateOnScroll(ref, rootMargin, timeout);
+  useTranslateOnScroll(ref, rootMargin, timeout);
 
   return (
     <p

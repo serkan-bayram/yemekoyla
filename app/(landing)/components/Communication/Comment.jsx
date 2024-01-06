@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { appearOnScroll } from "../../../components/Functions/appearOnScroll";
+import { useAppearOnScroll } from "../../../components/Functions/useAppearOnScroll";
 import Image from "next/image";
 
 function fullStar() {
@@ -17,7 +17,7 @@ export function Comment({ author, comment, fullStars, emptyStars }) {
 
   const rootMargin = "-200px";
 
-  appearOnScroll(ref, rootMargin);
+  useAppearOnScroll(ref, rootMargin);
 
   const fullStarsArray = Array.from({ length: fullStars }, (v, index) => index);
   const emptyStarsArray = Array.from(

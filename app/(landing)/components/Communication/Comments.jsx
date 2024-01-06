@@ -1,4 +1,5 @@
 import { Comment } from "./Comment";
+import { v4 as uuidv4 } from "uuid";
 
 export function Comments() {
   const comments = [
@@ -46,6 +47,7 @@ export function Comments() {
       {comments.map((comment) => (
         <div className={`absolute ${comment.positionX} ${comment.positionY}`}>
           <Comment
+            key={uuidv4()}
             author={comment.author}
             comment={comment.comment}
             fullStars={comment.fullStars}

@@ -1,27 +1,27 @@
 import { useEffect } from "react";
 
-export function appearOnScroll(ref, rootMargin) {
+export function useAppearOnScroll(ref, rootMargin) {
   useEffect(() => {
     if (ref.current) {
       const appearOptions = {
         rootMargin: rootMargin,
       };
 
-      const appearOnScroll = new IntersectionObserver(
-        (entries, appearOnScroll) => {
+      const useAppearOnScroll = new IntersectionObserver(
+        (entries, useAppearOnScroll) => {
           entries.forEach((entry) => {
             if (!entry.isIntersecting) {
               return;
             } else {
               entry.target.classList.add("appear");
-              appearOnScroll.unobserve(entry.target);
+              useAppearOnScroll.unobserve(entry.target);
             }
           });
         },
         appearOptions
       );
 
-      appearOnScroll.observe(ref.current);
+      useAppearOnScroll.observe(ref.current);
     }
   }, [ref.current]);
 }
