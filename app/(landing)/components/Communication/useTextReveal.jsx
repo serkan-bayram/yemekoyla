@@ -8,7 +8,7 @@ export const useTextReveal = (ref, text) => {
       const wordCount = words.length;
 
       const options = {
-        rootMargin: "-200px",
+        rootMargin: "-50px",
       };
 
       const wordObserver = new IntersectionObserver((entries, wordObserver) => {
@@ -20,7 +20,7 @@ export const useTextReveal = (ref, text) => {
             const index = entry.target.getAttribute("index");
             setTimeout(() => {
               entry.target.classList.add("word-seen");
-            }, index * 5);
+            }, index * 10);
           }
         });
       }, options);

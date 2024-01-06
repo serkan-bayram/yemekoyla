@@ -31,7 +31,7 @@
 
   .word-to-seen {
     opacity: 0.25;
-    transition: opacity 300ms ease-in;
+    transition: opacity 500ms ease-in;
   }
 
   .word-seen {
