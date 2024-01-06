@@ -126,7 +126,7 @@ function EditField({ field, placeholder, inputError, setInputError }) {
   return (
     <div>
       <div className="w-full h-1 bg-primary rounded-sm shadow my-6"></div>
-      <form onSubmit={handleSubmit}>
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <Input
           isPassword={field === "password"}
           inputError={inputError}
@@ -152,7 +152,7 @@ export default function MyProfileForm({ userEmail, username }) {
   }, [edit]);
 
   return (
-    <div className="px-8 pt-12 mb-12 flex flex-col ">
+    <div className="  mb-12 flex flex-col gap-6 ">
       <DefaultField
         label="E-Posta"
         placeholder={userEmail}

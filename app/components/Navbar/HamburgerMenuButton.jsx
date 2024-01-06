@@ -1,6 +1,13 @@
-export default function HamburgerMenuButton({ handleClick, isOpen }) {
+"use client";
+
+export function HamburgerMenuButton({ isOpen, setIsOpen }) {
+  const handleClick = () => {
+    setIsOpen((prevValue) => !prevValue);
+  };
+
   return (
     <button
+      id="menu-button"
       onClick={handleClick}
       className={`lg:hidden z-50 
         before:my-1 before:block before:w-8 before:h-1 before:rounded-md before:bg-white 

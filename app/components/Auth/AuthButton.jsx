@@ -15,7 +15,7 @@ export default function AuthButton({
     >
       <button
         onClick={handleClick}
-        className="w-full h-full py-2 flex justify-center items-center text-center bg-transparent appearance-none text-white text-sm"
+        className="w-full h-full py-3 flex justify-center items-center text-center bg-transparent appearance-none text-white text-sm"
       >
         {text}
       </button>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import InputWithPassword from "./InputWithPassword";
 
 export function Textarea({ placeholder, name }) {
@@ -20,6 +21,8 @@ export default function Input({
   name,
   isPassword,
   inputError,
+  imgSrc,
+  imgAlt,
 }) {
   const errorState = inputError && inputError?.name === name;
   const errorMessage = inputError && inputError?.message;
@@ -27,33 +30,40 @@ export default function Input({
   return (
     <>
       <div
-        className={`w-full py-2 rounded-md 
+        className={`w-full py-3 rounded-md 
     border ${
-      errorState ? "animate-shake border-error mb-0" : "border-primary mb-6"
+      errorState ? "animate-shake border-error mb-0" : "border-primary "
     }`}
       >
         {isPassword ? (
           <InputWithPassword
+            imgSrc={imgSrc}
+            imgAlt={imgAlt}
             isDisabled={isDisabled}
             errorState={errorState}
             placeholder={placeholder}
             name={name}
           />
         ) : (
-          <input
-            disabled={isDisabled}
-            required
-            name={name}
-            className={`${
-              isDisabled && "cursor-not-allowed"
-            } w-full px-4 bg-transparent placeholder:text-sm appearance-none 
-        outline-none placeholder:text-gray-500 text-white text-sm`}
-            placeholder={placeholder}
-          />
+          <div className="flex pl-3 gap-4 ">
+            {imgSrc && (
+              <Image src={imgSrc} alt={imgAlt} width={24} height={24} />
+            )}
+            <input
+              disabled={isDisabled}
+              required
+              name={name}
+              className={`${
+                isDisabled && "cursor-not-allowed"
+              } w-full  bg-transparent  appearance-none 
+                    outline-none placeholder:text-gray-500 text-white font-body `}
+              placeholder={placeholder}
+            />
+          </div>
         )}
       </div>
       {errorState && (
-        <div className="mb-6 mt-1 text-error text-sm">{errorMessage}</div>
+        <div className=" mt-1 text-error text-sm">{errorMessage}</div>
       )}
     </>
   );

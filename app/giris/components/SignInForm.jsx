@@ -7,6 +7,8 @@ import AuthForm from "../../components/Auth/AuthForm";
 import { error } from "../../components/Functions/notify";
 import AuthButton from "../../components/Auth/AuthButton";
 import { getFormData } from "../../components/Functions/getFormData";
+import BottomTextWithLink from "../../components/BottomTextWithLink";
+import TextWithLink from "../../components/TextWithLink";
 
 export default function SignInForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -37,8 +39,29 @@ export default function SignInForm() {
 
   return (
     <AuthForm handleSubmit={handleSubmit}>
-      <Input placeholder="Kullanıcı Adı" name="username" />
-      <Input placeholder="Şifre" name="password" isPassword={true} />
+      <div className="flex flex-col gap-8 pb-6 w-full">
+        <Input
+          placeholder="Kullanıcı Adı"
+          name="username"
+          imgSrc={"/user.png"}
+          imgAlt={"Kullanıcı"}
+        />
+        <div>
+          <Input
+            placeholder="Şifre"
+            name="password"
+            imgSrc={"/lock.png"}
+            imgAlt={"Şifre"}
+            isPassword={true}
+          />
+          <div className="text-right mt-3">
+            <TextWithLink
+              linkText={"Şifremi Unuttum"}
+              href={"/sifremiunuttum"}
+            />
+          </div>
+        </div>
+      </div>
       <AuthButton text="Giriş Yap" isLoading={isLoading} />
     </AuthForm>
   );

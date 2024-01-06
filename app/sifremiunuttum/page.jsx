@@ -6,13 +6,12 @@ import AuthContainer from "../components/Auth/AuthContainer";
 
 export default async function Page() {
   return (
-    <>
-      <Navbar onlyLogo={true} />
-      <AuthContainer>
-        <AuthHeader text="Şifremi Unuttum" />
-        <ForgotPasswordForm />
+    <AuthContainer>
+      <AuthHeader text="Şifremi Unuttum" />
+      <ForgotPasswordForm />
+      <div className="text-center mt-6 mb-3">
         <TextWithLink text="" href="/giris" linkText="Geri Dön" />
-      </AuthContainer>
-    </>
+      </div>
+    </AuthContainer>
   );
 }

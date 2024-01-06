@@ -8,6 +8,37 @@
   -webkit-text-fill-color: transparent;
 } */
 
+@layer components {
+  .fade-in {
+    opacity: 0;
+    transition: opacity 250ms ease-in;
+  }
+
+  .fade-in.appear {
+    opacity: 1;
+  }
+
+  .translate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 250ms ease-in;
+  }
+
+  .translate.translate-appear {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+
+  .word-to-seen {
+    opacity: 0.25;
+    transition: opacity 300ms ease-in;
+  }
+
+  .word-seen {
+    opacity: 1;
+  }
+}
+
 :root {
   color-scheme: dark;
 }

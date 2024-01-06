@@ -8,6 +8,8 @@ export default function InputWithPassword({
   placeholder,
   name,
   errorState,
+  imgSrc,
+  imgAlt,
 }) {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -16,17 +18,18 @@ export default function InputWithPassword({
   };
 
   return (
-    <div className="flex pr-4">
+    <div className="flex pr-4 pl-3">
+      {imgSrc && <Image src={imgSrc} alt={imgAlt} width={24} height={24} />}
       <input
         disabled={isDisabled}
         required
         type={isVisible ? "text" : "password"}
         name={name}
-        className={`${
-          isDisabled && "cursor-not-allowed"
-        } w-full px-4 bg-transparent placeholder:text-sm appearance-none 
-          outline-none placeholder:text-gray-500
-           text-white text-sm`}
+        className={`${isDisabled && "cursor-not-allowed"} w-full ${
+          imgSrc && "pl-3"
+        } bg-transparent  appearance-none 
+          outline-none placeholder:text-gray-500 font-body
+           text-white `}
         placeholder={placeholder}
       />
       <button

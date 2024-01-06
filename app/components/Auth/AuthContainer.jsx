@@ -1,10 +1,20 @@
+import { Logo } from "../Navbar/Logo";
+
 // Container for /giris, /kaydol etc..
-export default function AuthContainer({ children }) {
+export default function AuthContainer({ children, noLogo }) {
   return (
-    <div className="w-full h-[100dvh] flex justify-center items-center">
+    <div
+      className="w-full h-screen flex flex-col items-center 
+    justify-center gap-8 px-4 lg:p-64 xl:px-[28rem] "
+    >
+      {!noLogo && (
+        <div className="flex ">
+          <Logo />
+        </div>
+      )}
       <div
-        className="relative w-5/6 lg:w-1/3 h-5/6 bg-secondary overflow-y-auto pb-6
-        rounded-md border border-primary shadow"
+        className=" bg-secondary 
+        rounded-md border border-primary shadow w-full px-8 pb-6 mb-8 "
       >
         {children}
       </div>

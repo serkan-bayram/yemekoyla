@@ -7,10 +7,12 @@ export default async function Page() {
   return (
     <>
       <Navbar />
-      <AuthContainer>
+      <AuthContainer noLogo={true}>
         <AuthHeader text="Profilim" />
         <MyProfile />
-        <TextWithLink text="" href="/oyla" linkText="Geri Dön" />
+        <div className="text-center py-4">
+          <TextWithLink text="" href="/oyla" linkText="Geri Dön" />
+        </div>
       </AuthContainer>
     </>
   );

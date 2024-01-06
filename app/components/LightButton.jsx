@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 // Source: https://www.youtube.com/watch?v=fcnDBP3k3BE&t=28s
 
 function FancyButtonSVG({ isHover }) {
-  const containerOffset = 100;
+  const containerOffset = 150;
 
   return (
     <svg
@@ -55,21 +56,31 @@ function FancyButtonSVG({ isHover }) {
   );
 }
 
-export default function LightButton({}) {
-  const isFancy = true;
-
+export default function LightButton({
+  isFancy,
+  text,
+  imgSrc,
+  imgAlt,
+  href,
+  handleClick,
+}) {
   const [isHover, setIsHover] = useState(false);
 
   return (
     <button
+      onClick={handleClick ? handleClick : () => {}}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
-      className="p-2 px-4 rounded-md bg-white relative"
+      className={`p-2 px-4 rounded-md bg-white relative font-body  ${
+        !isFancy && "hover:bg-fade-400 transition-all"
+      }`}
     >
-      <div className="flex gap-3 items-center justify-center ">
-        <Image src="/star.png" width={24} height={24} />
-        <span className="pb-1 text-primary font-semibold">Şimdi Oyla</span>
-      </div>
+      <Link href={href}>
+        <div className="flex  gap-3 items-center justify-center ">
+          <Image src={imgSrc} alt={imgAlt} width={24} height={24} />
+          <span className=" text-primary-400 font-semibold">{text}</span>
+        </div>
+      </Link>
       {isFancy && <FancyButtonSVG isHover={isHover} />}
     </button>
   );

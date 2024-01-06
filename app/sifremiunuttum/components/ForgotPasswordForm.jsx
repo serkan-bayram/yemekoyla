@@ -106,30 +106,46 @@ export default function SignUpForm() {
   return !isSend ? (
     <>
       <AuthForm handleSubmit={handleSubmit}>
-        <Input
-          inputError={inputError}
-          placeholder="ornek@ogrenci.bilecik.edu.tr"
-          name="email"
-        />
-        <AuthButton isLoading={isLoading} text="Sıfırla" />
+        <div className="flex flex-col gap-6">
+          <Input
+            inputError={inputError}
+            placeholder="ornek@ogrenci.bilecik.edu.tr"
+            name="email"
+            imgSrc={"/email-signup.png"}
+            imgAlt={"E-Posta"}
+          />
+          <AuthButton isLoading={isLoading} text="Sıfırla" />
+        </div>
       </AuthForm>
     </>
   ) : (
     <>
       <AuthForm handleSubmit={handleResetSubmit}>
-        <Input inputError={inputError} placeholder="E-Posta'nız" name="email" />
-        <Input
-          inputError={inputError}
-          placeholder="E-Posta'nıza Gelen Kod"
-          name="code"
-        />
-        <Input
-          inputError={inputError}
-          placeholder="Yeni Şifreniz"
-          name="password"
-          isPassword={true}
-        />
-        <AuthButton isLoading={isLoading} text="Sıfırla" />
+        <div className="flex flex-col gap-6">
+          <Input
+            inputError={inputError}
+            placeholder="E-Posta'nız"
+            name="email"
+            imgSrc={"/email-signup.png"}
+            imgAlt={"E-Posta"}
+          />
+          <Input
+            inputError={inputError}
+            placeholder="E-Posta'nıza Gelen Kod"
+            name="code"
+            imgSrc={"/lock.png"}
+            imgAlt={"Şifre"}
+          />
+          <Input
+            inputError={inputError}
+            placeholder="Yeni Şifreniz"
+            name="password"
+            imgSrc={"/lock.png"}
+            imgAlt={"Şifre"}
+            isPassword={true}
+          />
+          <AuthButton isLoading={isLoading} text="Sıfırla" />
+        </div>
       </AuthForm>
     </>
   );

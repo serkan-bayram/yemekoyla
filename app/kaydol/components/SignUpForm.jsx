@@ -63,13 +63,19 @@ export default function SignUpForm() {
 
   return (
     <AuthForm handleSubmit={handleSubmit}>
-      <label className="mb-1 font-heading text-md">Okul E-Postanız</label>
-      <Input
-        inputError={inputError}
-        placeholder="ornek@ogrenci.bilecik.edu.tr"
-        name="email"
-      />
-      <AuthButton text="Kaydol" isLoading={isLoading} />
+      <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-2">
+          <label className=" font-heading text-sm">Okul E-Postanız</label>
+          <Input
+            inputError={inputError}
+            placeholder="ornek@ogrenci.bilecik.edu.tr"
+            name="email"
+            imgSrc={"/email-signup.png"}
+            imgAlt={"E-Posta"}
+          />
+        </div>
+        <AuthButton text="Kaydol" isLoading={isLoading} />
+      </div>
     </AuthForm>
   );
 }

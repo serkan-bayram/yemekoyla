@@ -6,17 +6,16 @@ import AuthContainer from "../components/Auth/AuthContainer";
 
 export default async function Page() {
   return (
-    <>
-      <Navbar onlyLogo={true} />
-      <AuthContainer>
-        <AuthHeader text="Kaydol" />
-        <SignUpForm />
+    <AuthContainer>
+      <AuthHeader text="Kaydol" />
+      <SignUpForm />
+      <div className="text-center py-8">
         <TextWithLink
           text="Zaten hesabın var mı?"
           href="/giris"
           linkText="Giriş Yap."
         />
-      </AuthContainer>
-    </>
+      </div>
+    </AuthContainer>
   );
 }

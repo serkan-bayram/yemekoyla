@@ -92,23 +92,25 @@ export default function CreateProfileForm() {
 
   return (
     <AuthForm handleSubmit={handleSubmit}>
-      <Input
-        inputError={inputError}
-        placeholder="Kullanıcı Adı"
-        name="username"
-      />
-      <Input
-        inputError={inputError}
-        placeholder="Şifre"
-        name="password"
-        isPassword={true}
-      />
-      <Input
-        inputError={inputError}
-        placeholder="E-posta'nıza Gelen Kod"
-        name="code"
-      />
-      <AuthButton isLoading={isLoading} text="Onayla" />
+      <div className="flex flex-col gap-5">
+        <Input
+          inputError={inputError}
+          placeholder="Kullanıcı Adı"
+          name="username"
+        />
+        <Input
+          inputError={inputError}
+          placeholder="Şifre"
+          name="password"
+          isPassword={true}
+        />
+        <Input
+          inputError={inputError}
+          placeholder="E-posta'nıza Gelen Kod"
+          name="code"
+        />
+        <AuthButton isLoading={isLoading} text="Onayla" />
+      </div>
     </AuthForm>
   );
 }
