@@ -13,6 +13,7 @@ export default function Button({ text }) {
         <Image
           className="group-hover:translate-x-2 transition-all "
           src="/right-arrow.png"
+          alt=""
           width={12}
           height={12}
         />

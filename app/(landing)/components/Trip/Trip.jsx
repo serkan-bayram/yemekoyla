@@ -18,9 +18,15 @@ export default function Trip() {
             src={"/man.svg"}
             width={407}
             height={416}
+            alt=""
           />
         </div>
-        <Image fill src="/blurry-background.png" className=" lg:px-24 px-4 " />
+        <Image
+          fill
+          alt=""
+          src="/blurry-background.png"
+          className=" lg:px-24 px-4 "
+        />
       </div>
     </div>
   );

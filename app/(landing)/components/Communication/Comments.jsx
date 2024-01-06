@@ -45,9 +45,11 @@ export function Comments() {
   return (
     <div className="hidden lg:block">
       {comments.map((comment) => (
-        <div className={`absolute ${comment.positionX} ${comment.positionY}`}>
+        <div
+          key={uuidv4()}
+          className={`absolute ${comment.positionX} ${comment.positionY}`}
+        >
           <Comment
-            key={uuidv4()}
             author={comment.author}
             comment={comment.comment}
             fullStars={comment.fullStars}

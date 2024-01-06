@@ -5,11 +5,11 @@ import { useAppearOnScroll } from "../../../components/Functions/useAppearOnScro
 import Image from "next/image";
 
 function fullStar() {
-  return <Image src={"/full-star.svg"} width={16} height={16} />;
+  return <Image alt="" src={"/full-star.svg"} width={16} height={16} />;
 }
 
 function emptyStar() {
-  return <Image src={"/empty-star.png"} width={16} height={16} />;
+  return <Image alt="" src={"/empty-star.png"} width={16} height={16} />;
 }
 
 export function Comment({ author, comment, fullStars, emptyStars }) {

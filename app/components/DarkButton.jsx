@@ -16,7 +16,7 @@ export default function DarkButton({ isFancy, selector }) {
     >
       <ScrollIntoView selector={selector}>
         <div className="flex gap-3 items-center justify-center ">
-          <Image src="/faq.png" width={24} height={24} />
+          <Image alt="" src="/faq.png" width={24} height={24} />
           <span className=" text-white font-semibold">Nasıl?</span>
         </div>
       </ScrollIntoView>
