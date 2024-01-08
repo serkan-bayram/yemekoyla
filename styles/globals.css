@@ -30,8 +30,8 @@
   }
 
   .word-to-seen {
-    opacity: 0.25;
-    transition: opacity 500ms ease-in;
+    opacity: 0.1;
+    transition: opacity 750ms ease-in;
   }
 
   .word-seen {

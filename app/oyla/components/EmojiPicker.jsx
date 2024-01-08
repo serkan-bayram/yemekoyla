@@ -94,7 +94,7 @@ export default function EmojiPicker({
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseLeave}
       id="emoji-picker"
-      className=" relative w-fit py-1 px-2  rounded-full  border border-primary bg-background"
+      className=" relative w-fit py-1 px-2  rounded-full  border border-primary-100 bg-primary-400"
     >
       <ul
         id="emoji-picker-ul"

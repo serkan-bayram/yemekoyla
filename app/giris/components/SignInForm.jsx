@@ -1,7 +1,7 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import Input from "../../components/Input";
+import Input from "../../components/Input/Input";
 import { useState } from "react";
 import AuthForm from "../../components/Auth/AuthForm";
 import { error } from "../../components/Functions/notify";
@@ -39,20 +39,18 @@ export default function SignInForm() {
 
   return (
     <AuthForm handleSubmit={handleSubmit}>
-      <div className="flex flex-col gap-8 pb-6 w-full">
+      <div className="flex flex-col gap-8 w-full">
         <Input
           placeholder="Kullanıcı Adı"
           name="username"
-          imgSrc={"/user.png"}
-          imgAlt={"Kullanıcı"}
+          iconName={"fa-solid fa-user"}
         />
         <div>
           <Input
+            isPassword={true}
             placeholder="Şifre"
             name="password"
-            imgSrc={"/lock.png"}
-            imgAlt={"Şifre"}
-            isPassword={true}
+            iconName={"fa-solid fa-lock"}
           />
           <div className="text-right mt-3">
             <TextWithLink
@@ -61,8 +59,12 @@ export default function SignInForm() {
             />
           </div>
         </div>
+        <AuthButton
+          text="Devam Et"
+          isLoading={isLoading}
+          iconName={"fa-solid fa-right-to-bracket"}
+        />
       </div>
-      <AuthButton text="Giriş Yap" isLoading={isLoading} />
     </AuthForm>
   );
 }

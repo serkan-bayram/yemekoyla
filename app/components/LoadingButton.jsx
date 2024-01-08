@@ -1,8 +1,8 @@
 export default function Loading() {
   return (
     <div
-      className="animate-button-clicked rounded-full mx-auto bg-primary w-full h-full py-2  text-white border
-          border-gray-700 appearance-none focus:ring ring-secondary shadow-md"
+      className="animate-button-clicked rounded-full mx-auto bg-primary-100 w-full h-full py-2  text-white border
+          border-gray-700 appearance-none focus:ring ring-border-primary-400 shadow-md"
     >
       <div
         className="h-full w-full scale-[0.9] flex justify-center items-center"

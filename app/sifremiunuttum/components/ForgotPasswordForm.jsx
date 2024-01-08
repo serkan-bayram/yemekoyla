@@ -1,6 +1,6 @@
 "use client";
 
-import Input from "../../components/Input";
+import Input from "../../components/Input/Input";
 import {
   validateEmail,
   validatePassword,
@@ -111,8 +111,7 @@ export default function SignUpForm() {
             inputError={inputError}
             placeholder="ornek@ogrenci.bilecik.edu.tr"
             name="email"
-            imgSrc={"/email-signup.png"}
-            imgAlt={"E-Posta"}
+            iconName={"fa-solid fa-envelope"}
           />
           <AuthButton isLoading={isLoading} text="Sıfırla" />
         </div>
@@ -126,22 +125,19 @@ export default function SignUpForm() {
             inputError={inputError}
             placeholder="E-Posta'nız"
             name="email"
-            imgSrc={"/email-signup.png"}
-            imgAlt={"E-Posta"}
+            iconName={"fa-solid fa-envelope"}
           />
           <Input
             inputError={inputError}
             placeholder="E-Posta'nıza Gelen Kod"
             name="code"
-            imgSrc={"/lock.png"}
-            imgAlt={"Şifre"}
+            iconName={"fa-solid fa-message"}
           />
           <Input
             inputError={inputError}
             placeholder="Yeni Şifreniz"
             name="password"
-            imgSrc={"/lock.png"}
-            imgAlt={"Şifre"}
+            iconName={"fa-solid fa-lock"}
             isPassword={true}
           />
           <AuthButton isLoading={isLoading} text="Sıfırla" />

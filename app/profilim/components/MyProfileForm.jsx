@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Input from "../../components/Input";
 import AuthButton from "../../components/Auth/AuthButton";
+import Input from "../../components/Input/Input";
 import {
   validatePassword,
   validateUsername,
@@ -12,12 +12,16 @@ import { changeUsername } from "../../components/Functions/changeUsername";
 import { changePassword } from "../../components/Functions/changePassword";
 import { error, success } from "../../components/Functions/notify";
 
-function DefaultField({ label, placeholder, title }) {
+function DefaultField({ label, placeholder, title, iconName }) {
   return (
     <div>
       <div className="mb-2 text-sm">{label}</div>
       <div title={title}>
-        <Input isDisabled={true} placeholder={placeholder} />
+        <Input
+          isDisabled={true}
+          placeholder={placeholder}
+          iconName={iconName}
+        />
       </div>
     </div>
   );
@@ -125,13 +129,16 @@ function EditField({ field, placeholder, inputError, setInputError }) {
 
   return (
     <div>
-      <div className="w-full h-1 bg-primary rounded-sm shadow my-6"></div>
+      <div className="w-full h-1 bg-primary-100 rounded-sm shadow my-6"></div>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <Input
           isPassword={field === "password"}
           inputError={inputError}
           name="inputValue"
           placeholder={placeholder}
+          iconName={
+            field === "password" ? "fa-solid fa-lock" : "fa-solid fa-user"
+          }
         />
         <AuthButton isLoading={isLoading} text="Kaydet" />
       </form>
@@ -157,8 +164,13 @@ export default function MyProfileForm({ userEmail, username }) {
         label="E-Posta"
         placeholder={userEmail}
         title="E-Posta'nızı değiştiremezsiniz."
+        iconName={"fa-solid fa-envelope"}
       />
-      <DefaultField label="Kullanıcı Adı" placeholder={username} />
+      <DefaultField
+        label="Kullanıcı Adı"
+        placeholder={username}
+        iconName={"fa-solid fa-user"}
+      />
       <div className="flex gap-5 md:flex-row flex-col">
         <AuthButton
           handleClick={() => {

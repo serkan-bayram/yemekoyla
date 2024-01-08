@@ -24,7 +24,7 @@ export function VotedEmojisGuest({ emojis }) {
                   setMouseOver(false);
                 }}
                 key={uuidv4()}
-                className={`border border-primary hover:bg-primary hover:border-gray-700
+                className={`border border-primary-100 hover:bg-primary-100 hover:border-gray-700
 md:text-lg relative
 rounded-full py-1 px-2`}
               >
@@ -32,7 +32,7 @@ rounded-full py-1 px-2`}
                   <ul
                     className="p-2 rounded-md text-sm
                  bg-black border text-center
-                  font-heading border-primary shadow hidden lg:absolute lg:block
+                  font-heading border-primary-100 shadow hidden lg:absolute lg:block
                   left-1/2
                   -translate-x-1/2
                  w-fit  bottom-16"
@@ -117,8 +117,8 @@ export default function VotedEmojis({
                 className={`
 ${
   inf.isPicked
-    ? "bg-primary hover:bg-transparent border border-gray-700 hover:border-primary  "
-    : "border border-primary hover:bg-primary hover:border-gray-700"
+    ? "bg-primary-100 hover:bg-transparent border border-gray-700 hover:border-primary-100  "
+    : "border border-primary-100 hover:bg-primary-100 hover:border-gray-700"
 }
 md:text-lg relative
 rounded-full py-1 px-2`}
@@ -127,7 +127,7 @@ rounded-full py-1 px-2`}
                   <ul
                     className=" p-2 rounded-md text-sm
                  bg-black border text-center
-                  font-heading border-primary shadow hidden lg:absolute lg:block
+                  font-heading border-primary-100 shadow hidden lg:absolute lg:block
                   left-1/2
                   
                   -translate-x-1/2

@@ -8,7 +8,10 @@ import LightButton from "../LightButton";
 
 function Text({ text }) {
   return (
-    <div className=" p-2 px-3 rounded-md hover:bg-primary-400 cursor-pointer text-md">
+    <div
+      className=" lg:p-2 lg:px-3 rounded-md lg:hover:bg-primary-400
+     cursor-pointer text-md"
+    >
       {text}
     </div>
   );
@@ -88,22 +91,20 @@ export function Items({ isOpen, navigation, setIsOpen }) {
       </ul>
       <div
         id="menu"
-        className={`transition-transform lg:hidden py-4 
+        className={` lg:hidden py-4 
           bg-primary-400/80  w-screen h-screen
           backdrop-blur-md
         
            fixed top-16 left-0 z-50
-           font-heading
-          ${
-            isOpen
-              ? "translate-y-0 opacity-100"
-              : "-translate-y-full opacity-0 hidden"
-          } 
+           font-body
+           text-xl font-semibold
+           transition-opacity duration-300
+          ${isOpen ? "opacity-100" : "opacity-0 -translate-x-full"} 
           `}
       >
-        <ul className="flex flex-col gap-8  ">
+        <ul className="flex flex-col gap-12 px-4 ">
           <ItemsByPath setIsOpen={setIsOpen} navigation={navigation} />
-          <li className="self-center mt-8">
+          <li className="">
             <LightButton
               href={"/oyla"}
               isFancy={true}

@@ -11,7 +11,7 @@ export function SubmitButtonGuest() {
     <div className="flex items-center gap-1 pt-6 w-1/2 md:w-1/3 mx-auto min-w-[250px]">
       <button
         type="button"
-        className={`rounded-md mx-auto bg-primary w-full h-full py-2  text-white border
+        className={`rounded-md mx-auto bg-primary-100 w-full h-full py-2  text-white border
  border-gray-700  duration-300
   appearance-none  shadow-md cursor-not-allowed`}
       >
@@ -72,9 +72,9 @@ export default function SubmitButton({
       ) : (
         <button
           type="submit"
-          className={`rounded-md mx-auto bg-primary w-full h-full py-2  text-white border
+          className={`rounded-md mx-auto bg-primary-100 w-full h-full py-2  text-white border
      border-gray-700 hover:bg-transparent transition-all duration-300
-      appearance-none focus:ring ring-secondary shadow-md`}
+      appearance-none focus:ring ring-primary-400 shadow-md`}
         >
           Kaydet
         </button>

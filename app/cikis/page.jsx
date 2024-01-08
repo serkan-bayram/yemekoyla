@@ -6,7 +6,7 @@ import AltText from "../components/TextWithLink";
 export default async function Page() {
   return (
     <div className="flex flex-col justify-center items-center h-screen px-12">
-      <div className="bg-secondary p-12  rounded-md text-center shadow border border-primary">
+      <div className="bg-primary-400 p-12  rounded-md text-center shadow border border-primary-100">
         <h1 className="text-white mb-6">
           Çıkış yapmak istediğinize emin misiniz?
         </h1>

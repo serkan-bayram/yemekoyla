@@ -20,7 +20,7 @@ function OpacityBackground({ setShowPopup }) {
 
 function Header({ text }) {
   return (
-    <div className="text-lightAccent text-xl p-4 pb-0 font-bold font-heading text-center">
+    <div className="text-accent-300 text-xl p-4 pb-0 font-bold font-heading text-center">
       {text}
     </div>
   );
@@ -63,7 +63,8 @@ function CommentSection({ comment, setComment, isEditComment, rating }) {
           name="comment"
           rows={6}
           placeholder="Yorumunuz..."
-          className="resize-none w-full pr-4 pl-2 pt-2 pb-24 md:pb-9  border border-primary bg-transparent rounded-md
+          className="resize-none w-full pr-4 pl-2 pt-2 pb-24 md:pb-9 
+           border border-primary-100 bg-transparent rounded-md
              placeholder:text-sm
              overflow-y-hidden
               appearance-none outline-none placeholder:text-gray-500 text-white text-sm"
@@ -80,7 +81,7 @@ function CommentSection({ comment, setComment, isEditComment, rating }) {
               ? "rounded-br-sm"
               : "rounded-br-sm rounded-tr-sm"
           }
-       left-0 bg-accent h-1`}
+       left-0 bg-accent-400 h-1`}
         ></div>
       </div>
     </div>
@@ -97,9 +98,11 @@ function SaveButton({ isLoading, handleClick }) {
     <button
       onClick={handleClick}
       type="button"
-      className={`mt-6 rounded-md mx-auto bg-primary w-full h-full py-2  text-white border
+      className={`mt-6 rounded-md mx-auto bg-primary-100 w-full h-full
+       py-2 
+       text-white border
 border-gray-700 hover:bg-transparent transition-all duration-300
-appearance-none focus:ring ring-secondary shadow-md`}
+appearance-none focus:ring ring-primary-400 shadow-md`}
     >
       Kaydet
     </button>
@@ -146,9 +149,16 @@ export default function Popup({
   setShowPopup,
 }) {
   return showPopup ? (
-    <div className="fixed top-0 left-0 min-h-screen w-full flex justify-center items-center  z-50">
+    <div
+      className="fixed top-0 left-0 min-h-screen w-full
+     flex justify-center items-center  z-50"
+    >
       <OpacityBackground setShowPopup={setShowPopup} />
-      <div className="max-h-[40rem] overflow-y-auto  relative z-20 bg-secondary w-full mx-8 md:w-1/3 p-6 rounded-md border border-gray-700">
+      <div
+        className="max-h-[40rem] overflow-y-auto 
+       relative z-20 bg-primary-400 w-full mx-8 md:w-1/3 p-6
+        rounded-md border border-gray-700"
+      >
         <CloseButton setState={setShowPopup} />
         <Header text={isEditComment ? "Düzenle" : "Oylaman Kaydedildi!"} />
         <Form

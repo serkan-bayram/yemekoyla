@@ -28,7 +28,7 @@ export default function GuestPage({ pb, menu, emojis }) {
       <Navbar isGuest={true} />
       <div
         className="mb-12 mt-6 w-fit mx-auto p-8 rounded-sm
-        border bg-secondary h-fit 
+        border bg-primary-400 h-fit 
         border-gray-700 lg:shadow-xl"
       >
         <Food menu={menu} />

@@ -30,8 +30,8 @@ function AddGif({ setIsAddGif, setIsSearching }) {
     <button
       onClick={handleClick}
       type="button"
-      className="px-3 py-1 rounded-md  bg-transparent hover:bg-primary
-       transition-all border font-body border-primary text-white"
+      className="px-3 py-1 rounded-md  bg-transparent hover:bg-primary-100
+       transition-all border font-body border-primary-100 text-white"
     >
       GIF
     </button>
@@ -84,7 +84,8 @@ function SearchGif({ isAddGif, setIsSearching, setGifs }) {
       <input
         onFocus={() => setIsSearching(true)}
         onChange={handleChange}
-        className="appearance-none w-full rounded-md border border-primary
+        className="appearance-none w-full rounded-md border 
+        border-primary-100
        bg-transparent px-2 py-1 font-heading  "
         placeholder="Ara"
       />
@@ -103,8 +104,10 @@ function GifPopup({ gifs, isSearching, setSelectedGif, setIsSearching }) {
   return (
     isSearching && (
       <div
-        className="absolute w-full md:w-2/3 bg-primary border border-secondary
-       p-2 rounded-md bottom-12 right-0 z-50 max-h-80 overflow-y-auto flex gap-4 flex-wrap"
+        className="absolute w-full md:w-2/3 bg-primary-100 border
+         border-primary-400
+       p-2 rounded-md bottom-12 right-0 z-50 max-h-80 overflow-y-auto 
+       flex gap-4 flex-wrap"
       >
         {!isThereAnyGifs ? (
           <div>Gif Bulunamadı</div>

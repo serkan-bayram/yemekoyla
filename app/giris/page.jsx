@@ -8,7 +8,7 @@ export default async function Page() {
     <AuthContainer>
       <AuthHeader text="Giriş Yap" />
       <SignInForm />
-      <div className="text-center py-12">
+      <div className="text-center">
         <TextWithLink
           text="Hesabın yok mu?"
           href="/kaydol"

@@ -18,7 +18,7 @@ export async function OthersGuest({ pb, emojis }) {
       </div>
       <ul
         className="mb-8 shadow border  border-gray-700
-   bg-secondary"
+   bg-primary-400"
       >
         {!!average ? (
           ratings.map((rating, index) => {
@@ -71,7 +71,7 @@ export default async function Others({ pb, isAdmin, emojis, currentUser }) {
       </div>
       <ul
         className="mb-8 shadow border  border-gray-700
-       bg-secondary"
+       bg-primary-400"
       >
         {!!average ? (
           ratings.map((rating, index) => {

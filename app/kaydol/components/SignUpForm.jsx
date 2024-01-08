@@ -1,7 +1,7 @@
 "use client";
 
 import { sendVerifyCode } from "./sendVerifyCode";
-import Input from "../../components/Input";
+import Input from "../../components/Input/Input";
 import { validateEmail } from "../../components/Functions/validations";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
@@ -70,11 +70,14 @@ export default function SignUpForm() {
             inputError={inputError}
             placeholder="ornek@ogrenci.bilecik.edu.tr"
             name="email"
-            imgSrc={"/email-signup.png"}
-            imgAlt={"E-Posta"}
+            iconName={"fa-solid fa-envelope"}
           />
         </div>
-        <AuthButton text="Kaydol" isLoading={isLoading} />
+        <AuthButton
+          iconName={"fa-solid fa-right-to-bracket"}
+          text="Kaydol"
+          isLoading={isLoading}
+        />
       </div>
     </AuthForm>
   );

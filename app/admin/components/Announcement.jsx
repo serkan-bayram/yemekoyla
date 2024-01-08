@@ -26,7 +26,7 @@ export default function Announcement() {
         <label htmlFor="title">Duyuru Başlığı</label>
         <input
           required
-          className="bg-background border border-primary rounded-md py-1 px-2"
+          className="bg-primary-400 border border-primary-100 rounded-md py-1 px-2"
           name="title"
           id="title"
         />
@@ -35,7 +35,7 @@ export default function Announcement() {
         <label htmlFor="announcement">Açıklama</label>
         <textarea
           required
-          className="bg-background border border-primary rounded-md py-1 px-2"
+          className="bg-primary-400 border border-primary-100 rounded-md py-1 px-2"
           name="announcement"
           id="announcement"
           rows={12}
@@ -48,7 +48,7 @@ export default function Announcement() {
           max="10080"
           required
           type="number"
-          className="bg-background border border-primary rounded-md py-1 px-2"
+          className="bg-primary-400 border border-primary-100 rounded-md py-1 px-2"
           name="expires_at"
           id="expires_at"
           rows={12}

@@ -1,6 +1,6 @@
 "use client";
 
-import Input from "../../components/Input";
+import Input from "../../components/Input/Input";
 import {
   validatePassword,
   validateUsername,
@@ -97,17 +97,20 @@ export default function CreateProfileForm() {
           inputError={inputError}
           placeholder="Kullanıcı Adı"
           name="username"
+          iconName={"fa-solid fa-user"}
         />
         <Input
           inputError={inputError}
           placeholder="Şifre"
           name="password"
           isPassword={true}
+          iconName={"fa-solid fa-lock"}
         />
         <Input
           inputError={inputError}
           placeholder="E-posta'nıza Gelen Kod"
           name="code"
+          iconName={"fa-solid fa-message"}
         />
         <AuthButton isLoading={isLoading} text="Onayla" />
       </div>

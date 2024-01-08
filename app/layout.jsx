@@ -26,8 +26,13 @@ export default async function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap"
           rel="stylesheet"
         />
+        <script
+          defer
+          src="https://kit.fontawesome.com/7ff7410141.js"
+          crossorigin="anonymous"
+        ></script>
       </head>
-      <body className="bg-background">
+      <body className="bg-primary-300">
         <Suspense fallback={<Loading />}>
           {children} <Status />
         </Suspense>

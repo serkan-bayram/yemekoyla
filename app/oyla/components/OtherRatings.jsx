@@ -11,7 +11,7 @@ export function OtherRatingsGuest({
 }) {
   return (
     <li
-      className="border-l-0 border-r-0 border border-primary
+      className="border-l-0 border-r-0 border border-primary-100
      first:border-t-0 last:border-b-0 p-1"
     >
       <div className={`text-white h-auto  p-2`}>
@@ -41,7 +41,7 @@ export default function OtherRatings({
 }) {
   return (
     <li
-      className="border-l-0 border-r-0 border border-primary
+      className="border-l-0 border-r-0 border border-primary-100
      first:border-t-0 last:border-b-0 p-1"
     >
       <div className={`text-white h-auto  p-2`}>

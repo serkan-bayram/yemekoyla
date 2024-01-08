@@ -4,17 +4,14 @@ import { Logo } from "../Navbar/Logo";
 export default function AuthContainer({ children, noLogo }) {
   return (
     <div
-      className="w-full h-screen flex flex-col items-center 
-    justify-center gap-8 px-4 lg:p-64 xl:px-[28rem] "
+      className="flex flex-col gap-8 
+    justify-center items-center w-full h-screen"
     >
-      {!noLogo && (
-        <div className="flex ">
-          <Logo />
-        </div>
-      )}
+      {!noLogo && <Logo />}
       <div
-        className=" bg-secondary 
-        rounded-md border border-primary shadow w-full px-8 pb-6 mb-8 "
+        className="flex flex-col gap-8 bg-primary-400
+     lg:w-1/3 py-12 px-4 rounded-md border
+   border-primary-100 "
       >
         {children}
       </div>
