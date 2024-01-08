@@ -14,11 +14,11 @@ import GuestPage from "./components/GuestPage";
 
 export default async function Page() {
   const pb = await authAsAdmin();
-  const menu = await getMenu(pb);
 
   const headersList = headers();
   const isGuest = headersList.get("is-guest");
 
+  const menu = await getMenu(pb);
   const emojis = await getEmojis(pb, isGuest);
 
   if (isGuest === "1") {

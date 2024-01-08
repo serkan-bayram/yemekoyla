@@ -1,7 +1,5 @@
 // This returns menu info (the menu that is publishing on the website right now)
 
-export const revalidate = 300;
-
 export async function getMenu(pb) {
   try {
     const record = await pb

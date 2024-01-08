@@ -3,8 +3,6 @@ import Image from "next/image";
 
 // aspect-[1024/768]
 
-export const revalidate = 300;
-
 export default async function Food({ menu }) {
   const src = menu.url;
   const menuDate = menu.date;
