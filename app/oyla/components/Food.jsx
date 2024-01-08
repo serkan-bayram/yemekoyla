@@ -3,10 +3,14 @@ import Image from "next/image";
 
 // aspect-[1024/768]
 
+export const revalidate = 300;
+
 export default async function Food({ menu }) {
   const src = menu.url;
   const menuDate = menu.date;
   const menuArray = JSON.parse(menu.menu);
+
+  console.log("img source: ", src);
 
   return (
     <div className="flex flex-col items-center  gap-6">

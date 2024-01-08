@@ -1,9 +1,14 @@
 // This returns menu info (the menu that is publishing on the website right now)
+
+export const revalidate = 300;
+
 export async function getMenu(pb) {
   try {
     const record = await pb
       .collection("menus")
       .getFirstListItem(null, { sort: "-created" });
+
+    console.log("record from db:", record);
 
     return record;
   } catch (error) {

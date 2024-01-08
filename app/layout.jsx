@@ -29,7 +29,7 @@ export default async function RootLayout({ children }) {
         <script
           defer
           src="https://kit.fontawesome.com/7ff7410141.js"
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
         ></script>
       </head>
       <body className="bg-primary-300">
