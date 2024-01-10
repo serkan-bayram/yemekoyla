@@ -1,6 +1,7 @@
 import OtherRatings, { OtherRatingsGuest } from "./OtherRatings";
 import { getOtherRatings } from "./getOtherRatings";
 import { v4 as uuidv4 } from "uuid";
+import CommentSection from "./CommentSection";
 
 export async function OthersGuest({ pb, emojis }) {
   const response = await getOtherRatings(pb);
@@ -47,7 +48,13 @@ export async function OthersGuest({ pb, emojis }) {
   );
 }
 
-export default async function Others({ pb, isAdmin, emojis, currentUser }) {
+export default async function Others({
+  rating,
+  pb,
+  isAdmin,
+  emojis,
+  currentUser,
+}) {
   const response = await getOtherRatings(pb);
 
   const ratings = response?.ratings || null;
@@ -64,15 +71,12 @@ export default async function Others({ pb, isAdmin, emojis, currentUser }) {
   }
 
   return (
-    <div className="flex flex-col px-2 pt-12 lg:pt-0 lg:px-48  ">
-      <div className="flex justify-between mb-1 font-heading">
-        <div>Yorumlar</div>
-        {!!average ? <div>Ortalama: {average.toFixed(2)}</div> : <div></div>}
-      </div>
+    <div className="flex flex-col">
       <ul
-        className="mb-8 shadow border  border-gray-700
+        className="shadow border rounded-md border-gray-700
        bg-primary-400"
       >
+        <CommentSection rating={rating} currentUser={currentUser} />
         {!!average ? (
           ratings.map((rating, index) => {
             return (
@@ -94,7 +98,7 @@ export default async function Others({ pb, isAdmin, emojis, currentUser }) {
             );
           })
         ) : (
-          <li className="w-full p-5 flex justify-center items-center">
+          <li className="p-5 lg:min-w-[500px] flex justify-center items-center">
             İlk oyu siz verin!
           </li>
         )}

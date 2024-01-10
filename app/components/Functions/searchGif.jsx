@@ -21,6 +21,6 @@ export async function searchGif(query) {
   if (data.data.length > 0) {
     return { ok: true, data: data };
   } else {
-    return { ok: false, message: "Gif Bulunamadı." };
+    return { ok: false, message: "gifNotFound" };
   }
 }

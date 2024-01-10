@@ -8,8 +8,6 @@ export default async function Food({ menu }) {
   const menuDate = menu.date;
   const menuArray = JSON.parse(menu.menu);
 
-  console.log("img source: ", src);
-
   return (
     <div className="flex flex-col items-center  gap-6">
       <div className="w-64 md:w-[20rem] border shadow border-primary aspect-[1024/768] flex items-center justify-center relative">

@@ -5,7 +5,7 @@ import CloseButton from "./CloseButton";
 import { saveComment } from "../../components/Functions/saveComment";
 import { error, success } from "../../components/Functions/notify";
 import Loading from "../../components/LoadingButton";
-import Gif from "./Gif";
+import Gif from "./Gif/Gif";
 
 function OpacityBackground({ setShowPopup }) {
   return (

@@ -20,7 +20,7 @@ export const useTextReveal = (ref, text) => {
             const index = entry.target.getAttribute("index");
             setTimeout(() => {
               entry.target.classList.add("word-seen");
-            }, index * 10);
+            }, index * 20);
           }
         });
       }, options);

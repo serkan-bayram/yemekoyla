@@ -1,16 +1,15 @@
 import Others from "./components/Others";
 import Food from "./components/Food";
-import RatingForm from "./components/RatingForm";
 import Navbar from "../components/Navbar/Navbar";
 import { getSession } from "../components/Functions/getSession";
 import { getRatings } from "../components/Functions/getRatings";
 import { getMenu } from "../components/Functions/getMenu";
 import { authAsAdmin } from "../components/Functions/authAsAdmin";
+
 import { getEmojis } from "./components/getEmojis";
 import Notifications from "./components/Notifications";
 import SnowfallClient from "./components/SnowfallClient";
 import { headers } from "next/headers";
-import GuestPage from "./components/GuestPage";
 
 export default async function Page() {
   const pb = await authAsAdmin();
@@ -21,15 +20,16 @@ export default async function Page() {
   const menu = await getMenu(pb);
   const emojis = await getEmojis(pb, isGuest);
 
-  if (isGuest === "1") {
-    return <GuestPage pb={pb} menu={menu} emojis={emojis} />;
-  }
+  // if (isGuest === "1") {
+  //   return <GuestPage pb={pb} menu={menu} emojis={emojis} />;
+  // }
 
   const { session } = await getSession();
   const username = session.user.record.username;
   const userId = session.user.record.id;
 
   const rating = await getRatings(pb, username, menu);
+
   const isAdmin = session.user.record.permission === "admin";
 
   const clientSafeRatingInfo = {
@@ -46,20 +46,22 @@ export default async function Page() {
       <div className="pt-16">
         <Notifications pb={pb} />
         <SnowfallClient />
-        <div
-          className="mb-12 mt-6 w-fit mx-auto p-8 rounded-sm
-        border bg-primary-400 h-fit 
+        <div className="flex  flex-col lg:flex-row justify-center  gap-12 mb-8 my-12 lg:mt-0 px-3 lg:px-0 ">
+          <div
+            className="p-5 py-8 pb-6 lg:sticky top-4 rounded-md 
+        border bg-primary-400  h-fit
         border-gray-700 lg:shadow-xl"
-        >
-          <Food menu={menu} />
-          <RatingForm rating={clientSafeRatingInfo} />
+          >
+            <Food menu={menu} />
+          </div>
+          <Others
+            rating={clientSafeRatingInfo}
+            isAdmin={isAdmin}
+            pb={pb}
+            emojis={emojis}
+            currentUser={username}
+          />
         </div>
-        <Others
-          isAdmin={isAdmin}
-          pb={pb}
-          emojis={emojis}
-          currentUser={username}
-        />
       </div>
     </>
   );

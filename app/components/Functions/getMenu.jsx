@@ -6,8 +6,6 @@ export async function getMenu(pb) {
       .collection("menus")
       .getFirstListItem(null, { sort: "-created" });
 
-    console.log("record from db:", record);
-
     return record;
   } catch (error) {
     console.log("Error on getMenu: ", error);
