@@ -120,9 +120,9 @@ export default function Notification({ id, title, content }) {
             ? "animate-hide-notification"
             : "animate-show-notification "
         } flex flex-col gap-2
-       bg-background border
+       bg-primary-400 border
        cursor-pointer
-        border-primary rounded-md p-3 shadow relative`}
+        border-primary-200 rounded-md p-3 shadow relative`}
       >
         <div className="font-heading font-bold">{title}</div>
 
@@ -136,7 +136,7 @@ export default function Notification({ id, title, content }) {
           />
         </button>
         <div
-          className={`absolute left-0 bottom-0 h-1 bg-accent 
+          className={`absolute left-0 bottom-0 h-1 bg-accent-400 
         animate-start-progressbar
         
         `}
