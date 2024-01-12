@@ -1,3 +1,4 @@
+import { getMenu } from "../../components/Functions/getMenu";
 import ImageInfo from "./ImageInfo";
 import Image from "next/image";
 

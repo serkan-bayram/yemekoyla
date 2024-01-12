@@ -26,7 +26,7 @@ export async function sendPasswordResetCode(email) {
 
   // First, we check is this user already signed up
   try {
-    const { id, permission } = await fetchUserByEmail(pb, email);
+    const { id, permission } = await fetchUserByEmail(email);
 
     if (permission === "almostUser") {
       return { ok: false, message: "Böyle bir kullanıcı bulunamadı." };

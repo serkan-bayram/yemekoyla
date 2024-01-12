@@ -22,7 +22,7 @@ export function GifPopup({
       <div
         className="absolute min-w-[250px] lg:min-w-[450px] bg-primary-300 shadow border
          border-fade-500
-        rounded-md top-12 left-0  z-[100] max-h-96 overflow-y-auto 
+        rounded-md lg:top-12 lg:bottom-auto top-auto bottom-12  left-0  z-[100] max-h-96 overflow-y-auto 
        flex gap-4 flex-wrap justify-center"
       >
         <SearchGif

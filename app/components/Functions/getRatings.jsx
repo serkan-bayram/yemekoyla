@@ -1,8 +1,15 @@
-// Returns user's the rating info about the current menu
-export async function getRatings(pb, username, menu) {
-  const menuId = menu.id;
+import { authAsAdmin } from "./authAsAdmin";
+import { getMenu } from "./getMenu";
+import { getUsername } from "./getUsername";
 
+// Returns user's the rating info about the current menu
+export async function getRatings(menu) {
   try {
+    const username = await getUsername();
+
+    const menuId = menu.id;
+
+    const pb = await authAsAdmin();
     // If this throws an error, that means user is not rated the menu yet.
     const record = await pb
       .collection("ratings")

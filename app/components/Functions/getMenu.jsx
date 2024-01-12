@@ -1,7 +1,10 @@
-// This returns menu info (the menu that is publishing on the website right now)
+import { authAsAdmin } from "./authAsAdmin";
 
-export async function getMenu(pb) {
+// This returns menu info (the menu that is publishing on the website right now)
+export async function getMenu() {
   try {
+    const pb = await authAsAdmin();
+
     const record = await pb
       .collection("menus")
       .getFirstListItem(null, { sort: "-created" });

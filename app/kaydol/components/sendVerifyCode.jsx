@@ -53,7 +53,7 @@ export async function sendVerifyCode(email) {
 
   // First, we check is this user already signed up
   try {
-    const { id, permission } = await fetchUserByEmail(pb, email);
+    const { id, permission } = await fetchUserByEmail(email);
 
     console.log(id, permission);
 

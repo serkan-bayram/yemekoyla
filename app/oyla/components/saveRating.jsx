@@ -5,19 +5,11 @@ import { getSession } from "../../components/Functions/getSession";
 import { authAsAdmin } from "../../components/Functions/authAsAdmin";
 import { getRatings } from "../../components/Functions/getRatings";
 import { getMenu } from "../../components/Functions/getMenu";
-import { cookies } from "next/headers";
 
 // We need to check did user saved a rating before
-export async function saveRating(
-  rating,
-  selectedGif,
-  comment,
-  starRating,
-  currentUser,
-  menuId
-) {
+export async function saveRating(selectedGif, comment, starRating) {
   // User can not save a rating if he has not have an starRating
-  if (starRating <= 0) {
+  if (starRating <= 0 || !!starRating === false) {
     return { message: false, notRated: true };
   }
 
@@ -27,7 +19,7 @@ export async function saveRating(
 
   const userId = session.user.record.id;
 
-  const menu = await getMenu(pb);
+  const menu = await getMenu();
 
   const data = {
     rating: starRating || null,
@@ -39,9 +31,10 @@ export async function saveRating(
 
   try {
     // if this does not throw an error, user has rated before
-    const ratings = await getRatings(pb, currentUser, menu);
+    const ratings = await getRatings(menu);
 
     const record = await pb.collection("ratings").update(ratings.id, data);
+
     revalidatePath("/oyla");
     return { message: true, isAlreadySaved: true };
   } catch (error) {

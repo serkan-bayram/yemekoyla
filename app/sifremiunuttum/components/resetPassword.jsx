@@ -24,7 +24,7 @@ export async function resetPassword(email, code, password) {
   const pb = await authAsAdmin();
 
   try {
-    const { id, resetPasswordCode } = await fetchUserByEmail(pb, email);
+    const { id, resetPasswordCode } = await fetchUserByEmail(email);
 
     const decoded = jsonwebtoken.verify(
       resetPasswordCode,

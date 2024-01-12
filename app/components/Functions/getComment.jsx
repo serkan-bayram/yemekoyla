@@ -1,7 +1,9 @@
 import { authAsAdmin } from "../Functions/authAsAdmin";
 
-export async function getComment(pb, userId) {
+export async function getComment(userId) {
   try {
+    const pb = await authAsAdmin();
+
     const record = await pb
       .collection("ratings")
       .getFirstListItem(`user.id="${userId}"`, { next: { tags: ["comment"] } });

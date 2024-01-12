@@ -1,8 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { authAsAdmin } from "../../components/Functions/authAsAdmin";
-import { getSession } from "../../components/Functions/getSession";
+import { authAsAdmin } from "../../../components/Functions/authAsAdmin";
+import { getSession } from "../../../components/Functions/getSession";
 
 export async function deleteEmoji(ratingId) {
   const pb = await authAsAdmin();

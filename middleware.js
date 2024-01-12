@@ -1,5 +1,6 @@
 import { getToken } from "next-auth/jwt";
 import { NextResponse, NextRequest } from "next/server";
+import { authAsAdmin } from "./app/components/Functions/authAsAdmin";
 
 function ipToNumber(ip) {
   const parts = ip.split(".").map(Number);

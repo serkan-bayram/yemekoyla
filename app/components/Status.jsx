@@ -1,10 +1,8 @@
 import { getOtherRatings } from "../oyla/components/getOtherRatings";
-import { authAsAdmin } from "./Functions/authAsAdmin";
 import StatusClient from "./StatusClient";
 
 export default async function Status() {
-  const pb = await authAsAdmin();
-  const response = await getOtherRatings(pb);
+  const response = await getOtherRatings();
 
   const average = response?.average || null;
 

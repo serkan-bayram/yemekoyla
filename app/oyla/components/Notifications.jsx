@@ -18,8 +18,8 @@ export function NotificationsGuest({ notifications }) {
   );
 }
 
-export default async function Notifications({ pb }) {
-  const notifications = await getNotifications(pb);
+export default async function Notifications() {
+  const notifications = await getNotifications();
 
   return (
     <div className="flex flex-col gap-3 w-5/6 md:w-1/3 fixed z-50 top-24 md:right-16 md:top-16 md:left-auto md:translate-x-0 left-1/2 -translate-x-1/2">

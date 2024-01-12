@@ -57,13 +57,7 @@ export default function CommentSection({ rating, currentUser }) {
 
     setIsLoading(true);
 
-    const response = await saveRating(
-      rating,
-      selectedGif,
-      comment,
-      starRating,
-      currentUser
-    );
+    const response = await saveRating(selectedGif, comment, starRating);
 
     if (!response.message) {
       if (response?.notRated) {

@@ -1,7 +1,10 @@
-import { getSession } from "../../components/Functions/getSession";
+import { getSession } from "../../../components/Functions/getSession";
+import { authAsAdmin } from "../../../components/Functions/authAsAdmin";
 
-export const getEmojis = async (pb, isGuest) => {
+export const getEmojis = async (isGuest) => {
   try {
+    const pb = await authAsAdmin();
+
     const records = await pb
       .collection("emojis")
       .getFullList({ expand: "userId" });
