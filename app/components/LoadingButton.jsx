@@ -1,8 +1,10 @@
 export default function Loading() {
   return (
     <div
-      className="animate-button-clicked rounded-full mx-auto bg-primary-100 w-full h-full py-2  text-white border
-          border-gray-700 appearance-none focus:ring ring-border-primary-400 shadow-md"
+      className="animate-button-clicked rounded-full mx-auto bg-primary-100
+       w-full h-full py-2  text-white border
+          border-gray-700 appearance-none focus:ring ring-border-primary-400 
+          shadow-md"
     >
       <div
         className="h-full w-full scale-[0.9] flex justify-center items-center"
@@ -10,7 +12,7 @@ export default function Loading() {
       >
         <svg
           aria-hidden="true"
-          className="w-8 h-8  text-gray-200 animate-spin dark:text-gray-600 fill-accent"
+          className="w-8 h-8  text-gray-200 animate-spin dark:text-gray-600 fill-accent-400"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
