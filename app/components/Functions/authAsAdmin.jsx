@@ -2,6 +2,8 @@ import PocketBase from "pocketbase";
 
 let pb;
 
+export const revalidate = 0;
+
 export async function authAsAdmin() {
   if (!pb) {
     pb = new PocketBase(process.env.dbURL);
