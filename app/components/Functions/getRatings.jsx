@@ -1,8 +1,7 @@
 import { authAsAdmin } from "./authAsAdmin";
-import { getMenu } from "./getMenu";
 import { getUsername } from "./getUsername";
 
-export const revalidate = 0;
+export const dynamic = "force-dynamic";
 
 // Returns user's the rating info about the current menu
 export async function getRatings(menu) {

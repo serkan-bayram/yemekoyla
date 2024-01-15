@@ -1,6 +1,6 @@
 import { authAsAdmin } from "./authAsAdmin";
 
-export const revalidate = 0;
+export const dynamic = "force-dynamic";
 
 // This returns menu info (the menu that is publishing on the website right now)
 export async function getMenu() {
