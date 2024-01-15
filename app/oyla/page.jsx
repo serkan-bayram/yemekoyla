@@ -1,23 +1,12 @@
 import Others from "./components/Others";
 import Food from "./components/Food";
 import Navbar from "../components/Navbar/Navbar";
-import { getRatings } from "../components/Functions/getRatings";
 import Notifications from "./components/Notifications";
 import SnowfallClient from "./components/SnowfallClient";
-import { getMenu } from "../components/Functions/getMenu";
+import { authAsAdmin } from "../components/Functions/authAsAdmin";
 
 export default async function Page() {
-  const menu = await getMenu();
-
-  const rating = await getRatings(menu);
-
-  const clientSafeRatingInfo = {
-    comment: rating?.comment || "",
-    rating: rating?.rating || null,
-    gif: rating?.gif || "",
-    ratingId: rating?.id || null,
-    menuId: menu?.id || null,
-  };
+  const pb = await authAsAdmin();
 
   return (
     <>
@@ -31,9 +20,9 @@ export default async function Page() {
         border bg-primary-400  h-fit
         border-gray-700 lg:shadow-xl"
           >
-            <Food menu={menu} />
+            <Food />
           </div>
-          <Others rating={clientSafeRatingInfo} />
+          <Others />
         </div>
       </div>
     </>

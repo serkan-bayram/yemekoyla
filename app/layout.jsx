@@ -34,8 +34,10 @@ export default async function RootLayout({ children }) {
       </head>
       <body className="bg-primary-300">
         <Suspense fallback={<Loading />}>
-          {children} <Status />
+          {children}
+          {/* <Status />  */}
         </Suspense>
+
         <SpeedInsights />
         <Analytics />
         <ToastContainer

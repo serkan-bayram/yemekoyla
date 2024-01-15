@@ -1,10 +1,15 @@
+import { cookies } from "next/headers";
 import { getMenu } from "../../components/Functions/getMenu";
 import ImageInfo from "./ImageInfo";
 import Image from "next/image";
 
 // aspect-[1024/768]
 
-export default async function Food({ menu }) {
+export default async function Food() {
+  cookies();
+
+  const menu = await getMenu();
+
   const src = menu.url;
   const menuDate = menu.date;
   const menuArray = JSON.parse(menu.menu);

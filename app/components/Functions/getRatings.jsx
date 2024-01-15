@@ -1,13 +1,13 @@
 import { authAsAdmin } from "./authAsAdmin";
+import { getMenu } from "./getMenu";
 import { getUsername } from "./getUsername";
 
-export const dynamic = "force-dynamic";
-
 // Returns user's the rating info about the current menu
-export async function getRatings(menu) {
+export async function getRatings() {
   try {
     const username = await getUsername();
 
+    const menu = await getMenu();
     const menuId = menu.id;
 
     const pb = await authAsAdmin();

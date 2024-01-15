@@ -1,9 +1,7 @@
 import { authAsAdmin } from "./authAsAdmin";
 
-export const dynamic = "force-dynamic";
-
 // This returns menu info (the menu that is publishing on the website right now)
-export async function getMenu() {
+export const getMenu = async () => {
   try {
     const pb = await authAsAdmin();
 
@@ -16,4 +14,4 @@ export async function getMenu() {
     console.log("Error on getMenu: ", error);
     return null;
   }
-}
+};

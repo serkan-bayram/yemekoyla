@@ -5,9 +5,9 @@ import { getMenu } from "../../components/Functions/getMenu";
 export const getOtherRatings = async () => {
   let records;
   try {
-    const { id: menuId } = await getMenu();
-
     const pb = await authAsAdmin();
+
+    const { id: menuId } = await getMenu();
 
     records = await pb.collection("ratings").getFullList({
       sort: "-updated",

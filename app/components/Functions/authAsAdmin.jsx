@@ -2,18 +2,13 @@ import PocketBase from "pocketbase";
 
 let pb;
 
-export const revalidate = 0;
-
 export async function authAsAdmin() {
-  if (
-    !!pb?.authStore?.isAdmin === false ||
-    !!pb?.authStore?.isValid === false
-  ) {
+  if (!pb) {
     pb = new PocketBase(process.env.dbURL);
 
     pb.autoCancellation(false);
 
-    await pb.admins.authWithPassword(
+    const response = await pb.admins.authWithPassword(
       process.env.dbUsername,
       process.env.dbPassword,
       {

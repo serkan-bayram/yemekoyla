@@ -3,8 +3,23 @@ import { getOtherRatings } from "./getOtherRatings";
 import { v4 as uuidv4 } from "uuid";
 import CommentSection from "./CommentSection";
 import { getUsername } from "../../components/Functions/getUsername";
+import { getRatings } from "../../components/Functions/getRatings";
+import { cookies } from "next/headers";
 
-export default async function Others({ rating }) {
+export default async function Others() {
+  cookies();
+
+  const userRating = await getRatings();
+
+  console.log(userRating);
+
+  const rating = {
+    comment: userRating?.comment || "",
+    rating: userRating?.rating || null,
+    gif: userRating?.gif || "",
+    ratingId: userRating?.id || null,
+  };
+
   const response = await getOtherRatings();
   const currentUser = await getUsername();
 
