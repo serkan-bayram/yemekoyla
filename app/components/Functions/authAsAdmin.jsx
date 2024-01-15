@@ -5,7 +5,10 @@ let pb;
 export const revalidate = 0;
 
 export async function authAsAdmin() {
-  if (!pb) {
+  if (
+    !!pb?.authStore?.isAdmin === false ||
+    !!pb?.authStore?.isValid === false
+  ) {
     pb = new PocketBase(process.env.dbURL);
 
     pb.autoCancellation(false);

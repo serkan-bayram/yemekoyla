@@ -1,5 +1,7 @@
 import { authAsAdmin } from "./authAsAdmin";
 
+export const revalidate = 0;
+
 // This returns menu info (the menu that is publishing on the website right now)
 export async function getMenu() {
   try {

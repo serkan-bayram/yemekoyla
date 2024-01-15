@@ -2,6 +2,8 @@ import { authAsAdmin } from "./authAsAdmin";
 import { getMenu } from "./getMenu";
 import { getUsername } from "./getUsername";
 
+export const revalidate = 0;
+
 // Returns user's the rating info about the current menu
 export async function getRatings(menu) {
   try {
