@@ -1,3 +1,5 @@
+"use server";
+
 import { authAsAdmin } from "./authAsAdmin";
 
 export const dynamic = "force-dynamic";
