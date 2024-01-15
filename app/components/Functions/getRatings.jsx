@@ -1,5 +1,3 @@
-"use server";
-
 import { authAsAdmin } from "./authAsAdmin";
 import { getUsername } from "./getUsername";
 
