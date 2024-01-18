@@ -27,7 +27,7 @@ export default async function Others() {
   const average = response?.average || null;
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col flex-1">
       <ul
         className="shadow border rounded-md border-gray-700
        bg-primary-400"
@@ -48,7 +48,7 @@ export default async function Others() {
             );
           })
         ) : (
-          <li className="p-5 lg:min-w-[500px] flex justify-center items-center">
+          <li className="p-5 flex justify-center items-center">
             İlk oyu siz verin!
           </li>
         )}
