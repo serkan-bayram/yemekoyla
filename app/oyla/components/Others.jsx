@@ -11,8 +11,6 @@ export default async function Others() {
 
   const userRating = await getRatings();
 
-  console.log(userRating);
-
   const rating = {
     comment: userRating?.comment || "",
     rating: userRating?.rating || null,

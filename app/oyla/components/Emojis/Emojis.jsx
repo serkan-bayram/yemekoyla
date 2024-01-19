@@ -11,7 +11,7 @@ export default async function Emojis({ ratingId }) {
   const emojis = await getEmojis();
   const currentUser = await getUsername();
 
-  if (isAdmin()) {
+  if (await isAdmin()) {
     adminEmojis.forEach((emoji) => {
       emojisArray.push(emoji);
     });
