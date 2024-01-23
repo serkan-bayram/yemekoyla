@@ -4,7 +4,7 @@ import { useState } from "react";
 import Textarea from "./Textarea";
 import { BigStars } from "./Stars";
 import Gif from "./Gif/Gif";
-import { saveRating } from "./saveRating";
+import { saveRating } from "../../components/Functions/actions";
 import { error, success } from "../../components/Functions/notify";
 import { CloseButton } from "./Gif/CloseButton";
 import { SelectedGif } from "./Gif/SelectedGif";

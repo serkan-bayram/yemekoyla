@@ -7,8 +7,13 @@ import Loading from "./loading";
 import Status from "./components/Status";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
+import { initActions } from "./components/Functions/actions";
 
 export default async function RootLayout({ children }) {
+  // Since top level await is not working in server actions properly
+  // We use a hacky method to init actions
+  await initActions();
+
   return (
     <html lang="en">
       <head>
@@ -35,7 +40,7 @@ export default async function RootLayout({ children }) {
       <body className="bg-primary-300">
         <Suspense fallback={<Loading />}>
           {children}
-          {/* <Status />  */}
+          <Status />
         </Suspense>
 
         <SpeedInsights />

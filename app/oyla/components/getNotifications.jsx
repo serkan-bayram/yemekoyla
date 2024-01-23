@@ -1,11 +1,9 @@
-import { authAsAdmin } from "../../components/Functions/authAsAdmin";
+import pb from "../../components/Functions/authAsAdmin";
 
 export async function getNotifications() {
   const notifications = [];
 
   try {
-    const pb = await authAsAdmin();
-
     // TODO: filter by expired_at in query maybe?
     const records = await pb.collection("announcements").getFullList({
       sort: "-created",

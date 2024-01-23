@@ -3,11 +3,8 @@ import Food from "./components/Food";
 import Navbar from "../components/Navbar/Navbar";
 import Notifications from "./components/Notifications";
 import SnowfallClient from "./components/SnowfallClient";
-import { authAsAdmin } from "../components/Functions/authAsAdmin";
 
 export default async function Page() {
-  const pb = await authAsAdmin();
-
   return (
     <>
       <Navbar />

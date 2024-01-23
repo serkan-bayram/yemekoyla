@@ -1,4 +1,4 @@
-import { authAsAdmin } from "./authAsAdmin";
+import pb from "./authAsAdmin";
 import { getMenu } from "./getMenu";
 import { getUsername } from "./getUsername";
 
@@ -10,7 +10,6 @@ export async function getRatings() {
     const menu = await getMenu();
     const menuId = menu.id;
 
-    const pb = await authAsAdmin();
     // If this throws an error, that means user is not rated the menu yet.
     const record = await pb
       .collection("ratings")

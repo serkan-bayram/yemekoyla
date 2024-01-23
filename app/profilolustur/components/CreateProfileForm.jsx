@@ -6,7 +6,7 @@ import {
   validateUsername,
   validateVerifyCode,
 } from "../../components/Functions/validations";
-import { createProfile } from "./createProfile";
+import { createProfile } from "../../components/Functions/actions";
 import { useState } from "react";
 import AuthForm from "../../components/Auth/AuthForm";
 import { error, success } from "../../components/Functions/notify";

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { searchGif } from "../../../components/Functions/searchGif";
+import { searchGif } from "../../../components/Functions/actions";
 import { CloseButton } from "./CloseButton";
 
 export function SearchGif({ setGifs, isAddGif, setIsAddGif }) {

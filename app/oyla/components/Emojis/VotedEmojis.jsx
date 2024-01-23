@@ -1,8 +1,7 @@
 "use client";
 
 import { v4 as uuidv4 } from "uuid";
-import { voteEmoji } from "./voteEmoji";
-import { deleteEmoji } from "./deleteEmoji";
+import { deleteEmoji, voteEmoji } from "../../../components/Functions/actions";
 import { useState } from "react";
 
 export function VotedEmojisGuest({ emojis }) {

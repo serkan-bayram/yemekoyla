@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import RatingContainer, { RatingContainerGuest } from "./RatingContainer";
-import { saveRating } from "./saveRating";
+import { saveRating } from "../../components/Functions/actions";
 import SubmitButton, { SubmitButtonGuest } from "./SubmitButton";
 import { experimental_useFormState as useFormState } from "react-dom";
 import Popup from "./Popup";

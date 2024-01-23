@@ -1,6 +1,6 @@
 "use client";
 
-import { sendVerifyCode } from "./sendVerifyCode";
+import { sendVerifyCode } from "../../components/Functions/actions";
 import Input from "../../components/Input/Input";
 import { validateEmail } from "../../components/Functions/validations";
 import { useState } from "react";

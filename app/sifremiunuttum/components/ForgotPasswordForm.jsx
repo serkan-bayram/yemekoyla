@@ -7,8 +7,10 @@ import {
   validateVerifyCode,
 } from "../../components/Functions/validations";
 import { useState } from "react";
-import { sendPasswordResetCode } from "./sendPasswordResetCode";
-import { resetPassword } from "./resetPassword";
+import {
+  sendPasswordResetCode,
+  resetPassword,
+} from "../../components/Functions/actions";
 import AuthButton from "../../components/Auth/AuthButton";
 import AuthForm from "../../components/Auth/AuthForm";
 import { getFormData } from "../../components/Functions/getFormData";

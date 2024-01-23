@@ -1,12 +1,10 @@
-import { authAsAdmin } from "../../components/Functions/authAsAdmin";
+import pb from "../../components/Functions/authAsAdmin";
 import { getMenu } from "../../components/Functions/getMenu";
 
 // gets other users' ratings
 export const getOtherRatings = async () => {
   let records;
   try {
-    const pb = await authAsAdmin();
-
     const { id: menuId } = await getMenu();
 
     records = await pb.collection("ratings").getFullList({

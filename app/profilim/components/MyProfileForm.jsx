@@ -8,8 +8,8 @@ import {
   validateUsername,
 } from "../../components/Functions/validations";
 import { getFormData } from "../../components/Functions/getFormData";
-import { changeUsername } from "../../components/Functions/changeUsername";
-import { changePassword } from "../../components/Functions/changePassword";
+import { changeUsername } from "../../components/Functions/actions";
+import { changePassword } from "../../components/Functions/actions";
 import { error, success } from "../../components/Functions/notify";
 
 function DefaultField({ label, placeholder, title, iconName }) {

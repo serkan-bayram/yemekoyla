@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { voteEmoji } from "./voteEmoji";
-import { deleteEmoji } from "./deleteEmoji";
+import { voteEmoji } from "../../../components/Functions/actions";
+import { deleteEmoji } from "../../../components/Functions/actions";
 import { v4 as uuidv4 } from "uuid";
 
 export default function EmojiPicker({

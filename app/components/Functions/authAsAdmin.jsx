@@ -1,23 +1,41 @@
 import PocketBase from "pocketbase";
 
-let pb;
+const pb = new PocketBase(process.env.dbURL);
 
-export async function authAsAdmin() {
-  if (!pb) {
-    pb = new PocketBase(process.env.dbURL);
+pb.autoCancellation(false);
 
-    pb.autoCancellation(false);
-
-    const response = await pb.admins.authWithPassword(
-      process.env.dbUsername,
-      process.env.dbPassword,
-      {
-        // This will trigger auto refresh or auto reauthentication in case
-        // the token has expired or is going to expire in the next 30 minutes.
-        autoRefreshThreshold: 30 * 60,
-      }
-    );
+await pb.admins.authWithPassword(
+  process.env.dbUsername,
+  process.env.dbPassword,
+  {
+    // This will trigger auto refresh or auto reauthentication in case
+    // the token has expired or is going to expire in the next 30 minutes.
+    autoRefreshThreshold: 30 * 60,
   }
+);
 
-  return pb;
-}
+export default pb;
+
+// import PocketBase from "pocketbase";
+
+// let pb;
+
+// export async function authAsAdmin() {
+//   if (!pb) {
+//     pb = new PocketBase(process.env.dbURL);
+
+//     pb.autoCancellation(false);
+
+//     const response = await pb.admins.authWithPassword(
+//       process.env.dbUsername,
+//       process.env.dbPassword,
+//       {
+//         // This will trigger auto refresh or auto reauthentication in case
+//         // the token has expired or is going to expire in the next 30 minutes.
+//         autoRefreshThreshold: 30 * 60,
+//       }
+//     );
+//   }
+
+//   return pb;
+// }

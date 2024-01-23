@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import CloseButton from "./CloseButton";
-import { saveComment } from "../../components/Functions/saveComment";
+import { saveComment } from "../../components/Functions/actions";
 import { error, success } from "../../components/Functions/notify";
 import Loading from "../../components/LoadingButton";
 import Gif from "./Gif/Gif";

@@ -1,7 +1,7 @@
 import AuthButton from "../../components/Auth/AuthButton";
 import { getFormData } from "../../components/Functions/getFormData";
 import { error, success } from "../../components/Functions/notify";
-import { saveAnnouncement } from "./saveAnnouncement";
+import { saveAnnouncement } from "../../components/Functions/actions";
 
 export default function Announcement() {
   const handleSubmit = async (e) => {
