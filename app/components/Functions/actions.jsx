@@ -25,6 +25,10 @@ import { getMenu } from "./getMenu";
 
 export async function initActions() {}
 
+export async function getAdminClient() {
+  return pb;
+}
+
 export async function saveAnnouncement({ title, announcement, expires_at }) {
   // Current date and time
   const currentDate = new Date();

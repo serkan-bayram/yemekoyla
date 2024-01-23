@@ -1,4 +1,5 @@
 import { getToken } from "next-auth/jwt";
+import { headers } from "next/headers";
 import { NextResponse, NextRequest } from "next/server";
 
 function ipToNumber(ip) {
@@ -16,7 +17,7 @@ function isIPInRange(ip, startRange, endRange) {
   return ipNumber >= startNumber && ipNumber <= endNumber;
 }
 
-export async function middleware(req) {
+export async function middleware(req, event) {
   const userIp = req.ip;
 
   const token = await getToken({ req: req });
@@ -24,6 +25,14 @@ export async function middleware(req) {
 
   // User is authenticated if there is a token.
   if (!!token) {
+    try {
+      await fetch(process.env.NEXTAUTH_URL + "/api/shouldUpdateSession", {
+        method: "GET",
+        headers: headers(),
+      });
+    } catch (error) {
+      console.log("Can't get /api/shouldUpdateSession");
+    }
     const permission = token.user.record.permission;
 
     if (permission === "banned" && !pathname.startsWith("/banned")) {
