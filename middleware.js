@@ -1,5 +1,5 @@
 import { getToken } from "next-auth/jwt";
-import { headers } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { NextResponse, NextRequest } from "next/server";
 
 function ipToNumber(ip) {
@@ -17,7 +17,7 @@ function isIPInRange(ip, startRange, endRange) {
   return ipNumber >= startNumber && ipNumber <= endNumber;
 }
 
-export async function middleware(req, event) {
+export async function middleware(req) {
   const userIp = req.ip;
 
   const token = await getToken({ req: req });
@@ -26,13 +26,42 @@ export async function middleware(req, event) {
   // User is authenticated if there is a token.
   if (!!token) {
     try {
-      await fetch(process.env.NEXTAUTH_URL + "/api/shouldUpdateSession", {
-        method: "GET",
-        headers: headers(),
-      });
+      const shouldUpdateSession = await fetch(
+        process.env.NEXTAUTH_URL + "/api/shouldUpdateSession",
+        {
+          method: "GET",
+          headers: headers(),
+        }
+      );
+
+      const shouldUpdateSessionResponse = await shouldUpdateSession.json();
+
+      if (shouldUpdateSessionResponse.shouldUpdate) {
+        const nextResponse = NextResponse.redirect(new URL("/oyla", req.url));
+
+        cookies()
+          .getAll()
+          .forEach((cookie) => {
+            if (cookie.name.includes("next-auth.session-token")) {
+              nextResponse.cookies.set(
+                cookie.name,
+                shouldUpdateSessionResponse.newCookie,
+                {
+                  httpOnly: true,
+                  secure: true,
+                  sameSite: "Lax",
+                  maxAge: 30 * 24 * 60 * 60,
+                }
+              );
+            }
+          });
+
+        return nextResponse;
+      }
     } catch (error) {
-      console.log("Can't get /api/shouldUpdateSession");
+      console.log("Can't get /api/shouldUpdateSession", error);
     }
+
     const permission = token.user.record.permission;
 
     if (permission === "banned" && !pathname.startsWith("/banned")) {

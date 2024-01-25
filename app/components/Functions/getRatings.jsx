@@ -19,7 +19,7 @@ export async function getRatings() {
 
     return record;
   } catch (error) {
-    console.log("User has not rated yet: ", error);
+    console.log("User has not rated yet.");
     return null;
   }
 }
