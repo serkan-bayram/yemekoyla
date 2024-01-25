@@ -1,4 +1,5 @@
 import { changePermission } from "../../components/Functions/actions";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Users({ users }) {
   return (
@@ -8,7 +9,7 @@ export default function Users({ users }) {
         <th>Kullanıcı Adı</th>
         <th>Kullanıcı E-Posta</th>
         {users.map((user) => (
-          <tr className="border h-12">
+          <tr key={uuidv4()} className="border h-12">
             <td className="p-4">{user.id}</td>
             <td className="max-w-[16ch] p-4 overflow-hidden">
               {user.username}
