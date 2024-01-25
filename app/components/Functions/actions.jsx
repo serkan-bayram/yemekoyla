@@ -574,3 +574,30 @@ export async function sendPasswordResetCode(email) {
 
   return { ok: false, message: "Böyle bir kullanıcı bulunamadı." };
 }
+
+export async function changePermission(formData) {
+  const id = formData.get("userId");
+
+  const record = await pb.collection("users").getOne(id);
+
+  try {
+    if (record.permission !== "banned") {
+      const data = {
+        permission: "banned",
+      };
+
+      await pb.collection("users").update(id, data);
+    } else {
+      const data = {
+        permission: "user",
+      };
+
+      await pb.collection("users").update(id, data);
+    }
+  } catch (error) {
+    console.log("Can't change permission: ", error);
+    return;
+  }
+
+  revalidatePath("/admin");
+}

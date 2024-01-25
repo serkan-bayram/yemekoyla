@@ -26,7 +26,6 @@ export async function middleware(req) {
   // User is authenticated if there is a token.
   if (!!token) {
     try {
-      console.log(process.env.NEXTAUTH_URL + "/api/shouldUpdateSession");
       const shouldUpdateSession = await fetch(
         process.env.NEXTAUTH_URL + "/api/shouldUpdateSession",
         {
@@ -60,7 +59,7 @@ export async function middleware(req) {
         return nextResponse;
       }
     } catch (error) {
-      console.log("Can't get /api/shouldUpdateSession", error);
+      console.log("Can't get /api/shouldUpdateSession");
     }
 
     const permission = token.user.record.permission;
