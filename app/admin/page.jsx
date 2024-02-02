@@ -1,7 +1,10 @@
+import { cookies } from "next/headers";
 import pb from "../components/Functions/authAsAdmin";
 import Client from "./components/Client";
 
 export default async function Page() {
+  cookies();
+
   const records = await pb.collection("users").getFullList({
     sort: "-created",
   });

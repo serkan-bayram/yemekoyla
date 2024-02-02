@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export default function Users({ users }) {
   return (
-    <div className="mt-8 lg:w-full lg:flex justify-center px-4">
+    <div className="mt-8 lg:w-full lg:flex justify-center px-4 mb-4">
       <table className="border">
         <th>Kullanıcı ID</th>
         <th>Kullanıcı Adı</th>
