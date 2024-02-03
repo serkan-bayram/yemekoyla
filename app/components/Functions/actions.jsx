@@ -601,3 +601,33 @@ export async function changePermission(formData) {
 
   revalidatePath("/admin");
 }
+
+export async function verifyTelegram(telegramCode) {
+  const { session } = await getSession();
+
+  let telegramBindingCode;
+  try {
+    const record = await pb
+      .collection("users")
+      .getFirstListItem(`id="${session.user.record.id}"`);
+
+    telegramBindingCode = record.telegramBindingCode;
+  } catch (error) {
+    console.log(error);
+    return { error: "somethingWentWrong" };
+  }
+
+  if (telegramBindingCode === telegramCode) {
+    const data = {
+      isTelegramVerified: true,
+    };
+    try {
+      await pb.collection("users").update(session.user.record.id, data);
+      return { isSucess: true };
+    } catch (error) {
+      return { error: "somethingWentWrong" };
+    }
+  } else {
+    return { error: "wrongCode" };
+  }
+}

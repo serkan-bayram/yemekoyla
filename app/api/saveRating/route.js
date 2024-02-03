@@ -13,7 +13,6 @@ import { deleteRating } from "../../components/Functions/Telegram/deleteRating";
 
 // TODO
 // binding telegram acc with yemekoyla
-// how would updating your rating on the website affect telegram?
 // should create explaining telegram page
 // and should add explaining messages to bot
 
