@@ -51,8 +51,8 @@ export default async function Page() {
               <span className="text-accent-400 font-semibold">
                 @YemekoylaBot
               </span>
-              'u bulun ve /bagla komuduyla beraber Yemekoyla kullanıcı adınızı
-              girin.
+              &apos;u bulun ve /bagla komuduyla beraber Yemekoyla kullanıcı
+              adınızı girin.
               <div className="bg-primary-400 p-3 mt-2 border border-primary-100 rounded-sm">
                 Örnek: /bagla lezzetlerinefendisi
               </div>
@@ -89,7 +89,7 @@ export default async function Page() {
               görmek isterseniz burayı tercih etmelisiniz.
             </p>
             <p className="text-lg font-body">
-              Telegram'ı vaktiniz olmadığında veya siteye girmekle uğraşmak
+              Telegram&apos;ı vaktiniz olmadığında veya siteye girmekle uğraşmak
               istemediğiniz de kullanmanızı tavsiye ediyoruz. Ekstra
               ekleyeceğiniz yorumlar yemekleri iyileştirme açısından çok önemli.
             </p>
