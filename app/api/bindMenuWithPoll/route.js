@@ -6,7 +6,7 @@ export async function POST(request) {
 
   if (!isRequestSafe(response)) Response.json({ isSuccess: false });
 
-  await bindMenuWithPoll();
+  await bindMenuWithPoll(response);
 
   return Response.json({ isSuccess: true });
 }

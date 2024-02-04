@@ -10,11 +10,12 @@ export default async function Navbar() {
   if (!session) {
     navigation = [
       {
-        pathname: ["/"],
+        pathname: ["/", "/telegram"],
         links: [
           { href: "/", text: "Ana Sayfa" },
           { href: "/giris", text: "Giriş Yap" },
           { href: "/kaydol", text: "Kaydol" },
+          { href: "/telegram", text: "Telegram" },
         ],
       },
       {
@@ -28,10 +29,11 @@ export default async function Navbar() {
   if (session) {
     navigation = [
       {
-        pathname: ["/"],
+        pathname: ["/", "/telegram"],
         links: [
           { href: "/", text: "Ana Sayfa" },
           { href: "/profilim", text: "Profilim" },
+          { href: "/telegram", text: "Telegram" },
           { href: "/api/auth/signout", text: "Çıkış Yap" },
         ],
       },
@@ -44,6 +46,7 @@ export default async function Navbar() {
         links: [
           { href: "/", text: "Ana Sayfa" },
           { href: "/profilim", text: "Profilim" },
+          { href: "/telegram", text: "Telegram" },
           { href: "/api/auth/signout", text: "Çıkış Yap" },
         ],
       },
@@ -52,6 +55,7 @@ export default async function Navbar() {
         links: [
           { href: "/", text: "Ana Sayfa" },
           { href: "/profilim", text: "Profilim" },
+          { href: "/telegram", text: "Telegram" },
           { href: "/api/auth/signout", text: "Çıkış Yap" },
         ],
       },

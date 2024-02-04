@@ -12,6 +12,7 @@ export const deleteRating = async (menu, userId) => {
 
     return true;
   } catch (error) {
+    console.log("Error on deleteRating: ", error);
     return null;
   }
 };

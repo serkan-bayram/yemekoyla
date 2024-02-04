@@ -5,17 +5,6 @@ import { createRating } from "../../components/Functions/Telegram/createRating";
 import { isRequestSafe } from "../../components/Functions/Telegram/isRequestSafe";
 import { deleteRating } from "../../components/Functions/Telegram/deleteRating";
 
-// Finished Tasks
-// A poll will be shared when the day of menu is shared
-// if user is binded it's telegram account it can vote on that poll
-// votes on poll will save to db
-// user can revoke it's vote
-
-// TODO
-// binding telegram acc with yemekoyla
-// should create explaining telegram page
-// and should add explaining messages to bot
-
 export async function POST(request) {
   const response = JSON.parse(await request.json());
 
@@ -23,7 +12,7 @@ export async function POST(request) {
 
   try {
     const user = await findUserByTelegramId(response.votedBy);
-    if (user === null) return Response.json({ isSuccess: false });
+    if (user === null) return Response.json({ error: "userHasNotFound" });
 
     const userId = user.id;
 
@@ -35,7 +24,7 @@ export async function POST(request) {
     // user is removed its vote
     if (!response.isVoted) {
       const deleted = await deleteRating(menu, userId);
-      if (deleted) return Response.json({ isSuccess: true });
+      if (deleted) return Response.json({ success: "deleted" });
     }
 
     const data = {
@@ -45,13 +34,13 @@ export async function POST(request) {
     };
 
     const updated = await updateRating(data, menu, userId);
-    if (updated) return Response.json({ isSuccess: true });
+    if (updated) return Response.json({ success: "updated" });
 
     const created = await createRating(data);
-    if (created) return Response.json({ isSuccess: true });
+    if (created) return Response.json({ success: "created" });
   } catch (error) {
     console.log("Error: ", error);
   }
 
-  return Response.json({ isSuccess: false });
+  return Response.json({ error: "somethingWentWrong" });
 }

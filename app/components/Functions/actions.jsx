@@ -623,6 +623,7 @@ export async function verifyTelegram(telegramCode) {
     };
     try {
       await pb.collection("users").update(session.user.record.id, data);
+      revalidatePath("/telegram");
       return { isSucess: true };
     } catch (error) {
       return { error: "somethingWentWrong" };

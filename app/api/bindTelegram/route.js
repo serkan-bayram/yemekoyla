@@ -12,5 +12,9 @@ export async function POST(request) {
     return Response.json({ error: "userHasNotFound" });
   }
 
+  if (bindingResponse?.error === "alreadyVerified") {
+    return Response.json({ error: "alreadyVerified" });
+  }
+
   return Response.json({ code: bindingResponse.code });
 }
