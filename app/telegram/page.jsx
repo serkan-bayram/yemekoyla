@@ -8,7 +8,7 @@ import { getSession } from "../components/Functions/getSession";
 function Header() {
   return (
     <h1
-      className="mt-24 font-heading text-5xl  font-semibold
+      className="mt-24 font-heading lg:text-5xl md:text-4xl text-5xl text-center  font-semibold
          text-white"
     >
       Artık Daha Kolay: <span className="text-accent-400">Telegram</span>
@@ -17,7 +17,7 @@ function Header() {
 }
 
 function Paragraph({ text }) {
-  return <p className="text-white text-lg font-body">{text}</p>;
+  return <p className="text-white text-lg font-body ">{text}</p>;
 }
 
 function SubHeading({ text }) {
@@ -66,7 +66,7 @@ export default async function Page() {
       <Navbar />
       <main className="lg:px-24 px-4 pb-8 flex flex-col items-center">
         <Header />
-        <div className="mx-60 mt-12 flex flex-col gap-12">
+        <div className="lg:mx-60 md:mx-36 mt-12 flex flex-col gap-12">
           <Paragraph
             text="Yemekhane yemeklerini iyileştirme çabamızda sizlere olabildiğince kolaylık
       sağlama adına yeni bir yol deniyoruz: Değerlendirmelerinizi siteye giriş

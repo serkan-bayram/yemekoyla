@@ -36,7 +36,7 @@ export default function Form() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex mx-32 mt-4 gap-4">
+    <form onSubmit={handleSubmit} className="flex lg:mx-32 mt-4 gap-4">
       <Input
         name={"telegramCode"}
         iconName={"fa-solid fa-wand-magic"}
