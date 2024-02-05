@@ -1,19 +1,17 @@
-import AuthHeader from "../components/Auth/AuthHeader";
-import TextWithLink from "../components/TextWithLink";
+import { getSession } from "../components/Functions/getSession";
 import Navbar from "../components/Navbar/Navbar";
-import AuthContainer from "../components/Auth/AuthContainer";
-import MyProfile from "./components/MyProfile";
+import Main from "./components/Main";
+
 export default async function Page() {
+  const { session } = await getSession();
+
+  const userEmail = session?.user.record.email || "";
+  const username = session?.user.record.username || "";
+
   return (
     <>
       <Navbar />
-      <AuthContainer noLogo={true}>
-        <AuthHeader text="Profilim" />
-        <MyProfile />
-        <div className="text-center py-4">
-          <TextWithLink text="" href="/oyla" linkText="Geri Dön" />
-        </div>
-      </AuthContainer>
+      <Main userEmail={userEmail} username={username} />
     </>
   );
 }

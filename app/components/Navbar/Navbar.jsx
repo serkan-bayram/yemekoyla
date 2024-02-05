@@ -34,7 +34,6 @@ export default async function Navbar() {
           { href: "/", text: "Ana Sayfa" },
           { href: "/profilim", text: "Profilim" },
           { href: "/telegram", text: "Telegram" },
-          { href: "/api/auth/signout", text: "Çıkış Yap" },
         ],
       },
       {
@@ -47,7 +46,6 @@ export default async function Navbar() {
           { href: "/", text: "Ana Sayfa" },
           { href: "/profilim", text: "Profilim" },
           { href: "/telegram", text: "Telegram" },
-          { href: "/api/auth/signout", text: "Çıkış Yap" },
         ],
       },
       {
@@ -56,7 +54,6 @@ export default async function Navbar() {
           { href: "/", text: "Ana Sayfa" },
           { href: "/profilim", text: "Profilim" },
           { href: "/telegram", text: "Telegram" },
-          { href: "/api/auth/signout", text: "Çıkış Yap" },
         ],
       },
     ];

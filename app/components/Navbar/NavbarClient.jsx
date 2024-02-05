@@ -29,10 +29,12 @@ export default function NavbarClient({ navigation }) {
 
   return (
     <header
-      className="fixed w-full lg:w-auto lg:static z-50 top-0 border-b lg:border-0
+      className="fixed w-full lg:w-auto lg:static z-50 top-0 
+      border-b lg:border-0
        border-b-primary-100
            flex
-     items-center justify-between px-4 lg:px-24 h-16 bg-primary-300 "
+     items-center justify-between px-4 lg:px-24 h-16
+      bg-primary-300 "
     >
       <div className="flex flex-1">
         <Logo />

@@ -46,7 +46,7 @@ export default function Input({
               type={isPassword ? (isVisible ? "text" : "password") : "text"}
               name={name}
               className={`
-              ${isDisabled && "cursor-not-allowed"} 
+              ${isDisabled && "cursor-default"} 
               w-full bg-transparent  appearance-none 
               outline-none placeholder:text-gray-500 font-body
               placeholder:text-sm text-sm  
