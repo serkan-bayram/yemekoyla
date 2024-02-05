@@ -1,7 +1,7 @@
 export function RightSeperator() {
   return (
     <div
-      className="absolute top-0 -right-1 h-full
+      className="hidden lg:block absolute top-0 -right-1 h-full
              w-[1px] py-4"
     >
       <div className="h-full w-[1px] bg-primary-100"></div>

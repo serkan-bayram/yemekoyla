@@ -46,7 +46,7 @@ export function ChangePasswordPopup({ setPopup }) {
   };
 
   return (
-    <div className="bg-black px-16 py-12 border border-primary-400 rounded-md z-50 ">
+    <div className="bg-black lg:px-16 px-8 py-12 border border-primary-400 rounded-md z-50 ">
       <form onSubmit={updatePassword}>
         <div className="flex flex-col gap-2">
           <div className="font-body">Yeni Şifreniz</div>

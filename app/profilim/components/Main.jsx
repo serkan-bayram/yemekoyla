@@ -10,22 +10,23 @@ import { ChangeUsernamePopup } from "./ChangeUsernamePopup";
 import { ChangePasswordPopup } from "./ChangePasswordPopup";
 import { Logout } from "./Logout";
 
-export default function Main({ userEmail, username }) {
-  const [dashboard, setDashboard] = useState("settings");
+export default function Main({ comments, userEmail, username }) {
+  const [dashboard, setDashboard] = useState(false);
   const [popup, setPopup] = useState(false);
 
   return (
     <>
       <main
-        className="w-full  px-4 lg:px-24 py-6
-   h-[calc(100vh-4rem)]"
+        className="w-full lg:pt-6  px-4 lg:px-24 py-6
+   h-screen lg:h-[calc(100vh-4rem)] pt-24 bg-primary-400 lg:bg-transparent"
       >
         <div
           className="h-full w-full rounded-lg 
-    bg-primary-400 flex border border-primary-100"
+    bg-primary-400 lg:flex lg:border border-primary-100 lg:overflow-auto"
         >
           <div
-            className="h-full  pt-4 px-4 w-1/4 relative
+            className="lg:h-full lg:sticky relative pt-4 px-4 
+            lg:w-1/4 top-0 left-0
       "
           >
             <RightSeperator />
@@ -34,12 +35,14 @@ export default function Main({ userEmail, username }) {
             <ButtonGroup setDashboard={setDashboard} />
             <Logout />
           </div>
-          <div className="p-8">
+          <div className="p-8  w-full">
             <Dashboard
               username={username}
               userEmail={userEmail}
               dashboard={dashboard}
               setPopup={setPopup}
+              comments={comments}
+              setDashboard={setDashboard}
             />
           </div>
         </div>

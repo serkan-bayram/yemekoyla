@@ -10,7 +10,14 @@ export function InputField({
 }) {
   return (
     <div className="flex flex-col gap-2 ">
-      <div className="font-body">{label}</div>
+      <div className="flex justify-between items-center">
+        <div className="font-body">{label}</div>
+        {isUpdatable && (
+          <button onClick={() => onClick(name)} className="">
+            Güncelle
+          </button>
+        )}
+      </div>
       <div className="relative">
         <Input
           name={name}
@@ -18,15 +25,6 @@ export function InputField({
           isDisabled={true}
           iconName={iconName}
         />
-        {isUpdatable && (
-          <button
-            onClick={() => onClick(name)}
-            className="absolute -right-3  translate-x-full
-           top-1/2 -translate-y-1/2"
-          >
-            Güncelle
-          </button>
-        )}
       </div>
     </div>
   );

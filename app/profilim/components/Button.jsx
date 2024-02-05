@@ -10,7 +10,7 @@ export default function Button({
   variant,
 }) {
   const defaultVariant =
-    "border border-primary-200 hover:bg-primary-300 text-fade-300";
+    "lg:bg-primary-transparent border border-primary-200 hover:bg-primary-300 text-fade-300";
 
   const dangerVariant = "bg-error text-white";
 
@@ -29,7 +29,8 @@ export default function Button({
               rounded-md  
               font-body 
               transition-all
-             flex items-center
+              
+             flex items-center justify-center lg:justify-normal
              ${isLoading && "opacity-50"}
              `}
     >
