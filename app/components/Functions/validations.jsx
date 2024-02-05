@@ -12,7 +12,7 @@ export function validateUsername(username) {
 
 export function validatePassword(password) {
   // Define the password requirements.
-  const minLength = 6; // Minimum password length
+  const minLength = 8; // Minimum password length
 
   // Check the length of the password.
   if (password.length < minLength) {

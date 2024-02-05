@@ -73,10 +73,7 @@ export default function CreateProfileForm() {
     if (!passwordValidation) {
       setInputError({
         name: "password",
-        message:
-          password.length < 8
-            ? "Şifreniz en az 8 karakter uzunluğunda olmalı."
-            : "Şifreniz birer büyük harf, küçük harf, özel karakter ve sayı içermelidir.",
+        message: "Şifreniz en az 8 karakter uzunluğunda olmalı.",
       });
       return;
     }

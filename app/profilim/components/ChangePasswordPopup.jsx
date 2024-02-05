@@ -40,7 +40,7 @@ export function ChangePasswordPopup({ setPopup }) {
     } else {
       setInputError({
         name: "password",
-        message: "Şifreniz en az 6 karakter uzunluğunda olmalı",
+        message: "Şifreniz en az 8 karakter uzunluğunda olmalı",
       });
     }
   };
