@@ -28,15 +28,17 @@ export default function Main({ comments, userEmail, username }) {
     <>
       <main
         className="w-full lg:pt-6  px-4 lg:px-24 py-6
-   h-screen lg:h-[calc(100vh-4rem)] pt-24 bg-primary-400 lg:bg-transparent"
+   h-screen lg:h-[calc(100vh-4rem)] pt-24 bg-primary-400
+    lg:bg-transparent"
       >
         <div
-          className="h-full w-full rounded-lg 
-    bg-primary-400 lg:flex lg:border border-primary-100 lg:overflow-auto"
+          className="h-full  w-full rounded-lg 
+    bg-primary-400 lg:flex lg:border border-primary-100 
+    lg:overflow-auto"
         >
           <div
             className="lg:h-full lg:sticky relative pt-4 px-4 
-            lg:w-1/4 top-0 left-0
+            lg:w-1/4 top-0 left-0  h-full
       "
           >
             <RightSeperator />
@@ -45,7 +47,7 @@ export default function Main({ comments, userEmail, username }) {
             <ButtonGroup setDashboard={setDashboard} />
             <Logout />
           </div>
-          <div className="p-8  w-full">
+          <div className="lg:p-8">
             {useMemo(
               () => (
                 <Dashboard
