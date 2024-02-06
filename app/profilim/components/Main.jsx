@@ -58,7 +58,7 @@ export default function Main({ comments, userEmail, username }) {
                   setComment={setComment}
                 />
               ),
-              [dashboard]
+              [dashboard, username]
             )}
           </div>
         </div>
