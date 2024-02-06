@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import SmallStars from "../../oyla/components/SmallStars";
 import Image from "next/image";
-import Button from "./Button";
+import { Icon } from "../../components/Input/Icon";
 
 export default function Comments({ username, comments, setDashboard }) {
   const options = {
@@ -20,12 +20,13 @@ export default function Comments({ username, comments, setDashboard }) {
      pt-16
      "
     >
-      <li className="p-4 lg:hidden">
-        <Button
-          variant={"danger"}
+      <li className="p-4 lg:hidden ">
+        <button
+          className="scale-105 flex gap-2 items-center"
           onClick={() => setDashboard(false)}
-          text={"Geri Dön"}
-        />
+        >
+          <Icon name="fa-solid fa-angle-left" /> Geri Dön
+        </button>
       </li>
       {comments.map((comment) => (
         <li
