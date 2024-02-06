@@ -16,7 +16,7 @@ export default function ButtonGroup({ setDashboard }) {
       <Button
         iconName="fa-solid fa-comment"
         onClick={() => handleClick("comments")}
-        text="Geçmiş Yorumlarım"
+        text="Yorumlarım"
       />
     </div>
   );

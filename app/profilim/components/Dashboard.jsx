@@ -11,16 +11,6 @@ export default function Dashboard({
   setDashboard,
   setComment,
 }) {
-  if (dashboard === "settings")
-    return (
-      <Settings
-        setDashboard={setDashboard}
-        setPopup={setPopup}
-        username={username}
-        userEmail={userEmail}
-      />
-    );
-
   if (dashboard === "comments") {
     return useMemo(
       () => (
@@ -35,6 +25,16 @@ export default function Dashboard({
       []
     );
   }
+
+  if (dashboard === "settings")
+    return (
+      <Settings
+        setDashboard={setDashboard}
+        setPopup={setPopup}
+        username={username}
+        userEmail={userEmail}
+      />
+    );
 
   return <div></div>;
 }
