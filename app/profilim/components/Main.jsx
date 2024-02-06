@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import Avatar from "./Avatar";
 import ButtonGroup from "./ButtonGroup";
 import Dashboard from "./Dashboard";
@@ -46,15 +46,20 @@ export default function Main({ comments, userEmail, username }) {
             <Logout />
           </div>
           <div className="p-8  w-full">
-            <Dashboard
-              username={username}
-              userEmail={userEmail}
-              dashboard={dashboard}
-              setPopup={setPopup}
-              comments={comments}
-              setDashboard={setDashboard}
-              setComment={setComment}
-            />
+            {useMemo(
+              () => (
+                <Dashboard
+                  username={username}
+                  userEmail={userEmail}
+                  dashboard={dashboard}
+                  setPopup={setPopup}
+                  comments={comments}
+                  setDashboard={setDashboard}
+                  setComment={setComment}
+                />
+              ),
+              [dashboard]
+            )}
           </div>
         </div>
       </main>

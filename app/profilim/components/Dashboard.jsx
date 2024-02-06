@@ -14,17 +14,14 @@ export default function Dashboard({
   let content;
 
   if (dashboard === "comments") {
-    content = useMemo(
-      () => (
-        <Comments
-          setComment={setComment}
-          setDashboard={setDashboard}
-          username={username}
-          comments={comments}
-          setPopup={setPopup}
-        />
-      ),
-      []
+    content = (
+      <Comments
+        setComment={setComment}
+        setDashboard={setDashboard}
+        username={username}
+        comments={comments}
+        setPopup={setPopup}
+      />
     );
   } else if (dashboard === "settings") {
     content = (
