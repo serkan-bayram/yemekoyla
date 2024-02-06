@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Avatar from "./Avatar";
 import ButtonGroup from "./ButtonGroup";
 import Dashboard from "./Dashboard";
@@ -9,10 +9,20 @@ import Popup from "../../components/Popup";
 import { ChangeUsernamePopup } from "./ChangeUsernamePopup";
 import { ChangePasswordPopup } from "./ChangePasswordPopup";
 import { Logout } from "./Logout";
+import { CommentDetails } from "./CommentDetails";
 
 export default function Main({ comments, userEmail, username }) {
   const [dashboard, setDashboard] = useState(false);
   const [popup, setPopup] = useState(false);
+  const [comment, setComment] = useState(false);
+
+  useEffect(() => {
+    if (popup) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [popup]);
 
   return (
     <>
@@ -43,6 +53,7 @@ export default function Main({ comments, userEmail, username }) {
               setPopup={setPopup}
               comments={comments}
               setDashboard={setDashboard}
+              setComment={setComment}
             />
           </div>
         </div>
@@ -53,6 +64,8 @@ export default function Main({ comments, userEmail, username }) {
             <ChangeUsernamePopup setPopup={setPopup} />
           ) : popup === "password" ? (
             <ChangePasswordPopup setPopup={setPopup} />
+          ) : popup === "commentDetails" ? (
+            <CommentDetails comment={comment} setPopup={setPopup} />
           ) : (
             <div></div>
           )}

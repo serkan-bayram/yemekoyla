@@ -632,3 +632,16 @@ export async function verifyTelegram(telegramCode) {
     return { error: "wrongCode" };
   }
 }
+
+export async function deleteRating(rating) {
+  const ratingId = rating.id;
+
+  try {
+    const response = await pb.collection("ratings").delete(ratingId);
+    revalidatePath("/profilim");
+    return { success: "ratingDeleted" };
+  } catch (error) {
+    console.log("error on deleteRating: ", error);
+    return { error: "cantDeleteRating" };
+  }
+}

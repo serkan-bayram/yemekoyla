@@ -2,15 +2,18 @@ import { v4 as uuidv4 } from "uuid";
 import SmallStars from "../../oyla/components/SmallStars";
 import Image from "next/image";
 import { Icon } from "../../components/Input/Icon";
+import Button from "./Button";
 
-export default function Comments({ username, comments, setDashboard }) {
-  const options = {
-    timeZone: "UTC",
-    year: "numeric",
-    month: "numeric",
-    day: "numeric",
-    hour: "numeric",
-    minute: "numeric",
+export default function Comments({
+  username,
+  comments,
+  setDashboard,
+  setComment,
+  setPopup,
+}) {
+  const handleClick = (comment) => {
+    setPopup("commentDetails");
+    setComment(comment);
   };
 
   return (
@@ -33,7 +36,7 @@ export default function Comments({ username, comments, setDashboard }) {
           key={uuidv4()}
           className="border-l-0 border-r-0 border
            border-primary-100
-     first:border-t-0 last:border-b-0 p-1 flex flex-col lg:flex-row"
+     first:border-t-0 last:border-b-0 p-1 my-4 py-4 flex gap-6 flex-col lg:flex-row"
         >
           <div className={`text-white h-auto  p-2 flex-1`}>
             <div>
@@ -47,14 +50,15 @@ export default function Comments({ username, comments, setDashboard }) {
             </div>
             {comment.gif.length > 0 && (
               <div className="mt-4">
-                <Image src={comment.gif} width={200} height={200} />
+                <Image alt="gif" src={comment.gif} width={200} height={200} />
               </div>
             )}
           </div>
-          <div className="lg:px-6 pl-2 lg:py-2">
-            <div>
-              {new Date(comment.updated).toLocaleString("tr-TR", options)}
-            </div>
+          <div className="p-2 lg:p-0 ">
+            <Button
+              onClick={() => handleClick(comment)}
+              text="Ayrıntıları Gör"
+            />
           </div>
         </li>
       ))}

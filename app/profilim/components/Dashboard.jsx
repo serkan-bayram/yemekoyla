@@ -1,5 +1,6 @@
 import Settings from "./Settings";
 import Comments from "./Comments";
+import { useMemo } from "react";
 
 export default function Dashboard({
   setPopup,
@@ -8,6 +9,7 @@ export default function Dashboard({
   userEmail,
   comments,
   setDashboard,
+  setComment,
 }) {
   if (dashboard === "settings")
     return (
@@ -20,12 +22,17 @@ export default function Dashboard({
     );
 
   if (dashboard === "comments") {
-    return (
-      <Comments
-        setDashboard={setDashboard}
-        username={username}
-        comments={comments}
-      />
+    return useMemo(
+      () => (
+        <Comments
+          setComment={setComment}
+          setDashboard={setDashboard}
+          username={username}
+          comments={comments}
+          setPopup={setPopup}
+        />
+      ),
+      []
     );
   }
 

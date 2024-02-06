@@ -23,7 +23,7 @@ export default function Button({
 
   return (
     <button
-      type={isLoading ? "button" : type ? type : "button"}
+      type={!!isLoading ? "button" : type ? type : "button"}
       onClick={onClick || null}
       className={`${appliedStyles} w-full  py-2 px-4 text-start 
               rounded-md  
