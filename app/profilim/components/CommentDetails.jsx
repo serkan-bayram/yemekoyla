@@ -58,11 +58,12 @@ export function CommentDetails({ comment, setPopup }) {
           </div>
           <div className="text-center">{publishedDate}</div>
         </div>
-        <Button text="Yemeğe Git" />
+        <Button textCenter={true} text="Yemeğe Git" />
 
         <div>
           <form onSubmit={handleSubmit}>
             <Button
+              textCenter={true}
               isLoading={isLoading}
               type="submit"
               variant={"danger"}

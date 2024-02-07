@@ -42,6 +42,7 @@ export default async function Others() {
                 comment={rating?.comment || ""}
                 key={uuidv4()}
                 index={index}
+                avatar={rating.avatar}
               />
             );
           })

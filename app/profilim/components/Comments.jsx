@@ -45,7 +45,9 @@ export default function Comments({
                 <SmallStars rating={comment.rating} />
               </div>
               {comment.comment && (
-                <p className="mt-3 leading-6 max-w-prose">{comment.comment}</p>
+                <p className="break-words mt-3 leading-6 max-w-prose">
+                  {comment.comment}
+                </p>
               )}
             </div>
             {comment.gif.length > 0 && (

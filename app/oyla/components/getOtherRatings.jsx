@@ -20,11 +20,14 @@ export const getOtherRatings = async () => {
   let average = 0;
 
   records.forEach((record) => {
+    const url = pb.files.getUrl(record.expand.user, record.expand.user.avatar);
+
     ratings.push({
       ratingId: record.id,
       rating: record.rating,
       comment: record?.comment || null,
       username: record.expand.user.username,
+      avatar: url || null,
       gif: record?.gif || null,
     });
     average += parseFloat(record.rating);
