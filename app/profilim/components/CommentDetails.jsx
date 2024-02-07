@@ -5,9 +5,11 @@ import { Icon } from "../../components/Input/Icon";
 import Button from "./Button";
 import { deleteRating } from "../../components/Functions/actions";
 import { error, success } from "../../components/Functions/notify";
+import { useRouter } from "next/navigation";
 
 export function CommentDetails({ comment, setPopup }) {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const options = {
     timeZone: "UTC",
@@ -17,6 +19,8 @@ export function CommentDetails({ comment, setPopup }) {
     hour: "numeric",
     minute: "numeric",
   };
+
+  const menuDate = comment.expand.menu.date;
 
   const publishedDate = new Date(comment.updated).toLocaleString(
     "tr-TR",
@@ -58,7 +62,11 @@ export function CommentDetails({ comment, setPopup }) {
           </div>
           <div className="text-center">{publishedDate}</div>
         </div>
-        <Button textCenter={true} text="Yemeğe Git" />
+        <Button
+          onClick={() => router.push(`/oyla/${menuDate}`)}
+          textCenter={true}
+          text="Yemeğe Git"
+        />
 
         <div>
           <form onSubmit={handleSubmit}>

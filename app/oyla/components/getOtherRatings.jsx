@@ -2,10 +2,10 @@ import pb from "../../components/Functions/authAsAdmin";
 import { getMenu } from "../../components/Functions/getMenu";
 
 // gets other users' ratings
-export const getOtherRatings = async () => {
+export const getOtherRatings = async (date) => {
   let records;
   try {
-    const { id: menuId } = await getMenu();
+    const { id: menuId } = await getMenu(date);
 
     records = await pb.collection("ratings").getFullList({
       sort: "-updated",

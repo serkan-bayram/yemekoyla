@@ -6,7 +6,7 @@ import { getUsername } from "../../components/Functions/getUsername";
 import { getRatings } from "../../components/Functions/getRatings";
 import { cookies } from "next/headers";
 
-export default async function Others() {
+export default async function Others({ date }) {
   cookies();
 
   const userRating = await getRatings();
@@ -18,7 +18,7 @@ export default async function Others() {
     ratingId: userRating?.id || null,
   };
 
-  const response = await getOtherRatings();
+  const response = await getOtherRatings(date);
   const currentUser = await getUsername();
 
   const ratings = response?.ratings || null;
@@ -30,7 +30,9 @@ export default async function Others() {
         className="shadow border rounded-md border-gray-700
        bg-primary-400"
       >
-        <CommentSection rating={rating} currentUser={currentUser} />
+        {!!date === false && (
+          <CommentSection rating={rating} currentUser={currentUser} />
+        )}
         {!!average ? (
           ratings.map((rating, index) => {
             return (
@@ -48,7 +50,9 @@ export default async function Others() {
           })
         ) : (
           <li className="p-5 flex justify-center items-center">
-            İlk oyu siz verin!
+            {!!date
+              ? "Bu tarihte hiç değerlendirme yapılmamış"
+              : "İlk oyu siz verin!"}
           </li>
         )}
       </ul>

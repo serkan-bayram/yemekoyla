@@ -5,10 +5,10 @@ import Image from "next/image";
 
 // aspect-[1024/768]
 
-export default async function Food() {
+export default async function Food({ date }) {
   cookies();
 
-  const menu = await getMenu();
+  const menu = await getMenu(date);
 
   const src = menu.url;
   const menuDate = menu.date;

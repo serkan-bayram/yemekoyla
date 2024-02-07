@@ -40,7 +40,15 @@ function LinkNavItem({ href, text, setIsOpen }) {
 }
 
 function ItemsByPath({ navigation, setIsOpen }) {
-  const currentPathname = usePathname();
+  let currentPathname = usePathname();
+
+  // "/oyla" is a special path and it can have extra parameters like date
+  // so we extract them for it to work correctly with our navbar setup
+  if (currentPathname.startsWith("/oyla")) {
+    const index = currentPathname.indexOf("/oyla");
+
+    currentPathname = currentPathname.substring(0, index + "/oyla".length);
+  }
 
   return navigation.map((item) => {
     const { pathname, links } = item;

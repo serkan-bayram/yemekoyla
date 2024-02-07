@@ -9,6 +9,7 @@ export async function getUserComments() {
   const records = await pb.collection("ratings").getFullList({
     sort: "-created",
     filter: `user.id="${userId}"`,
+    expand: "menu",
   });
 
   return records;
