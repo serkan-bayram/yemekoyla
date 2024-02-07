@@ -8,6 +8,7 @@ export default function Button({
   text,
   onClick,
   variant,
+  textCenter,
 }) {
   const defaultVariant =
     "lg:bg-primary-transparent border border-primary-200 hover:bg-primary-300 text-fade-300";
@@ -30,7 +31,8 @@ export default function Button({
               font-body 
               transition-all
               
-             flex items-center justify-center lg:justify-normal
+             flex items-center justify-center 
+            ${textCenter ? "lg:justify-center" : "lg:justify-normal"}
              ${isLoading && "opacity-50"}
              `}
     >

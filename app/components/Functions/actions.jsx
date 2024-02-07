@@ -645,3 +645,18 @@ export async function deleteRating(rating) {
     return { error: "cantDeleteRating" };
   }
 }
+
+export async function saveAvatar(data) {
+  try {
+    const { session } = await getSession();
+    const userId = session.user.record.id;
+
+    const response = await pb.collection("users").update(userId, data);
+
+    revalidatePath("/profilim");
+    return { success: "avatarSaved" };
+  } catch (error) {
+    console.log("error on saveAvatar: ", error);
+    return { error: "somethingWentWrong" };
+  }
+}

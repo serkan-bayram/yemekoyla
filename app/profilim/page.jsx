@@ -1,5 +1,6 @@
 import { getSession } from "../components/Functions/getSession";
 import { getUserComments } from "../components/Functions/getUserComments";
+import { getAvatar } from "../components/Functions/getAvatar";
 import Navbar from "../components/Navbar/Navbar";
 import Main from "./components/Main";
 
@@ -11,10 +12,17 @@ export default async function Page() {
 
   const comments = await getUserComments();
 
+  const avatar = await getAvatar();
+
   return (
     <>
       <Navbar />
-      <Main comments={comments} userEmail={userEmail} username={username} />
+      <Main
+        avatar={avatar}
+        comments={comments}
+        userEmail={userEmail}
+        username={username}
+      />
     </>
   );
 }

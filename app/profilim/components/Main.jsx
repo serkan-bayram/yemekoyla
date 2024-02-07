@@ -11,7 +11,7 @@ import { ChangePasswordPopup } from "./ChangePasswordPopup";
 import { Logout } from "./Logout";
 import { CommentDetails } from "./CommentDetails";
 
-export default function Main({ comments, userEmail, username }) {
+export default function Main({ avatar, comments, userEmail, username }) {
   const [dashboard, setDashboard] = useState(false);
   const [popup, setPopup] = useState(false);
   const [comment, setComment] = useState(false);
@@ -42,7 +42,7 @@ export default function Main({ comments, userEmail, username }) {
       "
           >
             <RightSeperator />
-            <Avatar />
+            <Avatar avatar={avatar} />
             <BottomSeperator />
             <ButtonGroup setDashboard={setDashboard} />
             <Logout />
