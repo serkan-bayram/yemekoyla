@@ -1,12 +1,8 @@
 import Announcement from "./Announcement";
+import { Ratings } from "./Ratings";
 import Users from "./Users";
 
-const componentsByOption = {
-  announcement: Announcement,
-  users: Users,
-};
-
-export default function Option({ option, users }) {
+export default function Option({ option, users, ratings }) {
   if (option === "announcement") {
     return <Announcement />;
   }
@@ -14,6 +10,8 @@ export default function Option({ option, users }) {
   if (option === "users") {
     return <Users users={users} />;
   }
+
+  if (option === "ratings") return <Ratings ratings={ratings} />;
 
   return null;
 }

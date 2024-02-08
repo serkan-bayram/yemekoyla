@@ -20,5 +20,10 @@ export default async function Page() {
     });
   });
 
-  return <Client users={users} />;
+  const ratings = await pb.collection("ratings").getFullList({
+    sort: "-created",
+    expand: "user,menu",
+  });
+
+  return <Client users={users} ratings={ratings} />;
 }
