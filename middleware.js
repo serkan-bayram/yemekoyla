@@ -144,8 +144,13 @@ export async function middleware(req) {
       "/profilim",
       "/banned",
       "/admin",
+      "/tarihce",
     ];
-    if (cantGoIfNotAuth.includes(pathname)) {
+    if (
+      cantGoIfNotAuth.some((restrictedRoute) =>
+        pathname.startsWith(restrictedRoute)
+      )
+    ) {
       return NextResponse.redirect(new URL("/giris", req.url));
     }
   }

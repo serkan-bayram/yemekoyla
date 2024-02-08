@@ -10,6 +10,7 @@ export default async function Page() {
   const userEmail = session?.user.record.email || "";
   const username = session?.user.record.username || "";
 
+  // TODO: Comments json exposes too much unneccessary data
   const comments = await getUserComments();
 
   const avatar = await getAvatar();

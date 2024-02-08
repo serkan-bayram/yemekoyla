@@ -51,7 +51,7 @@ export default async function Others({ date }) {
         ) : (
           <li className="p-5 flex justify-center items-center">
             {!!date
-              ? "Bu tarihte hiç değerlendirme yapılmamış"
+              ? "Bu tarihte hiç değerlendirme yapılmamış."
               : "İlk oyu siz verin!"}
           </li>
         )}

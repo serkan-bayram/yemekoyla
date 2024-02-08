@@ -18,13 +18,7 @@ export default async function Food({ date }) {
     <div className="flex flex-col items-center  gap-6">
       <div className="w-64 md:w-[20rem] border shadow border-primary aspect-[1024/768] flex items-center justify-center relative">
         {!!src ? (
-          <Image
-            src={src}
-            fill={true}
-            sizes="30vw"
-            alt="Bugünün yemeği."
-            priority={true}
-          />
+          <Image src={src} fill={true} sizes="30vw" alt="Günün yemeği." />
         ) : (
           <div className="border-2 shadow border-primary w-full h-full flex justify-center items-center">
             Fotoğraf Bulunamadı
