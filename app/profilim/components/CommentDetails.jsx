@@ -5,11 +5,10 @@ import { Icon } from "../../components/Input/Icon";
 import Button from "./Button";
 import { deleteRating } from "../../components/Functions/actions";
 import { error, success } from "../../components/Functions/notify";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export function CommentDetails({ comment, setPopup }) {
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
 
   const options = {
     timeZone: "UTC",
@@ -62,11 +61,11 @@ export function CommentDetails({ comment, setPopup }) {
           </div>
           <div className="text-center">{publishedDate}</div>
         </div>
-        <Button
-          onClick={() => router.push(`/oyla/${menuDate}`)}
-          textCenter={true}
-          text="Yemeğe Git"
-        />
+        <div className="w-full">
+          <Link href={`/oyla/${menuDate}`}>
+            <Button textCenter={true} text="Yemeğe Git" />
+          </Link>
+        </div>
 
         <div>
           <form onSubmit={handleSubmit}>
