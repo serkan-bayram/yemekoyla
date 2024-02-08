@@ -43,9 +43,13 @@ export default function Avatar({ avatar }) {
           name="avatar"
           type="file"
           accept="image/*"
-          className="opacity-0 cursor-pointer z-50 absolute w-full h-full top-0 left-0"
+          className="opacity-0 cursor-pointer  absolute w-full h-full top-0 left-0"
         />
-        <div className="w-20  h-20 relative bg-fade-400 rounded-full">
+        <div
+          className={`${
+            !!avatar === false && "bg-fade-400"
+          } w-20  h-20 relative  rounded-full`}
+        >
           {!!avatar && (
             <Image
               className="rounded-full object-fit border border-fade-400 "
