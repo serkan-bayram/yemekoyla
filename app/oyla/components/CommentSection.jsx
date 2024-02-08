@@ -8,12 +8,29 @@ import { saveRating } from "../../components/Functions/actions";
 import { error, success } from "../../components/Functions/notify";
 import { CloseButton } from "./Gif/CloseButton";
 import { SelectedGif } from "./Gif/SelectedGif";
+import { Icon } from "../../components/Input/Icon";
 
-function Header({ starRating, setStarRating, currentUser }) {
+function Header({
+  isEditing,
+  setIsEditing,
+  starRating,
+  setStarRating,
+  currentUser,
+}) {
   return (
     <div className="flex justify-between w-full">
       <div className="font-body font-semibold">{currentUser}</div>
-      <BigStars starRating={starRating} setStarRating={setStarRating} />
+      {!isEditing ? (
+        <button
+          onClick={() => setIsEditing(true)}
+          className="flex items-center gap-2"
+        >
+          <span className="font-body">Düzenle</span>
+          <Icon name={"fa-solid fa-pen-to-square"} />
+        </button>
+      ) : (
+        <BigStars starRating={starRating} setStarRating={setStarRating} />
+      )}
     </div>
   );
 }
@@ -47,10 +64,13 @@ function Footer({ isLoading, selectedGif, setSelectedGif }) {
 }
 
 export default function CommentSection({ rating, currentUser }) {
+  const didUserRated = rating.rating;
+
   const [selectedGif, setSelectedGif] = useState(rating.gif);
   const [comment, setComment] = useState(rating.comment);
   const [starRating, setStarRating] = useState(parseFloat(rating.rating));
   const [isLoading, setIsLoading] = useState(false);
+  const [isEditing, setIsEditing] = useState(!didUserRated);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -61,7 +81,7 @@ export default function CommentSection({ rating, currentUser }) {
 
     if (!response.message) {
       if (response?.notRated) {
-        error("0 yıldız veremezsiniz.");
+        error("Herhangi bir değerlendirme yapmadınız.");
       } else {
         error("Bir hata oluştu, lütfen daha sonra tekrar deneyin.");
       }
@@ -71,6 +91,7 @@ export default function CommentSection({ rating, currentUser }) {
       } else {
         success("Değerlendirmeniz kaydedildi!");
       }
+      setIsEditing(false);
     }
 
     setIsLoading(false);
@@ -86,15 +107,19 @@ export default function CommentSection({ rating, currentUser }) {
           starRating={starRating}
           setStarRating={setStarRating}
           currentUser={currentUser}
+          isEditing={isEditing}
+          setIsEditing={setIsEditing}
         />
-        <form onSubmit={handleSubmit}>
-          <Textarea comment={comment} setComment={setComment} />
-          <Footer
-            isLoading={isLoading}
-            selectedGif={selectedGif}
-            setSelectedGif={setSelectedGif}
-          />
-        </form>
+        {isEditing && (
+          <form onSubmit={handleSubmit}>
+            <Textarea comment={comment} setComment={setComment} />
+            <Footer
+              isLoading={isLoading}
+              selectedGif={selectedGif}
+              setSelectedGif={setSelectedGif}
+            />
+          </form>
+        )}
       </div>
     </li>
   );

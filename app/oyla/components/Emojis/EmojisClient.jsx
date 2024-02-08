@@ -21,7 +21,7 @@ export default function EmojisClient({
   const [emojis, setEmojis] = useState(votedEmojis);
 
   return (
-    <div className="flex flex-wrap items-center mt-4 gap-2">
+    <div className="flex flex-wrap items-center mt-2 gap-2">
       <EmojiPicker
         emojisArray={emojisArray}
         currentUser={currentUser}
