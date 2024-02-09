@@ -53,10 +53,7 @@ function Content3() {
       Okul E-Posta&apos;larının bir çok kişi tarafından aktif olarak
       kullanılmadığını ve buraya kaydolmak için ekstra zahmet getirdiğinin
       farkındayız fakat daha gerçekçi veriler elde edebilmek için bu yola
-      başvurmak zorundayız. <br />
-      Bununla birlikte giriş yaparken kullandığınız okul E-Posta&apos;sının asla
-      <b> 3. şahıslarla paylaşılmadığını</b>, sadece oy kullanan kişinin öğrenci
-      olup olmadığını doğrulamak için kullandığımızı rahatça söyleyebiliriz.
+      başvurmak zorundayız.
     </div>
   );
 }
@@ -73,6 +70,23 @@ function Content4() {
       />{" "}
       giderek E-Posta&apos;nıza giriş yapabilir ve gelecek olan kodu
       alabilirsiniz.
+    </div>
+  );
+}
+
+function Content5() {
+  return (
+    <div
+      className="tracking-wide leading-relaxed w-full 
+bg-primary-100 font-body p-4 text-white rounded-md"
+    >
+      Bu siteyi kurmaktaki amacımız,{" "}
+      <HighlightedText text={"yemekhane hizmetlerini kötülemek değildir."} />{" "}
+      Hedefimiz öğrencilerin düşüncelerini bir endişe duymadan
+      paylaşabilecekleri bir ortam oluşturmaktır. Biz daha iyi hizmete giden
+      yolun doğru iletişimden geçtiğini düşünüyoruz ve yemekhane hizmetini veren
+      firmaların gerçekçi geri dönüşlerle daha fazla iyileşebileceğine
+      inanıyoruz.
     </div>
   );
 }
@@ -94,6 +108,10 @@ export default function AccordionContent({ content, isOpen }) {
 
   if (content === "Content4") {
     ContentComponent = Content4;
+  }
+
+  if (content === "Content5") {
+    ContentComponent = Content5;
   }
 
   return (

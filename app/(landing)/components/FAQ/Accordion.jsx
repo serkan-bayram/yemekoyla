@@ -4,6 +4,10 @@ import { v4 as uuidv4 } from "uuid";
 export default function Accordion() {
   const items = [
     {
+      heading: "Neyi amaçlıyoruz?",
+      content: "Content5",
+    },
+    {
       heading: "Okul E-Posta'mı nasıl bulabilirim?",
       content: "Content1",
     },

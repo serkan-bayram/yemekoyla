@@ -19,7 +19,7 @@ export default function Cards() {
       timeout: 200,
     },
     {
-      title: "Son",
+      title: "Tekrarla",
       content: "İşte bir şeyleri değiştirmek bu kadar basit. 🎉",
       imageSrc: "/check.png",
       imageAlt: "Tik",
