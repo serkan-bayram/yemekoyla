@@ -295,7 +295,7 @@ export async function sendVerifyCode(email) {
 }
 
 // We need to check did user saved a rating before
-export async function saveRating(selectedGif, comment, starRating) {
+export async function saveRating(isAnonim, selectedGif, comment, starRating) {
   // User can not save a rating if he has not have an starRating
   if (starRating <= 0 || !!starRating === false) {
     return { message: false, notRated: true };
@@ -313,6 +313,7 @@ export async function saveRating(selectedGif, comment, starRating) {
     comment: comment || null,
     user: userId,
     menu: menu.id,
+    isAnonim: isAnonim,
   };
 
   try {

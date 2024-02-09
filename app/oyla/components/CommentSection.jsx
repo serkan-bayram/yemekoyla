@@ -16,10 +16,13 @@ function Header({
   starRating,
   setStarRating,
   currentUser,
+  isAnonim,
 }) {
   return (
     <div className="flex justify-between w-full">
-      <div className="font-body font-semibold">{currentUser}</div>
+      <div className="font-body font-semibold">
+        {isAnonim ? "Anonim" : currentUser}
+      </div>
       {!isEditing ? (
         <button
           onClick={() => setIsEditing(true)}
@@ -35,20 +38,57 @@ function Header({
   );
 }
 
-function Footer({ isLoading, selectedGif, setSelectedGif }) {
+function Anonim({ isAnonim, setIsAnonim }) {
+  return (
+    <button
+      type="button"
+      onClick={() => setIsAnonim((prevValue) => !prevValue)}
+      className="flex gap-6 bg-primary-400 py-2 px-4 rounded-full
+     border relative border-primary-100"
+    >
+      <div
+        className={`rounded-full transition-all ease-in-out
+          absolute w-1/2 h-full bg-accent-400  
+      top-0 left-0 
+      ${
+        isAnonim
+          ? "translate-x-full rounded-l-none"
+          : "translate-x-0 rounded-r-none"
+      }`}
+      ></div>
+      <div className="relative">
+        <Icon name="fa-solid fa-user" />
+      </div>
+      <div className="relative">
+        <Icon name="fa-solid fa-user-secret" />
+      </div>
+    </button>
+  );
+}
+
+function Footer({
+  isAnonim,
+  setIsAnonim,
+  isLoading,
+  selectedGif,
+  setSelectedGif,
+}) {
   return (
     <div>
       <div className="flex justify-between items-center mt-2">
         <Gif selectedGif={selectedGif} setSelectedGif={setSelectedGif} />
-        <button
-          type={isLoading ? "button" : "submit"}
-          className={`bg-white py-2 px-4 rounded-lg
-     transition-all hover:text-accent-400 
-     text-sm text-black font-semibold font-body
-     ${isLoading && "opacity-50 cursor-default hover:text-black"}`}
-        >
-          Paylaş
-        </button>
+        <div className="flex gap-6 items-center">
+          <Anonim isAnonim={isAnonim} setIsAnonim={setIsAnonim} />
+          <button
+            type={isLoading ? "button" : "submit"}
+            className={`bg-white py-2 px-4 rounded-lg
+          transition-all hover:text-accent-400 
+          text-sm text-black font-semibold font-body
+          ${isLoading && "opacity-50 cursor-default hover:text-black"}`}
+          >
+            Paylaş
+          </button>
+        </div>
       </div>
       {selectedGif.length > 0 && (
         <div className="mt-6 w-fit">
@@ -71,13 +111,19 @@ export default function CommentSection({ rating, currentUser }) {
   const [starRating, setStarRating] = useState(parseFloat(rating.rating));
   const [isLoading, setIsLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(!didUserRated);
+  const [isAnonim, setIsAnonim] = useState(rating.isAnonim || false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setIsLoading(true);
 
-    const response = await saveRating(selectedGif, comment, starRating);
+    const response = await saveRating(
+      isAnonim,
+      selectedGif,
+      comment,
+      starRating
+    );
 
     if (!response.message) {
       if (response?.notRated) {
@@ -104,6 +150,7 @@ export default function CommentSection({ rating, currentUser }) {
     >
       <div className="w-full bg-primary-400 p-2">
         <Header
+          isAnonim={isAnonim}
           starRating={starRating}
           setStarRating={setStarRating}
           currentUser={currentUser}
@@ -114,6 +161,8 @@ export default function CommentSection({ rating, currentUser }) {
           <form onSubmit={handleSubmit}>
             <Textarea comment={comment} setComment={setComment} />
             <Footer
+              isAnonim={isAnonim}
+              setIsAnonim={setIsAnonim}
               isLoading={isLoading}
               selectedGif={selectedGif}
               setSelectedGif={setSelectedGif}

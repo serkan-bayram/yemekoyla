@@ -20,6 +20,7 @@ export default async function Others({ date }) {
         rating: userRating?.rating || null,
         gif: userRating?.gif || "",
         ratingId: userRating?.id || null,
+        isAnonim: userRating?.isAnonim,
       };
 
   const response = await getOtherRatings(date);

@@ -7,7 +7,7 @@ export function AddGif({ setIsAddGif }) {
     <button
       onClick={handleClick}
       type="button"
-      className="px-3 py-1 rounded-md  bg-transparent hover:bg-primary-100
+      className="px-5 py-2 rounded-md  bg-transparent hover:bg-primary-100
        transition-all border font-body border-primary-100 text-white"
     >
       GIF
