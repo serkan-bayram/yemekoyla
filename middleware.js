@@ -123,9 +123,14 @@ export async function middleware(req) {
     if (userIp && isIPInRange(userIp, ipRangeStart)) {
       // user is guest but not authenticated
 
-      const guestPaths = ["/", "/oyla"];
+      const guestPaths = ["/", "/tarihce", "/telegram"];
 
-      if (guestPaths.includes(pathname)) {
+      // user can not go /oyla but can go /oyla/20-12-2023
+      // because it is easier to maintain this way
+      if (
+        guestPaths.includes(pathname) ||
+        (pathname.startsWith("/oyla") && pathname.length > "/oyla".length)
+      ) {
         // if user is guest
         // we set headers as guest
         const newHeaders = new Headers(req.headers);

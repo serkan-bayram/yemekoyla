@@ -9,6 +9,7 @@ export default function OtherRatings({
   ratingId,
   gif,
   avatar,
+  isGuest,
 }) {
   return (
     <li
@@ -45,7 +46,7 @@ export default function OtherRatings({
               <img src={gif} width={200} height={200} />
             </div>
           )}
-          <Emojis ratingId={ratingId} />
+          {!isGuest && <Emojis ratingId={ratingId} />}
         </div>
       </div>
     </li>

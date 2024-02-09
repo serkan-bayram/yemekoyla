@@ -4,22 +4,26 @@ import { v4 as uuidv4 } from "uuid";
 import CommentSection from "./CommentSection";
 import { getUsername } from "../../components/Functions/getUsername";
 import { getRatings } from "../../components/Functions/getRatings";
-import { cookies } from "next/headers";
+import { headers } from "next/headers";
 
 export default async function Others({ date }) {
-  cookies();
+  const headersList = headers();
 
-  const userRating = await getRatings();
+  const isGuest = headersList.get("is-guest");
 
-  const rating = {
-    comment: userRating?.comment || "",
-    rating: userRating?.rating || null,
-    gif: userRating?.gif || "",
-    ratingId: userRating?.id || null,
-  };
+  const userRating = isGuest ? null : await getRatings();
+
+  const rating = isGuest
+    ? null
+    : {
+        comment: userRating?.comment || "",
+        rating: userRating?.rating || null,
+        gif: userRating?.gif || "",
+        ratingId: userRating?.id || null,
+      };
 
   const response = await getOtherRatings(date);
-  const currentUser = await getUsername();
+  const currentUser = isGuest ? "Misafir" : await getUsername();
 
   const ratings = response?.ratings || null;
   const average = response?.average || null;
@@ -45,6 +49,7 @@ export default async function Others({ date }) {
                 key={uuidv4()}
                 index={index}
                 avatar={rating.avatar}
+                isGuest={isGuest}
               />
             );
           })

@@ -1,8 +1,13 @@
+import { headers } from "next/headers";
 import { getSession } from "../Functions/getSession";
 import NavbarClient from "./NavbarClient";
 
 export default async function Navbar() {
   const { session } = await getSession();
+
+  const headersList = headers();
+
+  const isGuest = headersList.get("is-guest");
 
   let navigation;
 
@@ -58,6 +63,25 @@ export default async function Navbar() {
           { href: "/telegram", text: "Telegram" },
           { href: "/tarihce", text: "Tarihçe" },
         ],
+      },
+    ];
+  }
+
+  if (isGuest) {
+    navigation = [
+      {
+        pathname: ["/", "/telegram", "/oyla", "/tarihce"],
+        links: [
+          { href: "/", text: "Ana Sayfa" },
+          { href: "/giris", text: "Giriş Yap" },
+          { href: "/kaydol", text: "Kaydol" },
+          { href: "/telegram", text: "Telegram" },
+          { href: "/tarihce", text: "Tarihçe" },
+        ],
+      },
+      {
+        pathname: ["/giris", "/kaydol", "/dogrula"],
+        links: [],
       },
     ];
   }

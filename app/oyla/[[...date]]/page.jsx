@@ -3,6 +3,7 @@ import Food from "../components/Food";
 import Navbar from "../../components/Navbar/Navbar";
 import Notifications from "../components/Notifications";
 import SnowfallClient from "../components/SnowfallClient";
+import Guest from "../../components/Guest";
 import { getMenu } from "../../components/Functions/getMenu";
 import { redirect } from "next/navigation";
 
@@ -41,6 +42,7 @@ export default async function Page({ params }) {
           <Others date={date} />
         </div>
       </div>
+      <Guest />
     </>
   );
 }
