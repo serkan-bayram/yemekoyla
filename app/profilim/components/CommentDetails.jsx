@@ -67,7 +67,7 @@ export function CommentDetails({ comment, setPopup }) {
           </Link>
         </div>
 
-        <div>
+        <div className="pt-12">
           <form onSubmit={handleSubmit}>
             <Button
               textCenter={true}
