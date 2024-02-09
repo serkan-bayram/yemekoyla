@@ -19,7 +19,7 @@ export default function OtherRatings({
       <div className={`text-white h-auto flex gap-3  p-2`}>
         {!!avatar && (
           <div
-            className="lg:w-12 lg:h-12 w-12 h-12 relative 
+            className="lg:w-12 lg:h-12 w-12 h-12 px-6 relative 
             
             "
           >
