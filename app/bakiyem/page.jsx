@@ -62,13 +62,13 @@ export default async function Page() {
                 serpilir.
               </p>
               <p className="flex flex-col gap-4">
-                Okulun kullanımı çok kolay iki tane API'ı var:
+                Okulun kullanımı çok kolay iki tane API&apos;ı var:
                 <span>
                   1- https://sofra.bilecik.edu.tr/OturumAc: Bildiğimiz SOFRA
                   giriş sayfası, kullanımı çok kolay buraya SOFRA bilgilerinizi
                   POST isteği ile gönderiyorum. Bu şekilde belli bir süreliğine
-                  SOFRA'daki bütün bilgilere erişebileceğimiz bir Session elde
-                  ediyorum.
+                  SOFRA&apos;daki bütün bilgilere erişebileceğimiz bir Session
+                  elde ediyorum.
                 </span>
                 <span>
                   2- https://sofra.bilecik.edu.tr/Aks/AkilliKartBilgi:
