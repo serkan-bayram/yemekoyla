@@ -3,7 +3,7 @@ import { getSession } from "../Functions/getSession";
 import NavbarClient from "./NavbarClient";
 
 export default async function Navbar() {
-  const { session } = await getSession();
+  const { session, permission } = await getSession();
 
   const headersList = headers();
 
@@ -34,12 +34,13 @@ export default async function Navbar() {
   if (session) {
     navigation = [
       {
-        pathname: ["/", "/telegram", "/tarihce"],
+        pathname: ["/", "/telegram", "/tarihce", "/bakiyem"],
         links: [
           { href: "/", text: "Ana Sayfa" },
           { href: "/profilim", text: "Profilim" },
           { href: "/telegram", text: "Telegram" },
           { href: "/tarihce", text: "Tarihçe" },
+          permission === "vip" && { href: "/bakiyem", text: "Bakiyem" },
         ],
       },
       {
@@ -53,6 +54,7 @@ export default async function Navbar() {
           { href: "/profilim", text: "Profilim" },
           { href: "/telegram", text: "Telegram" },
           { href: "/tarihce", text: "Tarihçe" },
+          permission === "vip" && { href: "/bakiyem", text: "Bakiyem" },
         ],
       },
       {
@@ -62,6 +64,7 @@ export default async function Navbar() {
           { href: "/profilim", text: "Profilim" },
           { href: "/telegram", text: "Telegram" },
           { href: "/tarihce", text: "Tarihçe" },
+          permission === "vip" && { href: "/bakiyem", text: "Bakiyem" },
         ],
       },
     ];

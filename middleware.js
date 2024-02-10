@@ -64,6 +64,11 @@ export async function middleware(req) {
 
     const permission = token.user.record.permission;
 
+    // Admin can go anywhere
+    if (permission === "admin") {
+      return NextResponse.next();
+    }
+
     if (permission === "banned" && !pathname.startsWith("/banned")) {
       return NextResponse.redirect(new URL("/banned", req.url));
     }
@@ -72,9 +77,12 @@ export async function middleware(req) {
       return NextResponse.redirect(new URL("/oyla", req.url));
     }
 
-    // Admin can go anywhere
-    else if (permission === "admin") {
-      return NextResponse.next();
+    if (pathname.startsWith("/bakiyem")) {
+      if (permission !== "vip") {
+        return NextResponse.redirect(new URL("/oyla", req.url));
+      } else {
+        return NextResponse.next();
+      }
     }
 
     // User can't go these pages if authenticated
@@ -150,6 +158,7 @@ export async function middleware(req) {
       "/banned",
       "/admin",
       "/tarihce",
+      "/bakiyem",
     ];
     if (
       cantGoIfNotAuth.some((restrictedRoute) =>

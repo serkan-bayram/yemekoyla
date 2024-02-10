@@ -661,3 +661,58 @@ export async function saveAvatar(data) {
     return { error: "somethingWentWrong" };
   }
 }
+
+export async function saveSofraInfo(username, password) {
+  const { session } = await getSession();
+
+  const isTelegramVerified = !!session.user.record.isTelegramVerified;
+
+  if (!isTelegramVerified) {
+    return { error: "noTelegram" };
+  }
+
+  const url = "https://sofra.bilecik.edu.tr/OturumAc";
+
+  let formData = new FormData();
+  formData.append("KullaniciAd", username);
+  formData.append("Parola", password);
+
+  const response = await fetch(url, {
+    method: "POST",
+    body: formData,
+  });
+
+  if (!(await response.json())) {
+    return { error: "notAuthenticated" };
+  }
+
+  const secret = process.env.TELEGRAM_TOKEN;
+
+  const sofra_password = jsonwebtoken.sign(
+    { sofra_password: password },
+    secret
+  );
+
+  const data = {
+    telegram_id: session.user.record.telegramId,
+    sofra_username: username,
+    sofra_password: sofra_password,
+    user: session.user.record.id,
+  };
+
+  try {
+    const record = await pb
+      .collection("balance")
+      .getFirstListItem(`user="${session.user.record.id}"`);
+
+    await pb.collection("balance").update(record.id, data);
+    return { success: "updated" };
+  } catch (error) {}
+
+  try {
+    const record = await pb.collection("balance").create(data);
+    return { success: "connected" };
+  } catch (error) {
+    console.log("Error on saveSofraInfo: ", error);
+  }
+}
