@@ -40,7 +40,6 @@ export default async function Navbar() {
           { href: "/profilim", text: "Profilim" },
           { href: "/telegram", text: "Telegram" },
           { href: "/tarihce", text: "Tarihçe" },
-          permission === "vip" && { href: "/bakiyem", text: "Bakiyem" },
         ],
       },
       {
@@ -54,7 +53,6 @@ export default async function Navbar() {
           { href: "/profilim", text: "Profilim" },
           { href: "/telegram", text: "Telegram" },
           { href: "/tarihce", text: "Tarihçe" },
-          permission === "vip" && { href: "/bakiyem", text: "Bakiyem" },
         ],
       },
       {
@@ -64,10 +62,48 @@ export default async function Navbar() {
           { href: "/profilim", text: "Profilim" },
           { href: "/telegram", text: "Telegram" },
           { href: "/tarihce", text: "Tarihçe" },
-          permission === "vip" && { href: "/bakiyem", text: "Bakiyem" },
         ],
       },
     ];
+
+    if (permission === "vip") {
+      navigation = [
+        {
+          pathname: ["/", "/telegram", "/tarihce", "/bakiyem"],
+          links: [
+            { href: "/", text: "Ana Sayfa" },
+            { href: "/profilim", text: "Profilim" },
+            { href: "/telegram", text: "Telegram" },
+            { href: "/tarihce", text: "Tarihçe" },
+            { href: "/bakiyem", text: "Bakiyem" },
+          ],
+        },
+        {
+          pathname: ["/giris", "/kaydol", "/dogrula"],
+          links: [],
+        },
+        {
+          pathname: ["/oyla"],
+          links: [
+            { href: "/", text: "Ana Sayfa" },
+            { href: "/profilim", text: "Profilim" },
+            { href: "/telegram", text: "Telegram" },
+            { href: "/tarihce", text: "Tarihçe" },
+            { href: "/bakiyem", text: "Bakiyem" },
+          ],
+        },
+        {
+          pathname: ["/profilim"],
+          links: [
+            { href: "/", text: "Ana Sayfa" },
+            { href: "/profilim", text: "Profilim" },
+            { href: "/telegram", text: "Telegram" },
+            { href: "/tarihce", text: "Tarihçe" },
+            { href: "/bakiyem", text: "Bakiyem" },
+          ],
+        },
+      ];
+    }
   }
 
   if (isGuest) {
