@@ -19,6 +19,7 @@ import { getTemporaryUsername, getTemporaryPassword } from "./getTemporary";
 import { fetchUserByEmail } from "./fetchUserByEmail";
 import { getRatings } from "./getRatings";
 import { getMenu } from "./getMenu";
+import AES from "crypto-js/aes";
 
 // bu fonksiyonların hepsini diğer fonksiyonlardan kaldır
 // export değiştir isim değiştir bir de öyle dene
@@ -688,10 +689,7 @@ export async function saveSofraInfo(username, password) {
 
   const secret = process.env.TELEGRAM_TOKEN;
 
-  const sofra_password = jsonwebtoken.sign(
-    { sofra_password: password },
-    secret
-  );
+  const sofra_password = AES.encrypt(password, secret).toString();
 
   const data = {
     telegram_id: session.user.record.telegramId,
