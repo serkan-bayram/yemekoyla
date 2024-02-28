@@ -1,6 +1,6 @@
 "use client";
 
-import { saveSofraInfo } from "../../components/Functions/actions";
+import { saveSchoolId } from "../../components/Functions/actions";
 import { getFormData } from "../../components/Functions/getFormData";
 import { error, success } from "../../components/Functions/notify";
 
@@ -8,13 +8,10 @@ export default function Form() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { username, password } = getFormData(e);
-    const response = await saveSofraInfo(username, password);
+    const { schoolId } = getFormData(e);
+    const response = await saveSchoolId(schoolId);
 
     if (response?.error) {
-      if (response.error === "notAuthenticated") {
-        error("Yanlış kullanıcı adı veya şifre.");
-      }
       if (response.error === "noTelegram") {
         error("Önce hesabınızı Telegram ile bağlamalısınız.");
       }
@@ -28,18 +25,19 @@ export default function Form() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3 p-8">
       <input
+        className="p-3 bg-primary-400 border border-primary-200 rounded-md"
         required
         type="text"
-        name="username"
-        placeholder="SOFRA Kullanıcı Adınız"
+        name="schoolId"
+        placeholder="Okul Numaranız"
       />
-      <input
-        required
-        type="password"
-        name="password"
-        placeholder="SOFRA Şifreniz"
-      />
-      <button type="submit">kaydet</button>
+      <button
+        type="submit"
+        className="px-5 py-3 bg-primary-400 border 
+      border-primary-200 w-fit mx-auto rounded-md"
+      >
+        Kaydet
+      </button>
     </form>
   );
 }

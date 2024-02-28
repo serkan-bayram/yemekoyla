@@ -30,7 +30,7 @@ export default async function Page({ params }) {
       <Navbar />
       <div className="pt-16">
         <Notifications />
-        <SnowfallClient />
+        {/* <SnowfallClient /> */}
         <div className="flex  flex-col lg:flex-row justify-center  gap-12 mb-8 my-12 lg:mt-0 px-3 lg:px-24 ">
           <div
             className="p-5 py-8 pb-6 lg:sticky top-4 rounded-md 

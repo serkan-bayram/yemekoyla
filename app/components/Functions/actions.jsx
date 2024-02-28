@@ -663,7 +663,7 @@ export async function saveAvatar(data) {
   }
 }
 
-export async function saveSofraInfo(username, password) {
+export async function saveSchoolId(schoolId) {
   const { session } = await getSession();
 
   const isTelegramVerified = !!session.user.record.isTelegramVerified;
@@ -672,29 +672,9 @@ export async function saveSofraInfo(username, password) {
     return { error: "noTelegram" };
   }
 
-  const url = "https://sofra.bilecik.edu.tr/OturumAc";
-
-  let formData = new FormData();
-  formData.append("KullaniciAd", username);
-  formData.append("Parola", password);
-
-  const response = await fetch(url, {
-    method: "POST",
-    body: formData,
-  });
-
-  if (!(await response.json())) {
-    return { error: "notAuthenticated" };
-  }
-
-  const secret = process.env.TELEGRAM_TOKEN;
-
-  const sofra_password = AES.encrypt(password, secret).toString();
-
   const data = {
     telegram_id: session.user.record.telegramId,
-    sofra_username: username,
-    sofra_password: sofra_password,
+    school_id: schoolId,
     user: session.user.record.id,
   };
 
