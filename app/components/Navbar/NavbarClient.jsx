@@ -5,6 +5,7 @@ import { Button } from "./Button";
 import { HamburgerMenuButton } from "./HamburgerMenuButton";
 import { Items } from "./Items";
 import { Logo } from "./Logo";
+import Image from "next/image";
 
 export default function NavbarClient({ navigation }) {
   // Check is hamburger menu open
@@ -33,10 +34,10 @@ export default function NavbarClient({ navigation }) {
       border-b lg:border-0
        border-b-primary-100
            flex
-     items-center justify-between px-4 lg:px-24 h-16
+     items-center justify-between px-4 lg:px-24 lg:h-24 h-16
       bg-primary-300 "
     >
-      <div className="flex flex-1">
+      <div className="flex flex-1 h-full lg:h-auto">
         <Logo />
       </div>
       <Items isOpen={isOpen} setIsOpen={setIsOpen} navigation={navigation} />
