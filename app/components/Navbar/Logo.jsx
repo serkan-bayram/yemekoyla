@@ -7,8 +7,8 @@ export function Logo() {
     <Link className="relative  w-full lg:w-auto" href="/">
       <Image
         className="lg:block hidden "
-        width={120}
-        height={120}
+        width={100}
+        height={100}
         src={"/mascot.png"}
       />
       <Image
@@ -18,7 +18,8 @@ export function Logo() {
         src={"/mascot.png"}
       />
       <h1
-        className="text-accent-400 absolute left-1/2 -translate-x-1/2 -bottom-2  transition-all
+        className="text-accent-400 absolute left-2
+  -bottom-1  transition-all text-sm
   select-none font-heading font-extrabold lg:block hidden"
       >
         Yemekoyla
