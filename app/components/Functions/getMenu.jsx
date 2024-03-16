@@ -8,7 +8,7 @@ export const getMenu = async (date) => {
         .collection("menus")
         .getFirstListItem(`date="${date}"`);
 
-      record.url = `http://51.12.208.57:8090/data/${date}/${date}.jpeg`;
+      record.url = `${process.env.serverIP}:8090/data/${date}/${date}.jpeg`;
 
       return record;
     }
