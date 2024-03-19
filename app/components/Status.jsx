@@ -1,8 +1,10 @@
-import { cookies } from "next/headers";
 import { getOtherRatings } from "../oyla/components/getOtherRatings";
 import StatusClient from "./StatusClient";
+import { unstable_noStore } from "next/cache";
 
 export default async function Status() {
+  unstable_noStore();
+
   const response = await getOtherRatings();
 
   const average = response?.average || null;
