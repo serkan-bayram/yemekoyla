@@ -37,7 +37,7 @@ export default function NavbarClient({ navigation }) {
      items-center justify-between px-4 lg:px-24 lg:h-24 h-16
       bg-primary-300 "
     >
-      <div className="flex flex-1 h-full lg:h-auto">
+      <div className="flex flex-1 ">
         <Logo />
       </div>
       <Items isOpen={isOpen} setIsOpen={setIsOpen} navigation={navigation} />

@@ -1,11 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-// This is bad.
 export function Logo() {
   return (
     <Link className="relative  w-full lg:w-auto" href="/">
-      <Image
+      {/* <Image
         className="lg:block hidden "
         width={100}
         height={100}
@@ -16,11 +15,10 @@ export function Logo() {
         width={70}
         height={70}
         src={"/mascot.png"}
-      />
+      /> */}
       <h1
-        className="text-accent-400 absolute left-2
-  -bottom-1  transition-all text-sm
-  select-none font-heading font-extrabold lg:block hidden"
+        className="text-accent-400 hover:text-accent-300 transition-all
+  select-none        font-heading text-3xl font-extrabold"
       >
         Yemekoyla
       </h1>
