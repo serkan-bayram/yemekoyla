@@ -80,8 +80,7 @@ function Content5() {
       className="tracking-wide leading-relaxed w-full 
 bg-primary-100 font-body p-4 text-white rounded-md"
     >
-      Bu siteyi kurmaktaki amacımız,{" "}
-      <HighlightedText text={"yemekhane hizmetlerini kötülemek değildir."} />{" "}
+      Bu siteyi kurmaktaki amacımız, yemekhane hizmetlerini kötülemek değildir.
       Hedefimiz öğrencilerin düşüncelerini bir endişe duymadan
       paylaşabilecekleri bir ortam oluşturmaktır. Biz daha iyi hizmete giden
       yolun doğru iletişimden geçtiğini düşünüyoruz ve yemekhane hizmetini veren
@@ -102,9 +101,9 @@ export default function AccordionContent({ content, isOpen }) {
     ContentComponent = Content2;
   }
 
-  if (content === "Content3") {
-    ContentComponent = Content3;
-  }
+  // if (content === "Content3") {
+  //   ContentComponent = Content3;
+  // }
 
   if (content === "Content4") {
     ContentComponent = Content4;
