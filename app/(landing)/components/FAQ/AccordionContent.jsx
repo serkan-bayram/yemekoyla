@@ -91,7 +91,7 @@ bg-primary-100 font-body p-4 text-white rounded-md"
 }
 
 export default function AccordionContent({ content, isOpen }) {
-  let ContentComponent;
+  let ContentComponent = null;
 
   if (content === "Content1") {
     ContentComponent = Content1;
@@ -120,7 +120,7 @@ export default function AccordionContent({ content, isOpen }) {
       }`}
     >
       <div className="overflow-hidden">
-        {<ContentComponent /> ? <ContentComponent /> : null}
+        {ContentComponent ? <ContentComponent /> : null}
       </div>
     </div>
   );

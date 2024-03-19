@@ -15,10 +15,10 @@ export default function Accordion() {
       heading: "E-Posta'mın şifresini nasıl sıfırlayabilirim?",
       content: "Content2",
     },
-    {
-      heading: "Neden kaydolmak için Okul E-Posta'sı istiyoruz?",
-      content: "Content3",
-    },
+    // {
+    //   heading: "Neden kaydolmak için Okul E-Posta'sı istiyoruz?",
+    //   content: "Content3",
+    // },
     {
       heading: "E-Posta'ma gelen kodu nereden bulabilirim?",
       content: "Content4",
