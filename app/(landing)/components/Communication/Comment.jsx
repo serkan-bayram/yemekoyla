@@ -3,13 +3,30 @@
 import { useRef } from "react";
 import { useAppearOnScroll } from "../../../components/Functions/useAppearOnScroll";
 import Image from "next/image";
+import { v4 as uuidv4 } from "uuid";
 
 function fullStar() {
-  return <Image alt="" src={"/full-star.svg"} width={16} height={16} />;
+  return (
+    <Image
+      key={uuidv4()}
+      alt=""
+      src={"/full-star.svg"}
+      width={16}
+      height={16}
+    />
+  );
 }
 
 function emptyStar() {
-  return <Image alt="" src={"/empty-star.png"} width={16} height={16} />;
+  return (
+    <Image
+      key={uuidv4()}
+      alt=""
+      src={"/empty-star.png"}
+      width={16}
+      height={16}
+    />
+  );
 }
 
 export function Comment({ author, comment, fullStars, emptyStars }) {

@@ -50,7 +50,6 @@ export function Comments() {
           className={`absolute ${comment.positionX} ${comment.positionY}`}
         >
           <Comment
-            key={uuidv4()}
             author={comment.author}
             comment={comment.comment}
             fullStars={comment.fullStars}
