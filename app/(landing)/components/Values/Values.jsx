@@ -16,7 +16,7 @@ export default function Values() {
       title: "Yorumlarınızın",
       accent: "Değeri",
       content:
-        "Yaptığınız her eleştirinin bir karşılık bulmasını hedefliyoruz, o yüzden aklınızdakini dışarı vurmaktan sakınmayın, unutmayın ki yemek bir ödül değil haktır.",
+        "Yaptığınız her eleştirinin bir karşılık bulmasını hedefliyoruz, o yüzden aklınızdakini dışarı vurmaktan sakınmayın.",
       buttonText: "Fikrini belirt",
       imageSrc: "/value.png",
       imageAlt: "Değer",

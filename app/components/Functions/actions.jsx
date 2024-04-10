@@ -664,12 +664,23 @@ export async function saveAvatar(data) {
 }
 
 export async function saveSchoolId(schoolId) {
+  function isValidTCKN(tckn) {
+    // T.C. Kimlik Numarası'nı kontrol etmek için regex deseni
+    var regex = /^[1-9]{1}[0-9]{9}[02468]$/;
+    // T.C. Kimlik Numarası'nın regex deseni ile eşleşip eşleşmediğini kontrol et
+    return regex.test(tckn);
+  }
+
   const { session } = await getSession();
 
   const isTelegramVerified = !!session.user.record.isTelegramVerified;
 
   if (!isTelegramVerified) {
     return { error: "noTelegram" };
+  }
+
+  if (!isValidTCKN(schoolId)) {
+    return { error: "notValidTCKN" };
   }
 
   const data = {

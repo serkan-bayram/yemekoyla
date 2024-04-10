@@ -75,7 +75,7 @@ export default function LightButton({
         !isFancy && "hover:bg-fade-400 transition-all"
       }`}
     >
-      <Link href={href}>
+      <Link prefetch={false} href={href}>
         <div className="flex  gap-3 items-center justify-center ">
           <Image src={imgSrc} alt={imgAlt} width={24} height={24} />
           <span className=" text-primary-400 font-semibold">{text}</span>

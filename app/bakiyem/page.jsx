@@ -4,6 +4,7 @@ import Link from "next/link";
 import Form from "./components/Form";
 import { getSession } from "../components/Functions/getSession";
 import pb from "../components/Functions/authAsAdmin";
+import Footer from "../(landing)/components/Footer";
 
 function Header() {
   return (
@@ -11,7 +12,7 @@ function Header() {
       className="mt-24 font-heading lg:text-5xl md:text-4xl text-5xl text-center  font-semibold
            text-white"
     >
-      Yemekoyla ile Kolay Bakiye
+      Yemekoyla ile <span className="text-accent-400">Akıllı Bakiye</span>
     </h1>
   );
 }
@@ -33,6 +34,13 @@ function SubHeading({ text }) {
 }
 
 export default async function Page() {
+  const { session } = await getSession();
+
+  const user =
+    session && (await pb.collection("users").getOne(session.user.record.id));
+
+  const isTelegramVerified = user && user.isTelegramVerified;
+
   return (
     <>
       <Navbar />
@@ -42,35 +50,44 @@ export default async function Page() {
           <Callout>
             <div className="flex items-center gap-2">
               <Icon name="fa-solid fa-circle-exclamation" />
-              Okuldan atılmamak istediğim için bu özellik sadece VIP üyelerimize
-              açılmıştır.
+              Bu özellik Beta aşamasındadır.
             </div>
           </Callout>
           <div className="w-full flex flex-col gap-12">
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-4">
               <SubHeading text="Ne işe yarar?" />
-              <p className=" font-body">
-                Sen vermek bana okul numaranı ben vermek sana haber bakiyen
-                azaldığı zaman.
+              <p className=" font-body text-lg">
+                Bu özellik sayesinde bakiyeniz güncel yemek tutarının altına
+                düştüğünde Telegram üzerinden bildirim alacaksınız. Bakiye
+                kontrolleri her sabah saat 10 civarı yapılıyor.
               </p>
-              <p className="flex flex-col gap-4">
+              <p className="flex flex-col gap-4 text-lg">
                 <span>
                   Bu özelliğin çalışması için Yemekoyla hesabınızı Telegram ile
-                  bağlamanız lazım, şu linkten yapabilirsiniz:{" "}
+                  bağlamanız gerekiyor, şu linkten yapabilirsiniz:{" "}
                   <Link
                     target="_blank"
-                    className="text-accent-400 font-semibold font-body"
+                    className="text-accent-400 hover:text-accent-300 transition-all font-semibold font-body"
                     href={"/telegram"}
                   >
-                    Şu Link
+                    Link
                   </Link>
                 </span>
               </p>
-              <Form />
+              {isTelegramVerified ? (
+                <Form />
+              ) : (
+                <div className="mt-4">
+                  <Callout>
+                    Lütfen Yemekoyla hesabınızı Telegram ile bağlayınız.
+                  </Callout>
+                </div>
+              )}
             </div>
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }

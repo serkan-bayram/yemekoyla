@@ -13,7 +13,11 @@ export default function Form() {
 
     if (response?.error) {
       if (response.error === "noTelegram") {
-        error("Önce hesabınızı Telegram ile bağlamalısınız.");
+        error("Telegram hesabınız Yemekoyla hesabınıza bağlı gözükmüyor.");
+      }
+
+      if (response.error === "notValidTCKN") {
+        error("Geçersiz Okul Numarası.");
       }
     }
 
@@ -27,14 +31,15 @@ export default function Form() {
       <input
         className="p-3 bg-primary-400 border border-primary-200 rounded-md"
         required
-        type="text"
+        type="number"
         name="schoolId"
         placeholder="Okul Numaranız"
       />
       <button
         type="submit"
         className="px-5 py-3 bg-primary-400 border 
-      border-primary-200 w-fit mx-auto rounded-md"
+      border-primary-200 w-fit mx-auto rounded-md 
+      cursor-pointer hover:bg-primary-400/50 transition-all"
       >
         Kaydet
       </button>
