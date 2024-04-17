@@ -77,13 +77,13 @@ export async function middleware(req) {
       return NextResponse.redirect(new URL("/oyla", req.url));
     }
 
-    if (pathname.startsWith("/bakiyem")) {
-      if (permission !== "vip") {
-        return NextResponse.redirect(new URL("/oyla", req.url));
-      } else {
-        return NextResponse.next();
-      }
-    }
+    // if (pathname.startsWith("/bakiyem")) {
+    //   if (permission !== "vip") {
+    //     return NextResponse.redirect(new URL("/oyla", req.url));
+    //   } else {
+    //     return NextResponse.next();
+    //   }
+    // }
 
     // User can't go these pages if authenticated
     const cantGoIfAuth = ["/giris", "/kaydol", "/sifremiunuttum"];
