@@ -6,6 +6,7 @@ import Trip from "./components/Trip/Trip";
 import Cards from "./components/Cards/Cards";
 import FAQ from "./components/FAQ/FAQ";
 import Footer from "./components/Footer";
+import TopList from "./components/TopList/TopList";
 
 export default async function Page() {
   // main 64 px is header height
@@ -24,6 +25,7 @@ export default async function Page() {
           <Trip />
           <Cards />
           <FAQ />
+          <TopList />
           <Footer />
         </div>
       </main>
